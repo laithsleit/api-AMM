@@ -252,3 +252,34 @@ function deleteUser(userId) {
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
 });
+
+
+
+
+
+
+
+
+document.getElementById('searchInput').addEventListener('keyup', function (event) {
+    // Get the value from the search input
+    const searchQuery = event.target.value;
+
+    // Make a Fetch API request to the endpoint with the search query
+    fetch('http://localhost/api-AMM/api/searchUser/userSearch.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            searchInput: searchQuery, // Change to match the API input property
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response data and update the UI
+        updateUsersTable(data.users); // Change to match the API response property
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});

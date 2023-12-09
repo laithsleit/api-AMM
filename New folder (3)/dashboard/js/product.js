@@ -356,3 +356,50 @@ function closeEditForm() {
     editProductForm.style.display = "none";
 }
 
+
+
+
+
+
+
+
+
+
+
+// Add an event listener for the "keyup" event on the search input field
+document.getElementById('searchInput').addEventListener('keyup', function (event) {
+    // Get the value from the search input
+    const searchQuery = event.target.value;
+
+    // Make a Fetch API request to the endpoint with the search query
+    fetch('http://localhost/api-AMM/api/searchPruduct/ProductSearch.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            searchProducts: searchQuery,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response data and update the UI
+        updateproductTable(data.products);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+    
