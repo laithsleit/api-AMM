@@ -1,3 +1,8 @@
+const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
+
+if (!isLoggedIn) {
+    window.location.href = "../signup.html";
+} 
 
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
 

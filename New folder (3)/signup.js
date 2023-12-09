@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
 
         
-        if (isUsernameValid && isPasswordValid) {
+        
             // Continue with login logic
             var user = { Username: username, Password: password };
             console.log(user);
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             sessionStorage.setItem("isLoggedin", "true");
                         } else if (data.RoleID == 1){
 
-                            window.location.href = "index.html";
+                            window.location.href = "dashboard/index.html";
                             sessionStorage.setItem("isLoggedin", "true");
 
                         } else {
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch((error) => {
                     console.error('Fetch error:', error);
                 });
-        }
+        
     });
 
     const signUp = document.getElementById("signup");

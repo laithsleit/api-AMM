@@ -15,3 +15,25 @@ function reveal() {
 }
 
 window.addEventListener("scroll", reveal);
+
+/// login buuton --- log out
+document.addEventListener("DOMContentLoaded", function () {
+  const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
+  const loginButton = document.getElementById('Login');
+
+  if (isLoggedIn) {
+      // If the user is logged in, change button text to "Logout" and set the click event
+      loginButton.textContent = 'Logout';
+      loginButton.href = '#';  
+
+      loginButton.addEventListener('click', function () {
+          
+          sessionStorage.removeItem("isLoggedin");
+          
+          window.location.href = 'signup.html';
+      });
+  } else {
+      loginButton.textContent = 'Login';
+      loginButton.href = 'signup.html';  
+  }
+});

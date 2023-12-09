@@ -1,3 +1,9 @@
+const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
+
+if (!isLoggedIn) {
+    window.location.href = "../signup.html";
+} 
+
 document.addEventListener("DOMContentLoaded", function () {
     // Get the plus icon, close icon, and the popup form
     const addUserButton = document.getElementById("addUserButton");
