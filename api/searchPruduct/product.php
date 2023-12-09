@@ -19,16 +19,16 @@ class Product
     {
         $query = "SELECT * FROM product WHERE 
                   Name LIKE ? OR 
-                  CategoryID LIKE ? ";
+                  Description LIKE ? ";
         $stmt = $this->mysqli->prepare($query);
 
         if ($stmt) {
             // Assuming $searchParameter is an associative array
             $name =  "%" . $searchParameter . "%" ;
-            $categoryID = "%" . $searchParameter . "%" ;
+            $Description = "%" . $searchParameter . "%" ;
             
 
-            $stmt->bind_param('ss', $name, $categoryID);
+            $stmt->bind_param('ss', $name, $Description);
             $stmt->execute();
             $result = $stmt->get_result();
 

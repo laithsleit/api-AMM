@@ -11,71 +11,19 @@ document.addEventListener("DOMContentLoaded", function () {
         container.classList.remove("right-panel-active");
     });
 
-    // Validation functions
-    const validateUsername = (username) => {
-        // Check if the username is not empty
-        if (!username.trim()) {
-            return false; // Username is empty
-        }
+ 
 
-        const alphanumericRegex = /^[a-zA-Z0-9]+$/;
-        return alphanumericRegex.test(username);
-    };
-    
 
-    const validateEmail = (email) => {
-        // Regular expression for a simple email format check
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-    
 
-    const validatePassword = (password) => {
-       // Check if the password is not empty
-        return password.length >= 6 && /[a-z]/.test(password) && /[A-Z]/.test(password);
-    };
-
-    const updateErrorMessage = (elementId, isValid, errorMessage) => {
-        const errorElement = document.getElementById(elementId);
-        const smallElement = errorElement.querySelector('small');
-
-        if (isValid) {
-            smallElement.textContent = '';
-        } else {
-            switch (elementId) {
-                case "usernameRegex":
-                case "Username1Regex":
-                    smallElement.textContent = "Invalid username. Username should contain only alphanumeric characters and cannot be empty.";
-                    break;
-                case "emailRegex":
-                    smallElement.textContent = "Invalid email. Please provide a valid email address.";
-                    break;
-                case "passwordRegex":
-                case "password1Regex":
-                    smallElement.textContent = "Invalid password. Password should be at least 6 characters long and must contain both uppercase and lowercase letters.";
-                    break;
-                default:
-                    smallElement.textContent = errorMessage;
-            }
-        }
-    };
-    
 
     const signIn = document.getElementById("signin");
     signIn.addEventListener("click", (event) => {
         event.preventDefault();
         var username = document.getElementById("Username1").value;
         var password = document.getElementById("password1").value;
-        console.log(username, password);
+        
 
-        // Validate username and password
-        const isUsernameValid = validateUsername(username);
-        const isPasswordValid = validatePassword(password);
-
-        // Update error messages
-        updateErrorMessage("Username1Regex", isUsernameValid, "Invalid username");
-        updateErrorMessage("password1Regex", isPasswordValid, "Invalid password");
-
+        
         if (isUsernameValid && isPasswordValid) {
             // Continue with login logic
             var user = { Username: username, Password: password };
@@ -96,10 +44,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then((data) => {
                     if(data.success == true){
                         console.log('Login successful');
-                        console.log('Role:', data.RoleID);
+                        // console.log('Role:', data.RoleID);
                         sessionStorage.setItem("UserID", data.UserID);
                         sessionStorage.setItem("RoleID", data.RoleID);
-                        console.log('User ID:', data.UserID);
+                        // console.log('User ID:', data.UserID);
                     
                         if (data.RoleID == 2) {
 
@@ -115,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         }
 
                     } else {
-                        alert("Invalid username or password");   
+                        alert("Message:" + data.message);   
                     }
 
 
@@ -134,18 +82,11 @@ document.addEventListener("DOMContentLoaded", function () {
         var password = document.getElementById("password").value;
         console.log(username, email, password);
 
-        // Validate username, email, and password
-        const isUsernameValid = validateUsername(username);
-        const isEmailValid = validateEmail(email);
-        const isPasswordValid = validatePassword(password);
+    
 
         // Update error messages
-        updateErrorMessage("usernameRegex", isUsernameValid, "Invalid username");
-        updateErrorMessage("emailRegex", isEmailValid, "Invalid email");
-        updateErrorMessage("passwordRegex", isPasswordValid, "Invalid password");
-
-        if (isUsernameValid && isEmailValid && isPasswordValid) {
-            // Continue with signup logic
+        
+    
             var newUser = { Username: username, Email: email, Password: password };
             console.log(newUser);
 
@@ -173,6 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch((error) => {
                     console.error('Fetch error:', error);
                 });
-        }
+        
     });
 });
