@@ -1,0 +1,6 @@
+-- SELECT c.*,p.*,u.*
+-- FROM Cart c  
+-- JOIN product p ON p.ProductID=c.ProductID
+-- JOIN users u ON u.UserID=c.UserID
+-- WHERE c.UserID =  u.UserID
+-- //////////////////////////////////////////////////////////////////////

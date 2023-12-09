@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width-device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="sie-edge" />
+    <link
+      href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="signup.css" />
+    <title>Slider Form</title>
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f6f5f7;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 87vh;
+            margin-top:80px;
+            background-image: url(https://images-ext-2.discordapp.net/external/ytj-C8VJRdToYhEFRxaWQGSwwbbak0-v4V2uw_jUOak/%3Fq%3Dtbn%3AANd9GcRPKPakXVDSR7cT2QAUSt565E50LVpnMzcmCo7_CH25rN0hP63X2UYGbtB3lCcOUXPf15o%26usqp%3DCAU/https/encrypted-tbn0.gstatic.com/images?format=webp&width=452&height=173);
+            background-size: cover;
+
+        }
+
+
+
+
+
+
+
+
+        .header{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:1.3rem 10%;
+    /* background-color: rgb(81, 185, 206); */
+    backdrop-filter:blur(15px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background-color:rgb(12 12 12);
+    
+    
+  }
+  .logo{
+     font-size: 1rem;
+     color:rgb(247, 244, 244);
+     text-decoration: none;
+     font-weight: 700;
+  }
+ 
+  .navbar a{
+     text-decoration: none;
+     font-size: 1.15rem;
+     color:rgb(246, 239, 239);
+     font-weight: 500;
+     margin-left: 1.5rem;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        h1 {
+            font-weight: bold;
+            margin: 0;
+            color: white;
+        }
+        
+        p {
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            margin: 20px 0 30px;
+        }
+        
+        span {
+            font-size: 12px;
+            color: beige;
+        }
+        
+        a {
+            color: #fff;
+            font-size: 14px;
+            text-decoration: none;
+            margin: 15px 0;
+        }
+        
+        .container {
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.90), 0 10px 10px rgba(0, 0, 0, 0.22);
+            position: absolute;
+            overflow: hidden;
+            width: 768px;
+            max-width: 100%;
+            min-height: 480px;
+            opacity: 0.8;
+            margin-bottom: 500px; 
+          margin-top: 500px;
+        }
+        
+        .form-container form {
+            background: rgb(0, 0, 0);
+            display: flex;
+            flex-direction: column;
+            padding: 0 50px;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        
+        
+        .social-container {
+            margin: 20px 0;
+        }
+        
+        .social-container a {
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            height: 40px;
+            width: 40px;
+        }
+        
+        
+        .form-container input {
+            background: #eee;
+            border: none;
+            padding: 12px 15px;
+            margin: 8px 0;
+            width: 100%;
+        }
+        
+        button {
+            border-radius: 20px;
+            border: 1px solid #ff4b2b;
+            background: #ff4b2b;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 45px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 80ms ease-in;
+        }
+        
+        input[type=text] {
+            width: 240px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #fff;
+            font-family: 'PLay', sans-serif;
+            font-size: 16px;
+            font-weight: 200px;
+            padding: 10px 0;
+            transition: border 0.5s;
+            outline: none;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        input[type=password] {
+            width: 240px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #fff;
+            font-family: 'PLay', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 0;
+            transition: border 0.5s;
+            outline: none;
+            color: #fff;
+        }
+        
+        input[type=email] {
+            width: 240px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #fff;
+            font-family: 'PLay', sans-serif;
+            font-size: 16px;
+            font-weight: 200px;
+            padding: 10px 0;
+            transition: border 0.5s;
+            outline: none;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        button:active {
+            transform: scale(0.95);
+        }
+        
+        button:focus {
+            outline: none;
+        }
+        
+        button.ghost {
+            background: transparent;
+            border-color: #ff4b2b;
+            background-color: #ff4b2b
+        }
+        
+        .form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+        
+        .sign-in-container {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+        
+        .sign-up-container {
+            left: 0;
+            width: 50%;
+            z-index: 1;
+            opacity: 0;
+        }
+        
+        .overlay-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.6s ease-in-out;
+            z-index: 100;
+        }
+        
+        .overlay {
+            background: transparent;
+            background: linear-gradient(to right, #ff4b2b, #ff416c) no repeat 0 0 /cover;
+            color: white;
+            position: absolute;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+        
+        .overlay-panel {
+            position: absolute;
+            background-color: #9B8E79;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 40px;
+            height: 100%;
+            width: 50%;
+            text-align: center;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+        
+        .overlay-right {
+            right: 0;
+            transform: translateX(0);
+            
+        }
+        
+        .overlay-left {
+            transform: translateX(-20%);
+        }
+        
+        /*....Animation....*/
+        
+        /*....Move signin to the right....*/
+        .container.right-panel-active .sign-in-container {
+            transform: translateX(100%);
+        }
+        
+        /*....Move overlay to the left....*/
+        .container.right-panel-active .overlay-container {
+            transform: translateX(-100%);
+        }
+        
+        /*....Bring sign up over sign in....*/
+        .container.right-panel-active .sign-up-container {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+        }
+        
+        /*...Move overlay back to right....*/
+        .container.right-panel-active .overlay {
+            transform: translateX(50%);
+        }
+        
+        .container.right-panel-active .overlay-left {
+            transform: translateX(0);
+        }
+        
+        .container.right-panel-active .overlay-right {
+            transform: translateX(20%);
+        }
+        
+
+
+
+
+
+
+/* The footer is fixed to the bottom of the page */
+
+footer {
+position: fixed;
+bottom: 0;
+
+}
+
+@media (max-height:800px) {
+footer {
+/* position: static; */
+}
+header {
+padding-top: 40px;
+}
+}
+
+.footer-distributed {
+background-color: rgb(12 12 12);
+box-sizing: border-box;
+width: 100%;
+text-align: left;
+font: bold 16px sans-serif;
+padding: 50px 50px 60px 50px;
+/* margin-top: 80px; */
+margin-bottom: 0px;
+/* margin-top:1900px; */
+}
+
+.footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+display: inline-block;
+vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left {
+width: 30%;
+}
+
+.footer-distributed h3 {
+color: #ffffff;
+font: normal 36px 'Cookie', cursive;
+margin: 0;
+}
+
+
+.footer-distributed h3 span {
+color: #e0ac1c;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+color: #ffffff;
+/* margin: 20px 0 12px; */
+}
+
+.footer-distributed .footer-links a {
+display: inline-block;
+line-height: 1.8;
+text-decoration: none;
+color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+color: #8f9296;
+font-size: 14px;
+font-weight: normal;
+margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center {
+width: 35%;
+}
+
+.footer-distributed .footer-center i {
+background-color: #33383b;
+color: #ffffff;
+font-size: 25px;
+width: 38px;
+height: 38px;
+border-radius: 50%;
+text-align: center;
+line-height: 42px;
+margin: 10px 15px;
+vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+font-size: 17px;
+line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+display: inline-block;
+color: #ffffff;
+vertical-align: middle;
+margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+display: block;
+font-weight: normal;
+font-size: 14px;
+line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+color: #e0ac1c;
+text-decoration: none;
+;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right {
+width: 30%;
+}
+
+.footer-distributed .footer-company-about {
+line-height: 20px;
+color: #92999f;
+font-size: 13px;
+font-weight: normal;
+margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+display: block;
+color: #ffffff;
+font-size: 18px;
+font-weight: bold;
+margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+display: inline-block;
+width: 35px;
+height: 35px;
+cursor: pointer;
+background-color: #33383b;
+border-radius: 2px;
+font-size: 20px;
+color: #ffffff;
+text-align: center;
+line-height: 35px;
+margin-right: 3px;
+margin-bottom: 5px;
+}
+
+.footer-distributed .footer-icons a:hover {
+background-color: #3F71EA;
+}
+
+.footer-links a:hover {
+color: #3F71EA;
+}
+
+@media (max-width: 880px) {
+.footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+display: block;
+width: 100%;
+margin-bottom: 40px;
+text-align: center;
+}
+.footer-distributed .footer-center i {
+margin-left: 0;
+}
+}
+
+
+/* 
+#x{
+    height: 100px;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        
+            </style>
+
+             <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+   
+
+  </head>
+
+  <body>
+
+
+
+
+
+
+
+
+
+
+    <div class="header">
+        <a href="#" class="logo">Mahmoud</a>
+
+       <nav class="navbar">
+        <a href="hom.html">home</a>
+        <a href="products.html">shop</a>
+        <a href="#contactus">About us</a>
+        <a href="sin up.html" id="Signup">sin up</a>
+        <a href="log in.html" id="Signup">login</a>
+        </nav>
+    </div>
+
+
+
+
+<!-- 
+<div id="x" > -->
+
+
+
+    <div class="container" id="container">
+      <div class="form-container sign-up-container">
+        <form action="#">
+          <h1>Create Account</h1>
+          <div class="social-container">
+            <a href="#" class="social">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#" class="social">
+              <ion-icon name="logo-googleplus"></ion-icon>
+            </a>
+            <a href="#" class="social">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </div>
+          <span>or use your email for registration</span>
+          <input type="text" placeholder="Name" />
+          <input type="email" placeholder="Email" />
+          <input type="password" placeholder="Password" />
+          <button>Sign Up</button>
+        </form>
+      </div>
+      <div class="form-container sign-in-container">
+        <form action="#">
+          <h1>Sign In</h1>
+          <div class="social-container">
+            <a href="#" class="social">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#" class="social">
+              <ion-icon name="logo-googleplus"></ion-icon>
+            </a>
+            <a href="#" class="social">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </div>
+          <span>or use your account</span>
+          <input type="email" placeholder="Email" id="email" />
+          <input type="password" placeholder="Password" id="password1" />
+          <button id="signin">Sign In</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Welcome Back</h1>
+            <p>
+              To keep connected with us please login with your personal info
+            </p>
+            <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Hello,Friend</h1>
+            <p>Enter your personal details and start journey with us</p>
+            <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- </div> -->
+
+
+
+   
+
+
+
+
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+            <h3>Furniture <span>sale</span></h3>
+
+            <p class="footer-links">
+                <a href="#">Home</a>
+                |
+                <a href="#">About</a>
+                |
+                <a href="#">Contact</a>
+                |
+                <a href="#">Blog</a>
+            </p>
+
+            <p class="footer-company-name">Copyright © 2021 <strong>Tim4</strong> All rights reserved</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>Tim4  number one</span>
+                       </p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>0791469264</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="">msleet38@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                <strong>Furniture sale</strong> It has everything you need in terms of furniture and a new sponsor
+             
+            </p>
+            <div class="footer-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+    <script>      
+    
+    
+    
+    
+    
+    document.addEventListener("DOMContentLoaded", function () {
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+    
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+
+    const signIn = document.getElementById("signin");
+    signIn.addEventListener("click", (event) => {
+        event.preventDefault();
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password1").value;
+        console.log(email, password);
+
+        var user = { email: email, password: password };
+        console.log(user);
+
+        fetch("http://localhost/ecommerce/API1/user/login_oop.php", {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: { "Content-Type": "application/json" }
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then((data) => {
+                if (data.ROLE === 2 && data.STATUS === true) {
+                    console.log('Validation is true');
+                    console.log('Role:', data.ROLE);
+                    sessionStorage.setItem("userid", data.USER_ID);
+                    console.log('User ID:', data.USER_ID);
+
+                    
+                    window.location.href = "../athath/index.html";
+                    sessionStorage.setItem("isLoggedin", "true");
+                } else if (data.ROLE == 1 && data.STATUS === true ) {
+                    window.location.href = "../inbox.html";
+                    console.log('Validation is false');
+                } else {
+                    alert("the email or password not valid")
+                }
+            })
+            .catch((error) => {
+                console.error('Fetch error:', error);
+            });
+    });
+});
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </script>
+    <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
+  </body>
+</html>

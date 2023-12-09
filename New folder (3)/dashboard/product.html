@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<title>product</title>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar" class="hide">
+		<a href="index.html" class="brand">
+			<i class='bx bxs-store-alt' ></i>
+			<span class="text">AAM Store</span>
+		</a>
+		<ul class="side-menu top">
+			<li>
+				<a href="index.html">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="product.html">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">My Store</span>
+				</a>
+			</li>
+			<li>
+				
+				<a href="users.html">
+					<i class='bx bxs-user'></i>
+					<span class="text">Users</span>
+				</a>
+			</li>
+			<li>
+				<a href="reviews.html">
+					<i class='bx bxs-message-dots' ></i>
+					<span class="text">Message</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Team</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link"> Dashboard</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<!--  -->
+			<a href="#" class="profile">
+				
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Products</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="index.html">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="users.html">Products</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			
+
+
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3 style="text-align:center">All Products</h3>
+						<!-- <i class='bx bx-search' ></i>
+						<i class='bx bx-filter' ></i> -->
+						<i class='bx bxs-plus-circle'  id="addUserButton"></i>
+					</div>
+
+					<div class="popup-form" id="userPopupForm" >
+						<i class='bx bx-x-circle close-icon' id="closeUserForm"></i>
+
+						<form id="createProductForm" style="padding:0 10px" enctype="multipart/form-data" method="POST">
+                            
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description" required rows="3" cols="50"></textarea>
+                        
+                            <label for="price">Price:</label>
+                            <input type="number" id="price" name="price" step="0.01" required>
+                        
+                            <label for="stockQuantity">Stock Quantity:</label>
+                            <input type="number" id="stockQuantity" name="stockQuantity" required>
+
+                            <label for="categoryID">Category ID:</label>
+
+                            <select id="categoryID" name="categoryID" required>
+                                <!-- Options will be populated dynamically using JavaScript -->
+                            </select>
+                        
+                        
+                            <label for="image">Image:</label>
+                            <input type="file" id="image" name="image">
+                            
+                        
+                            <button type="submit">Create Product</button>
+                        </form>
+                        
+					</div>
+
+
+                    <!-- Add this inside the <body> tag where your other forms are located -->
+
+<!-- Edit Product Form -->
+<div id="editProductForm" class="popup-form">
+    <h2>Edit Product</h2>
+    <form id="editForm">
+        <label for="editName">Name:</label>
+        <input type="text" id="editName" name="editName" required>
+
+        <label for="editDescription">Description:</label>
+        <textarea id="editDescription" name="editDescription" required></textarea>
+
+        <label for="editPrice">Price:</label>
+        <input type="number" id="editPrice" name="editPrice" required>
+
+        <label for="editStockQuantity">Stock Quantity:</label>
+        <input type="number" id="editStockQuantity" name="editStockQuantity" required>
+
+        <label for="editCategoryID">Category ID:</label>
+        <!-- Assuming you have a select dropdown for categories -->
+        <select id="editCategoryID" name="editCategoryID" required>
+            <!-- Options will be dynamically populated using JavaScript -->
+        </select>
+
+        <input type="file" id="editImage" name="editImage">
+        <button type="submit">Save Changes</button>
+    </form>
+    <span id="closeEditForm" class="close-form">&times;</span>
+</div>
+
+					<div id="overlay"></div>
+
+					<table style="width:65vw;margin:auto">
+						<thead>
+							<tr>
+								<th>Image</th>
+								<th>Name</th>
+								<th>Description</th>
+                                <th>Price</th>
+                                <th>Action</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<!-- <tr>
+								<td>
+									
+									<p>John Doe</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status completed">Completed</span></td>
+							</tr>
+							<tr>
+								<td>
+									
+									<p>John Doe</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status pending">Pending</span></td>
+							</tr>
+							<tr>
+								<td>
+									
+									<p>John Doe</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status process">Process</span></td>
+							</tr>
+							<tr>
+								<td>
+									
+									<p>John Doe</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status pending">Pending</span></td>
+							</tr>
+							<tr>
+								<td>
+									
+									<p>John Doe</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status completed">Completed</span></td>
+							</tr> -->
+						</tbody>
+					</table>
+				</div>
+			
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="js/product.js"></script>
+</body>
+</html>

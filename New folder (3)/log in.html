@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+<style>
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    
+}
+
+.header{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:1.3rem 10%;
+    /* background-color: rgb(81, 185, 206); */
+    backdrop-filter:blur(15px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background-color:rgb(12 12 12);
+  }
+  .logo{
+     font-size: 1rem;
+     color:rgb(247, 244, 244);
+     text-decoration: none;
+     font-weight: 700;
+  }
+ 
+  .navbar a{
+     text-decoration: none;
+     font-size: 1.15rem;
+     color:rgb(246, 239, 239);
+     font-weight: 500;
+     margin-left: 1.5rem;
+  }
+
+
+
+
+
+
+  .login-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 500px;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  background-color:rgba(12, 189, 209, 0.402);
+  margin-top: 200px;
+  margin-bottom:3px ;
+}
+
+.login-box p {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  color: rgb(7, 3, 18);;
+}
+
+.login-box p::before {
+  width: 18px;
+  height: 18px;
+}
+
+.login-box p::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.login-box p::before,
+.login-box p::after 
+{
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: rgb(28, 15, 66);
+}
+
+.message, 
+.signin {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a:hover {
+  text-decoration: underline royalblue;
+}
+
+.signin a {
+  color: #00bfff;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.login-box form label {
+  position: relative;
+}
+
+.login-box form label .input {
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+  padding: 20px 05px 05px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.login-box form label .input + span {
+  color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.login-box form label .input:placeholder-shown + span {
+  top: 12.5px;
+  font-size: 0.9em;
+}
+
+.login-box form label .input:focus + span,
+.login-box form label .input:valid + span {
+  color: #00bfff;
+  top: 0px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.input {
+  font-size: medium;
+}
+
+
+
+
+.submit:hover {
+  background-color: #00bfff96;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+#submit  .submit{
+  
+  margin: 0 auto;
+ width: 200px;
+    
+ 
+  text-align: center;
+  text-decoration: none;
+  
+  cursor: pointer;
+
+  border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+    /* background-color: #00bfff; */
+    background-color:     #00bfff;       
+
+}
+
+.user-box input {
+  background-color:rgba(9, 1, 1, 0.507);
+    color: #fff;
+    width: 100%;
+    padding: 20px 5px 5px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+}
+
+
+
+
+body{
+  background-image: url('https://www.totalbusiness.com/website-center/upload/images/31f3c08e99d245a7a5dbdccbe2df11e6.webp');
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size: cover;
+}
+
+
+
+footer {
+position: fixed;
+bottom: 0;
+}
+
+@media (max-height:800px) {
+footer {
+position: static;
+}
+header {
+padding-top: 40px;
+}
+}
+
+.footer-distributed {
+background-color: rgb(12 12 12);
+box-sizing: border-box;
+width: 100%;
+text-align: left;
+font: bold 16px sans-serif;
+padding: 50px 50px 60px 50px;
+/* margin-top: 80px; */
+}
+
+.footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+display: inline-block;
+vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left {
+width: 30%;
+}
+
+.footer-distributed h3 {
+color: #ffffff;
+font: normal 36px 'Cookie', cursive;
+margin: 0;
+}
+
+
+.footer-distributed h3 span {
+color: #e0ac1c;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+color: #ffffff;
+margin: 20px 0 12px;
+}
+
+.footer-distributed .footer-links a {
+display: inline-block;
+line-height: 1.8;
+text-decoration: none;
+color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+color: #8f9296;
+font-size: 14px;
+font-weight: normal;
+margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center {
+width: 35%;
+}
+
+.footer-distributed .footer-center i {
+background-color: #33383b;
+color: #ffffff;
+font-size: 25px;
+width: 38px;
+height: 38px;
+border-radius: 50%;
+text-align: center;
+line-height: 42px;
+margin: 10px 15px;
+vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+font-size: 17px;
+line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+display: inline-block;
+color: #ffffff;
+vertical-align: middle;
+margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+display: block;
+font-weight: normal;
+font-size: 14px;
+line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+color: #e0ac1c;
+text-decoration: none;
+;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right {
+width: 30%;
+}
+
+.footer-distributed .footer-company-about {
+line-height: 20px;
+color: #92999f;
+font-size: 13px;
+font-weight: normal;
+margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+display: block;
+color: #ffffff;
+font-size: 18px;
+font-weight: bold;
+margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+display: inline-block;
+width: 35px;
+height: 35px;
+cursor: pointer;
+background-color: #33383b;
+border-radius: 2px;
+font-size: 20px;
+color: #ffffff;
+text-align: center;
+line-height: 35px;
+margin-right: 3px;
+margin-bottom: 5px;
+}
+
+.footer-distributed .footer-icons a:hover {
+background-color: #3F71EA;
+}
+
+.footer-links a:hover {
+color: #3F71EA;
+}
+
+@media (max-width: 880px) {
+.footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+display: block;
+width: 100%;
+margin-bottom: 40px;
+text-align: center;
+}
+.footer-distributed .footer-center i {
+margin-left: 0;
+}
+}
+
+a{
+  font-size: 15.3;
+}
+
+
+</style>
+
+</head>
+<body>
+
+
+
+
+  <div class="header">
+    <a href="#" class="logo">Mahmoud</a>
+
+   <nav class="navbar">
+   
+      <a href="hom.html">home</a>
+      <a href="products.html">shop</a>
+      <a href="#contactus">contact us</a>
+      <a href="sin up.html" id="Signup">sin up</a>
+      <a href="log in.html" id="Signup">login</a>
+      </nav>
+    </nav>
+</div><br><br><br><br><br><br><br><br>
+  <center>
+   
+    <div class="login-box">
+      <p>Login</p>
+      <form id="loginForm" onsubmit="return validateForm()">
+          <div class="user-box">
+              <input required placeholder="Email" type="email" class="email" id="email">
+              <span>Email</span>
+          </div>
+          <div class="user-box">
+              <input required placeholder="Password" type="password" class="password" id="password">
+              <span>Password</span>
+          </div>
+          <div class="user-box">
+              <input required placeholder="Confirm Password" type="password" class="confirm-password" id="confirmPassword">
+              <span>Confirm Password</span>
+          </div>
+          <div style="margin-top: 20px;">
+              <button type="submit" class="submit">Submit</button>
+          </div>
+      </form>
+  </div>
+  </center><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <footer class="footer-distributed">
+
+    <div class="footer-left">
+        <h3>Furniture <span>sale</span></h3>
+
+        <p class="footer-links">
+            <a href="#">Home</a>
+            |
+            <a href="#">About</a>
+            |
+            <a href="#">Contact</a>
+            |
+            <a href="#">Blog</a>
+        </p>
+
+        <p class="footer-company-name">Copyright © 2021 <strong>Tim4</strong> All rights reserved</p>
+    </div>
+
+    <div class="footer-center">
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>Tim4  number one</span>
+                   </p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>0791469264</p>
+        </div>
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="">msleet38@gmail.com</a></p>
+        </div>
+    </div>
+    <div class="footer-right">
+        <p class="footer-company-about">
+            <span>About the company</span>
+            <strong>Furniture sale</strong> It has everything you need in terms of furniture and a new sponsor
+         
+        </p>
+        <div class="footer-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            
+        </div>
+    </div>
+</footer>
+
+<!-- <script>
+  const emailInput = document.querySelector('.email');
+const passwordInput = document.querySelector('.password');
+const submitButton = document.getElementById('submit');
+
+emailInput.addEventListener('blur', () => {
+  const email = emailInput.value.trim();
+
+  // Check if the email address is valid
+  if (!email.includes('@')) {
+    // Show error message below the email input field
+    const errorMessage = document.createElement('span');
+    errorMessage.textContent = 'Invalid email address';
+    errorMessage.style.color = 'red';
+    errorMessage.className = 'error-message';
+
+    emailInput.parentNode.insertBefore(errorMessage, emailInput);
+  } else {
+    // Remove error message if it exists
+    const errorMessage = emailInput.parentNode.querySelector('.error-message');
+    if (errorMessage) {
+      errorMessage.parentNode.removeChild(errorMessage);
+    }
+  }
+});
+
+passwordInput.addEventListener('blur', () => {
+  const password = passwordInput.value.trim();
+
+  // Check if the password is at least 6 characters long
+  if (password.length < 6) {
+    // Show error message below the password input field
+    const errorMessage = document.createElement('span');
+    errorMessage.textContent = 'Password must be at least 6 characters long';
+    errorMessage.style.color = 'red';
+    errorMessage.className = 'error-message';
+
+    passwordInput.parentNode.insertBefore(errorMessage, passwordInput);
+  } else {
+    // Remove error message if it exists
+    const errorMessage = passwordInput.parentNode.querySelector('.error-message');
+    if (errorMessage) {
+      errorMessage.parentNode.removeChild(errorMessage);
+    }
+  }
+});
+
+submitButton.addEventListener('click', (event) => {
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  // Check if any of the fields are empty
+  if (!email || !password) {
+    // Show error message below the email input field if empty
+    if (!email) {
+      const errorMessage = document.createElement('span');
+      errorMessage.textContent = 'Please enter your email address';
+      errorMessage.style.color = 'red';
+      errorMessage.className = 'error-message';
+
+      emailInput.parentNode.insertBefore(errorMessage, emailInput);
+    }
+
+    // Show error message below the password input field if empty
+    if (!password) {
+      const errorMessage = document.createElement('span');
+      errorMessage.textContent = 'Please enter your password';
+      errorMessage.style.color = 'red';
+      errorMessage.className = 'error-message';
+
+      passwordInput.parentNode.insertBefore(errorMessage, passwordInput);
+    }
+
+    event.preventDefault();
+  }
+});
+
+
+
+</script> -->
+<script>
+ const comp = {
+    btn: document.querySelector('.sign'),
+    pass: document.getElementById('password'),
+    email: document.getElementById('email'),
+    user: document.getElementById('username'),
+    
+    textErEmail: document.getElementById('email-error'),
+    textErPass: document.getElementById('pass-error'),
+};
+
+comp.btn.addEventListener('click', (event) => {
+    event.preventDefault();
+    
+    const isNameValid = comp.user.value.trim() !== "";
+    const isEmailValid = comp.email.value.match(/[^\s@]+@[^\s@]+\.[^\s@]+/gi);
+    const isPasswordValid = comp.pass.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
+
+    if (isNameValid && isEmailValid && isPasswordValid) {
+        comp.textErEmail.style.display = "none";
+        comp.textErPass.style.display = "none";
+        comp.email.style.border = "1px solid #1B262C";
+        comp.pass.style.border = "1px solid #1B262C";
+        comp.user.style.border = "1px solid #1B262C";
+
+        const username = comp.user.value;
+        const email = comp.email.value;
+        const password = comp.pass.value;
+
+        const user = {
+            username: username,
+            email: email,
+            password: password
+        };
+
+        fetch('http://localhost/MasterPiece/files/signup_oop.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "login.html";
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    } else {
+        if (!isNameValid) {
+            comp.user.style.border = "1px solid red";
+        } else {
+            comp.user.style.border = "1px solid #1B262C";
+        }
+
+        if (!isEmailValid) {
+            comp.textErEmail.style.display = "block";
+            comp.email.style.border = "1px solid red";
+        } else {
+            comp.textErEmail.style.display = "none";
+            comp.email.style.border = "1px solid #1B262C";
+        }
+
+        if (!isPasswordValid) {
+            comp.textErPass.style.display = "block";
+            comp.pass.style.border = "1px solid red";
+        } else {
+            comp.textErPass.style.display = "none";
+            comp.pass.style.border = "1px solid #1B262C";
+        }
+    }
+});
+</script>
+</html>
