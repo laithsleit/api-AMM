@@ -3,6 +3,13 @@ const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
 if (!isLoggedIn) {
     window.location.href = "../signup.html";
 } 
+const logoutLink = document.querySelector('.logout');
+logoutLink.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    sessionStorage.removeItem("isLoggedin"); // Remove the isLoggedIn item from sessionStorage
+    window.location.href = "../signup.html"; // Redirect to the signup (or login) page
+});
+ 
 
 document.addEventListener("DOMContentLoaded", function () {
     // Get the plus icon, close icon, and the popup form
@@ -269,31 +276,36 @@ function updateproductTable(products) {
     });
 }
 
-// Function to delete a user by ID
+// JavaScript Code for Deleting a Product
+
+// Function to delete a product by its ID
 function deleteProduct(ProductID) {
-//
-    fetch('http://localhost/api-AMM/api/prodect/delete.php', {
+    // Send a DELETE request to the server API
+    fetch(`http://localhost/api-AMM/api/prodect/delete.php`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ProductID: ProductID }),
+        body: JSON.stringify({ ProductID: ProductID }), // Send the ProductID in the request body
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('product deleted successfully:', data.message);
-            // Refresh the product table after deletion
-            fetchData();
-        })
-        .catch(error => {
-            console.error('Error deleting product:', error.message);
-        });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Product deleted successfully:', data.message);
+        // Refresh the product table after deletion
+        fetchData();
+    })
+    .catch(error => {
+        console.error('Error deleting product:', error.message);
+    });
 }
+
+
+
 
 
 // Fetch data when the page loads

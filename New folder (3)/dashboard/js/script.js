@@ -1,9 +1,15 @@
+const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
 
-    const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
+if (!isLoggedIn) {
+    window.location.href = "../signup.html";
+} 
+const logoutLink = document.querySelector('.logout');
+logoutLink.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    sessionStorage.removeItem("isLoggedin"); // Remove the isLoggedIn item from sessionStorage
+    window.location.href = "../signup.html"; // Redirect to the signup (or login) page
+});
 
-    if (!isLoggedIn) {
-        window.location.href = "../signup.html";
-    } 
 //////////////////////////////////////////
 
 

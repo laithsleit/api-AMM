@@ -13,7 +13,7 @@ header("Content-Type: application/json");
 $inputData = json_decode(file_get_contents("php://input"), true);
 
 // Assuming you have the following data from the API request
-$userID = $inputData['UserID'] ?? null;
+$userID = $_GET['UserID'] ?? null;
 
 // Create an instance of the Cart class
 $cart = new Cart($mysqli);
