@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    updateCartCount();
     const gallery = document.getElementById('shopItem');
     let originalData = [];  // Assuming you have the original data somewhere
 
@@ -8,20 +9,19 @@ document.addEventListener("DOMContentLoaded", function () {
         shopItem.className = "shop-item";
         shopItem.innerHTML = `
             <a href="producte.html?id=${product.ProductID}" class="shop-item--container" style="background: #f1f1f1;">
-                <div class="meta">
-                    <span class="discount"> <del>$${product.Price}</del></span>
-                </div>
+                
                 <img src="${product.Image}" width="160" height="160" />
             </a>
             <div class="title">
                 <h3><a href="#" style="border-bottom: 2px solid black;">${product.Name}</a></h3>
             </div>
             <div class="price">
-                <span>Price after DISCOUNT <a>$${product.Price}</a></span>
+                <span><a>$${product.Price}</a></span>
             </div>
-            <div id="button">
-            <a style="" href="../dist/product.html?id=${product.ProductID}">Add to Cart</a>
-            </div>  
+            <div class="product-actions">
+                <a href="../product/product.html?id=${product.ProductID}" class="details-btn">See Details</a>
+                <button onclick="addToCart(${product.ProductID}, 1)" class="add-to-cart-btn">Add to Cart</button>
+            </div>
         `;
         return shopItem;
     }
@@ -117,33 +117,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         updateShopItems(filteredProducts);
-    }
-
-    // function filterProducts() {
-    //     const priceFilter = document.getElementById('priceFilter').value;
-    //     const categoryFilter = document.getElementById('categoryFilter').value;
-    
-    //     const filteredProducts = originalData.filter(product => {
-    //         const priceInRange = priceFilter === 'all' || (
-    //             parseFloat(product.Price) >= parseFloat(priceFilter.split('-')[0]) &&
-    //             parseFloat(product.Price) <= parseFloat(priceFilter.split('-')[1])
-    //         );
-                
-    //         // Use the correct property name for category comparison
-    //         const categoryMatches = categoryFilter === 'all' || product.CategoryID === categoryFilter;
-    
-    //         return priceInRange && categoryMatches;
-    //     });
-    
-    //     updateShopItems(filteredProducts);
-    // }
-    
+    }    
 });
 
 fetch('http://localhost/api-AMM/api/Category/select.php')
 .then(response => response.json())
 .then(categories => {
-    console.log(categories);
+    // console.log(categories);
     populateCategoryDropdown(categories);
 })
 .catch(error => {
@@ -172,8 +152,67 @@ function populateCategoryDropdown(categories) {
         categoryDropdown.appendChild(option);
     });
 }
+///////////////////////////////////////////////////////////
+document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
+    const loginButton = document.getElementById('Login');
+  
+    if (isLoggedIn) {
+        // If the user is logged in, change button text to "Logout" and set the click event
+        loginButton.textContent = 'Logout';
+        loginButton.href = '#';  
+  
+        loginButton.addEventListener('click', function () {
+            
+            sessionStorage.removeItem("isLoggedin");
+            
+            window.location.href = '../login/signup.html';
+        });
+    } else {
+        loginButton.textContent = 'Login';
+        loginButton.href = '../login/signup.html';  
+    }
+  });
 
-// document.getElementById("priceFilter").addEventListener("input", displayProduct);
 
+
+  ///////////////////////////////////////////////////
+  function addToCart(productId, quantity) {
+    const userId = sessionStorage.getItem('UserID');
+    const isLoggedIn = sessionStorage.getItem('isLoggedin') === 'true';
+    if (!isLoggedIn) {
+        alert('Please log in to add items to the cart.');
+        window.location.href = 'login/signup.html'; // Redirect to login/signup page
+        return;
+    }
+    if (!userId) {
+        alert('You must be logged in to add items to the cart.');
+        return;
+    }
+
+    fetch(`http://localhost/api-AMM/api/cart/cart-api.php?UserID=${userId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            UserID: userId,
+            ProductID: productId,
+            Quantity: quantity,
+            SubOrSum: 1 // Assuming 1 means add to cart
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Product added to cart successfully');
+            updateCartCount(); // Update cart count display
+            populateCartItems();
+        } else {
+            throw new Error(data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error adding product to cart:', error);
+    });
+}
 
 

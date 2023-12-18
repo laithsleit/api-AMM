@@ -1,23 +1,23 @@
 const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
 
 if (!isLoggedIn) {
-    window.location.href = "../signup.html";
+    window.location.href = "../login/signup.html";
 } 
 const logoutLink = document.querySelector('.logout');
 logoutLink.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link behavior
     sessionStorage.removeItem("isLoggedin"); // Remove the isLoggedIn item from sessionStorage
-    window.location.href = "../signup.html"; // Redirect to the signup (or login) page
+    window.location.href = "../login/signup.html"; // Redirect to the signup (or login) page
 });
 
 
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
 
-allSideMenu.forEach(item=> {
+allSideMenu.forEach(item => {
     const li = item.parentElement;
 
-    item.addEventListener('click', function () {
-        allSideMenu.forEach(i=> {
+    item.addEventListener('click', function() {
+        allSideMenu.forEach(i => {
             i.parentElement.classList.remove('active');
         });
         li.classList.add('active');
@@ -28,7 +28,7 @@ allSideMenu.forEach(item=> {
 const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
 
-menuBar.addEventListener('click', function () {
+menuBar.addEventListener('click', function() {
     sidebar.classList.toggle('hide');
 });
 
@@ -36,11 +36,11 @@ const searchButton = document.querySelector('#content nav form .form-input butto
 const searchButtonIcon = document.querySelector('#content nav form .form-input button .bx');
 const searchForm = document.querySelector('#content nav form');
 
-searchButton.addEventListener('click', function (e) {
-    if(window.innerWidth < 576) {
+searchButton.addEventListener('click', function(e) {
+    if (window.innerWidth < 576) {
         e.preventDefault();
         searchForm.classList.toggle('show');
-        if(searchForm.classList.contains('show')) {
+        if (searchForm.classList.contains('show')) {
             searchButtonIcon.classList.replace('bx-search', 'bx-x');
         } else {
             searchButtonIcon.classList.replace('bx-x', 'bx-search');
@@ -48,15 +48,15 @@ searchButton.addEventListener('click', function (e) {
     }
 });
 
-if(window.innerWidth < 768) {
+if (window.innerWidth < 768) {
     sidebar.classList.add('hide');
-} else if(window.innerWidth > 576) {
+} else if (window.innerWidth > 576) {
     searchButtonIcon.classList.replace('bx-x', 'bx-search');
     searchForm.classList.remove('show');
 }
 
-window.addEventListener('resize', function () {
-    if(this.innerWidth > 576) {
+window.addEventListener('resize', function() {
+    if (this.innerWidth > 576) {
         searchButtonIcon.classList.replace('bx-x', 'bx-search');
         searchForm.classList.remove('show');
     }
@@ -64,8 +64,8 @@ window.addEventListener('resize', function () {
 
 const switchMode = document.getElementById('switch-mode');
 
-switchMode.addEventListener('change', function () {
-    if(this.checked) {
+switchMode.addEventListener('change', function() {
+    if (this.checked) {
         document.body.classList.add('dark');
     } else {
         document.body.classList.remove('dark');
@@ -139,41 +139,40 @@ function updateReviewsTable() {
 
 // Function to delete a review by ID
 function deleteReview(reviewID) {
-  // Add a confirmation dialog before deleting
-  if (confirm('Are you sure you want to delete this review?')) {
-      fetch(`http://localhost/api-AMM/api/Review/ReviewDelete.php?reviewID=${reviewID}`, {
-          method: 'DELETE',
-          headers: {
-              'Content-Type': 'application/json',
-          }
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-      })
-      .then(data => {
-          console.log('Review deleted successfully:', data.message);
-          updateReviewsTable();
-      })
-      .catch(error => {
-          console.error('Error deleting review:', error.message);
-      });
-  }
+    // Add a confirmation dialog before deleting
+    if (confirm('Are you sure you want to delete this review?')) {
+        fetch(`http://localhost/api-AMM/api/Review/ReviewDelete.php?reviewID=${reviewID}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Review deleted successfully:', data.message);
+                updateReviewsTable();
+            })
+            .catch(error => {
+                console.error('Error deleting review:', error.message);
+            });
+    }
 }
 
 // Event listener for delete button clicks using event delegation
 document.addEventListener('DOMContentLoaded', () => {
-  updateReviewsTable();
+    updateReviewsTable();
 
-  document.addEventListener('click', function (event) {
-      if (event.target.matches('.delete-review') || event.target.closest('.delete-review')) {
-          event.preventDefault(); // Prevent the default link behavior
-          const reviewElement = event.target.closest('.delete-review');
-          const reviewID = reviewElement.getAttribute('data-review-id');
-          deleteReview(reviewID);
-      }
-  });
+    document.addEventListener('click', function(event) {
+        if (event.target.matches('.delete-review') || event.target.closest('.delete-review')) {
+            event.preventDefault(); // Prevent the default link behavior
+            const reviewElement = event.target.closest('.delete-review');
+            const reviewID = reviewElement.getAttribute('data-review-id');
+            deleteReview(reviewID);
+        }
+    });
 });
-

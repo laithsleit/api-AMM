@@ -51,11 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     
                         if (data.RoleID == 2) {
 
-                            window.location.href = "HOMa.html";
+                            window.location.href = "../index/index.html";
                             sessionStorage.setItem("isLoggedin", "true");
                         } else if (data.RoleID == 1){
 
-                            window.location.href = "dashboard/index.html";
+                            window.location.href = "../dashboard/index.html";
                             sessionStorage.setItem("isLoggedin", "true");
 
                         } else {

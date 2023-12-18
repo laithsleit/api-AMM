@@ -142,7 +142,7 @@ class Cart
         }
     }
 
-    private function deleteCartItem($userID, $productID)
+    public function deleteCartItem($userID, $productID)
     {
         try {
             $query = "DELETE FROM cart WHERE UserID = ? AND ProductID = ?";
@@ -180,6 +180,30 @@ class Cart
                 return ["success" => true, "message" => "Total cart price retrieved successfully.", "data" => $totalPrice];
             } else {
                 return ["success" => false, "message" => "Error retrieving total cart price."];
+            }
+        } catch (Exception $e) {
+            return ["success" => false, "message" => "Error: " . $e->getMessage()];
+        }
+    }
+
+    public function getTotalProductCount($userID) {
+        try {
+            $query = "SELECT SUM(Quantity) AS TotalQuantity FROM cart WHERE UserID = ?";
+            $statement = $this->mysqli->prepare($query);
+
+            if (!$statement) {
+                throw new Exception("Database error.");
+            }
+
+            $statement->bind_param('i', $userID);
+            $statement->execute();
+            $result = $statement->get_result();
+
+            if ($result) {
+                $totalQuantity = $result->fetch_assoc()['TotalQuantity'];
+                return ["success" => true, "message" => "Total product count retrieved successfully.", "data" => $totalQuantity];
+            } else {
+                return ["success" => false, "message" => "Error retrieving total product count."];
             }
         } catch (Exception $e) {
             return ["success" => false, "message" => "Error: " . $e->getMessage()];

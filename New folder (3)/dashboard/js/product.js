@@ -1,17 +1,16 @@
 const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
 
 if (!isLoggedIn) {
-    window.location.href = "../signup.html";
+    window.location.href = "../login/signup.html";
 } 
 const logoutLink = document.querySelector('.logout');
 logoutLink.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link behavior
     sessionStorage.removeItem("isLoggedin"); // Remove the isLoggedIn item from sessionStorage
-    window.location.href = "../signup.html"; // Redirect to the signup (or login) page
+    window.location.href = "../login/signup.html"; // Redirect to the signup (or login) page
 });
- 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     // Get the plus icon, close icon, and the popup form
     const addUserButton = document.getElementById("addUserButton");
     const closeUserForm = document.getElementById("closeUserForm");
@@ -19,84 +18,84 @@ document.addEventListener("DOMContentLoaded", function () {
     const overlay = document.getElementById("overlay");
 
     // Show the popup form when the plus icon is clicked
-    addUserButton.addEventListener("click", function () {
+    addUserButton.addEventListener("click", function() {
         userPopupForm.classList.add("active");
         overlay.classList.add("active");
     });
 
     // Hide the popup form when the close icon is clicked
-    closeUserForm.addEventListener("click", function () {
+    closeUserForm.addEventListener("click", function() {
         userPopupForm.classList.remove("active");
         overlay.classList.remove("active");
     });
 
     // Hide the popup form when the overlay is clicked
-    overlay.addEventListener("click", function () {
+    overlay.addEventListener("click", function() {
         userPopupForm.classList.remove("active");
         overlay.classList.remove("active");
     });
 
     // Prevent clicks inside the form from closing the form
-    userPopupForm.addEventListener("click", function (event) {
+    userPopupForm.addEventListener("click", function(event) {
         event.stopPropagation();
     });
 
 
-  
+
 
     // Handle form submission for product creation
-   // Handle form submission for product creation
-const createProductForm = document.getElementById("createProductForm");
+    // Handle form submission for product creation
+    const createProductForm = document.getElementById("createProductForm");
 
-createProductForm.addEventListener("submit", function (event) {
-    // Prevent the default form submission
-    event.preventDefault();
+    createProductForm.addEventListener("submit", function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
 
-    // Get the input values from the form
-    const name = document.getElementById("name").value;
-    const description = document.getElementById("description").value;
-    const price = document.getElementById("price").value;
-    const stockQuantity = document.getElementById("stockQuantity").value;
-    const categoryID = document.getElementById("categoryID").value;
-    const image = document.getElementById("image").files[0]; // Get the selected file
+        // Get the input values from the form
+        const name = document.getElementById("name").value;
+        const description = document.getElementById("description").value;
+        const price = document.getElementById("price").value;
+        const stockQuantity = document.getElementById("stockQuantity").value;
+        const categoryID = document.getElementById("categoryID").value;
+        const image = document.getElementById("image").files[0]; // Get the selected file
 
-    // Create an object with the data
-    // 
+        // Create an object with the data
+        // 
 
-    // Create a FormData object to send in the POST request
-    const formData = new FormData();
-    formData.append("categoryID", categoryID);
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("price", price);
-    formData.append("stockQuantity", stockQuantity);
-    formData.append("image", image);
+        // Create a FormData object to send in the POST request
+        const formData = new FormData();
+        formData.append("categoryID", categoryID);
+        formData.append("name", name);
+        formData.append("description", description);
+        formData.append("price", price);
+        formData.append("stockQuantity", stockQuantity);
+        formData.append("image", image);
 
-    // Send a POST request using the Fetch API
-    fetch('http://localhost/api-AMM/api/prodect/insert.php', {
-        method: 'POST',
-        // headers: { 'Content-Type': 'application/json' }, // Comment out this line
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Display the response message in an alert
-        location.reload();
-        alert(data.message);
-        
-        
+        // Send a POST request using the Fetch API
+        fetch('http://localhost/api-AMM/api/prodect/insert.php', {
+                method: 'POST',
+                // headers: { 'Content-Type': 'application/json' }, // Comment out this line
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the response message in an alert
+                location.reload();
+                alert(data.message);
 
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        // Display an error message in case of a network issue or other error
-        alert('An error occurred. Please try again.');
+
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Display an error message in case of a network issue or other error
+                alert('An error occurred. Please try again.');
+            });
     });
-});
 
 
-    
-fetchAndPopulateCategories();
+
+    fetchAndPopulateCategories();
 
     fetchData();
 });
@@ -104,18 +103,17 @@ fetchAndPopulateCategories();
 
 
 
-
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
 
-allSideMenu.forEach(item=> {
-	const li = item.parentElement;
+allSideMenu.forEach(item => {
+    const li = item.parentElement;
 
-	item.addEventListener('click', function () {
-		allSideMenu.forEach(i=> {
-			i.parentElement.classList.remove('active');
-		})
-		li.classList.add('active');
-	})
+    item.addEventListener('click', function() {
+        allSideMenu.forEach(i => {
+            i.parentElement.classList.remove('active');
+        })
+        li.classList.add('active');
+    })
 });
 
 
@@ -125,12 +123,9 @@ allSideMenu.forEach(item=> {
 const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
 
-menuBar.addEventListener('click', function () {
-	sidebar.classList.toggle('hide');
+menuBar.addEventListener('click', function() {
+    sidebar.classList.toggle('hide');
 })
-
-
-
 
 
 
@@ -139,47 +134,46 @@ const searchButton = document.querySelector('#content nav form .form-input butto
 const searchButtonIcon = document.querySelector('#content nav form .form-input button .bx');
 const searchForm = document.querySelector('#content nav form');
 
-searchButton.addEventListener('click', function (e) {
-	if(window.innerWidth < 576) {
-		e.preventDefault();
-		searchForm.classList.toggle('show');
-		if(searchForm.classList.contains('show')) {
-			searchButtonIcon.classList.replace('bx-search', 'bx-x');
-		} else {
-			searchButtonIcon.classList.replace('bx-x', 'bx-search');
-		}
-	}
+searchButton.addEventListener('click', function(e) {
+    if (window.innerWidth < 576) {
+        e.preventDefault();
+        searchForm.classList.toggle('show');
+        if (searchForm.classList.contains('show')) {
+            searchButtonIcon.classList.replace('bx-search', 'bx-x');
+        } else {
+            searchButtonIcon.classList.replace('bx-x', 'bx-search');
+        }
+    }
 })
 
 
 
 
-
-if(window.innerWidth < 768) {
-	sidebar.classList.add('hide');
-} else if(window.innerWidth > 576) {
-	searchButtonIcon.classList.replace('bx-x', 'bx-search');
-	searchForm.classList.remove('show');
+if (window.innerWidth < 768) {
+    sidebar.classList.add('hide');
+} else if (window.innerWidth > 576) {
+    searchButtonIcon.classList.replace('bx-x', 'bx-search');
+    searchForm.classList.remove('show');
 }
 
 
-window.addEventListener('resize', function () {
-	if(this.innerWidth > 576) {
-		searchButtonIcon.classList.replace('bx-x', 'bx-search');
-		searchForm.classList.remove('show');
-	}
+window.addEventListener('resize', function() {
+    if (this.innerWidth > 576) {
+        searchButtonIcon.classList.replace('bx-x', 'bx-search');
+        searchForm.classList.remove('show');
+    }
 })
 
 
 
 const switchMode = document.getElementById('switch-mode');
 
-switchMode.addEventListener('change', function () {
-	if(this.checked) {
-		document.body.classList.add('dark');
-	} else {
-		document.body.classList.remove('dark');
-	}
+switchMode.addEventListener('change', function() {
+    if (this.checked) {
+        document.body.classList.add('dark');
+    } else {
+        document.body.classList.remove('dark');
+    }
 })
 // Function to fetch data from the API
 function fetchData() {
@@ -247,15 +241,15 @@ function updateproductTable(products) {
         document.getElementById("closeEditForm").addEventListener("click", closeEditForm);
         const editLinks = document.querySelectorAll('.edit-product');
         editLinks.forEach(link => {
-            link.addEventListener('click', function () {
-            const productID = this.getAttribute('data-product-id');
+            link.addEventListener('click', function() {
+                const productID = this.getAttribute('data-product-id');
                 console.log(productID)
-            showEditForm(productID);
+                showEditForm(productID);
 
             });
         });
 
-       
+
 
         // Append the new row to the table body
         tableBody.appendChild(newRow);
@@ -264,16 +258,31 @@ function updateproductTable(products) {
     // Attach event listener to the delete user links
     const deleteLinks = document.querySelectorAll('.delete-product');
     deleteLinks.forEach(link => {
-        link.addEventListener('click', function () {
+        link.addEventListener('click', function() {
             const ProductID = this.getAttribute('data-product-id');
             const confirmed = confirm('Are you sure you want to delete this product?');
 
             if (confirmed) {
-               console.log(ProductID)
-               deleteProduct(ProductID);
+                console.log(ProductID)
+                deleteProduct(ProductID);
             }
         });
     });
+
+    const editLinks = document.querySelectorAll('.edit-product');
+    editLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const productID = this.getAttribute('data-product-id');
+            console.log('Editing product with ID:', productID);
+
+            // Call a function to populate the edit form
+            populateEditForm(productID);
+
+            // Show the edit form (you might already have this functionality)
+            showEditForm(); // Ensure this function displays the form
+        });
+    });
+
 }
 
 // JavaScript Code for Deleting a Product
@@ -282,28 +291,29 @@ function updateproductTable(products) {
 function deleteProduct(ProductID) {
     // Send a DELETE request to the server API
     fetch(`http://localhost/api-AMM/api/prodect/delete.php`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ProductID: ProductID }), // Send the ProductID in the request body
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Product deleted successfully:', data.message);
-        // Refresh the product table after deletion
-        fetchData();
-    })
-    .catch(error => {
-        console.error('Error deleting product:', error.message);
-    });
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                ProductID: ProductID
+            }), // Send the ProductID in the request body
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Product deleted successfully:', data.message);
+            // Refresh the product table after deletion
+            fetchData();
+        })
+        .catch(error => {
+            console.error('Error deleting product:', error.message);
+        });
 }
-
 
 
 
@@ -324,38 +334,32 @@ function fetchAndPopulateCategories() {
         })
         .catch(error => {
             console.error('Error fetching categories:', error);
-            // Handle errors as needed
         });
 }
 
 function CategoryDropdown(categories) {
     const categoryDropdown = document.getElementById('categoryID');
-    const EditCategories = document.getElementById('editCategoryID');
+    const editCategories = document.getElementById('editCategoryID');
 
-    if (!categoryDropdown) {
-        console.error('Category dropdown not found.');
-        return;
-    }
-    if (!EditCategories) {
+    if (!categoryDropdown || !editCategories) {
         console.error('Category dropdown not found.');
         return;
     }
 
     // Clear existing options
-    
     categoryDropdown.innerHTML = '';
-    EditCategories.innerHTML = '';
+    editCategories.innerHTML = '';
 
     // Add categories to the dropdown
     categories.forEach(category => {
         const option = document.createElement('option');
         option.value = category.CategoryID;
         option.textContent = category.CategoryName;
-        categoryDropdown.appendChild(option);
-        categoryDropdown.appendChild(option);
+        categoryDropdown.appendChild(option.cloneNode(true));
+        editCategories.appendChild(option);
     });
-    
 }
+
 /// edit form
 function showEditForm(productID) {
     const editProductForm = document.getElementById("editProductForm");
@@ -364,9 +368,6 @@ function showEditForm(productID) {
     // Assign the productID to a data attribute for later use
     editProductForm.setAttribute("data-product-id", productID);
 
-    
-    // Optionally, you can reset the form values here
-    // document.getElementById("editForm").reset();
 }
 
 function closeEditForm() {
@@ -374,50 +375,106 @@ function closeEditForm() {
     editProductForm.style.display = "none";
 }
 
-
-
-
-
-
-
-
-
-
-
 // Add an event listener for the "keyup" event on the search input field
-document.getElementById('searchInput').addEventListener('keyup', function (event) {
+document.getElementById('searchInput').addEventListener('keyup', function(event) {
     // Get the value from the search input
     const searchQuery = event.target.value;
 
     // Make a Fetch API request to the endpoint with the search query
     fetch('http://localhost/api-AMM/api/searchPruduct/ProductSearch.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            searchProducts: searchQuery,
-        }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Handle the response data and update the UI
-        updateproductTable(data.products);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                searchProducts: searchQuery,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response data and update the UI
+            updateproductTable(data.products);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 });
 
 
 
+// Function to handle product update
+function updateProduct(event) {
+    event.preventDefault();
 
+    // Assuming you have input fields with these IDs in your update form
+    const productID = document.getElementById("editProductID").value;
+    const name = document.getElementById("editName").value;
+    const description = document.getElementById("editDescription").value;
+    const price = document.getElementById("editPrice").value;
+    const stockQuantity = document.getElementById("editStockQuantity").value;
+    const categoryID = document.getElementById("editCategoryID").value;
+    const image = document.getElementById("editImage").files[0];
 
+    const formData = new FormData();
+    formData.append("ProductID", productID);
+    formData.append("categoryID", categoryID);
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("stockQuantity", stockQuantity);
+    if (image) {
+        formData.append("image", image);
+    }
+    //C:\xampp\htdocs\api-AMM\api\prodect\update.php
+    fetch('http://localhost/api-AMM/api/prodect/update.php', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            // Additional logic after successful update
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
+}
 
+const updateForm = document.getElementById("editForm");
+updateForm.addEventListener("submit", updateProduct);
 
+function populateEditForm(productID) {
+    // Prepare the data to send in the POST request
+    const postData = JSON.stringify({
+        ProductID: productID
+    });
 
-
-
-
-
-    
+    // Send a POST request to the PHP API
+    fetch('http://localhost/api-AMM/api/prodect/select.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: postData,
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(productData => {
+            // Populate the form fields with the product data
+            document.getElementById("editName").value = productData.Name;
+            document.getElementById("editDescription").value = productData.Description;
+            document.getElementById("editPrice").value = productData.Price;
+            document.getElementById("editStockQuantity").value = productData.StockQuantity;
+            document.getElementById("editCategoryID").value = productData.CategoryID;
+            document.getElementById("editProductID").value = productID; // Ensure this is the correct ID
+        })
+        .catch(error => {
+            console.error('Error fetching product data:', error);
+        });
+}

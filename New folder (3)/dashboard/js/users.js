@@ -1,16 +1,16 @@
 const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
 
 if (!isLoggedIn) {
-    window.location.href = "../signup.html";
+    window.location.href = "../login/signup.html";
 } 
 const logoutLink = document.querySelector('.logout');
 logoutLink.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link behavior
     sessionStorage.removeItem("isLoggedin"); // Remove the isLoggedIn item from sessionStorage
-    window.location.href = "../signup.html"; // Redirect to the signup (or login) page
+    window.location.href = "../login/signup.html"; // Redirect to the signup (or login) page
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     // Get the plus icon, close icon, and the popup form
     const addUserButton = document.getElementById("addUserButton");
     const closeUserForm = document.getElementById("closeUserForm");
@@ -18,37 +18,37 @@ document.addEventListener("DOMContentLoaded", function () {
     const overlay = document.getElementById("overlay");
 
     // Show the popup form when the plus icon is clicked
-    addUserButton.addEventListener("click", function () {
+    addUserButton.addEventListener("click", function() {
         userPopupForm.classList.add("active");
         overlay.classList.add("active");
     });
 
     // Hide the popup form when the close icon is clicked
-    closeUserForm.addEventListener("click", function () {
+    closeUserForm.addEventListener("click", function() {
         userPopupForm.classList.remove("active");
         overlay.classList.remove("active");
     });
 
     // Hide the popup form when the overlay is clicked
-    overlay.addEventListener("click", function () {
+    overlay.addEventListener("click", function() {
         userPopupForm.classList.remove("active");
         overlay.classList.remove("active");
     });
 
     // Prevent clicks inside the form from closing the form
-    userPopupForm.addEventListener("click", function (event) {
+    userPopupForm.addEventListener("click", function(event) {
         event.stopPropagation();
     });
 
     // Handle form submission
     const createUserForm = document.getElementById("createUserForm");
 
-    createUserForm.addEventListener("submit", function (event) {
+    createUserForm.addEventListener("submit", function(event) {
         event.preventDefault();
         userPopupForm.classList.remove("active");
         overlay.classList.remove("active");
     });
-    createUserForm.addEventListener("submit", function (event) {
+    createUserForm.addEventListener("submit", function(event) {
         // Prevent the default form submission
         event.preventDefault();
 
@@ -66,23 +66,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Send a POST request using the Fetch API
         fetch('http://localhost/api-amm/api/user/insert.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Display the response message in an alert
-            alert(data.message);
-            location.reload();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // Display an error message in case of a network issue or other error
-            alert('An error occurred. Please try again.');
-        });
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the response message in an alert
+                alert(data.message);
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Display an error message in case of a network issue or other error
+                alert('An error occurred. Please try again.');
+            });
     });
 });
 
@@ -90,15 +90,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
 
-allSideMenu.forEach(item=> {
-	const li = item.parentElement;
+allSideMenu.forEach(item => {
+    const li = item.parentElement;
 
-	item.addEventListener('click', function () {
-		allSideMenu.forEach(i=> {
-			i.parentElement.classList.remove('active');
-		})
-		li.classList.add('active');
-	})
+    item.addEventListener('click', function() {
+        allSideMenu.forEach(i => {
+            i.parentElement.classList.remove('active');
+        })
+        li.classList.add('active');
+    })
 });
 
 
@@ -108,12 +108,9 @@ allSideMenu.forEach(item=> {
 const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
 
-menuBar.addEventListener('click', function () {
-	sidebar.classList.toggle('hide');
+menuBar.addEventListener('click', function() {
+    sidebar.classList.toggle('hide');
 })
-
-
-
 
 
 
@@ -122,47 +119,46 @@ const searchButton = document.querySelector('#content nav form .form-input butto
 const searchButtonIcon = document.querySelector('#content nav form .form-input button .bx');
 const searchForm = document.querySelector('#content nav form');
 
-searchButton.addEventListener('click', function (e) {
-	if(window.innerWidth < 576) {
-		e.preventDefault();
-		searchForm.classList.toggle('show');
-		if(searchForm.classList.contains('show')) {
-			searchButtonIcon.classList.replace('bx-search', 'bx-x');
-		} else {
-			searchButtonIcon.classList.replace('bx-x', 'bx-search');
-		}
-	}
+searchButton.addEventListener('click', function(e) {
+    if (window.innerWidth < 576) {
+        e.preventDefault();
+        searchForm.classList.toggle('show');
+        if (searchForm.classList.contains('show')) {
+            searchButtonIcon.classList.replace('bx-search', 'bx-x');
+        } else {
+            searchButtonIcon.classList.replace('bx-x', 'bx-search');
+        }
+    }
 })
 
 
 
 
-
-if(window.innerWidth < 768) {
-	sidebar.classList.add('hide');
-} else if(window.innerWidth > 576) {
-	searchButtonIcon.classList.replace('bx-x', 'bx-search');
-	searchForm.classList.remove('show');
+if (window.innerWidth < 768) {
+    sidebar.classList.add('hide');
+} else if (window.innerWidth > 576) {
+    searchButtonIcon.classList.replace('bx-x', 'bx-search');
+    searchForm.classList.remove('show');
 }
 
 
-window.addEventListener('resize', function () {
-	if(this.innerWidth > 576) {
-		searchButtonIcon.classList.replace('bx-x', 'bx-search');
-		searchForm.classList.remove('show');
-	}
+window.addEventListener('resize', function() {
+    if (this.innerWidth > 576) {
+        searchButtonIcon.classList.replace('bx-x', 'bx-search');
+        searchForm.classList.remove('show');
+    }
 })
 
 
 
 const switchMode = document.getElementById('switch-mode');
 
-switchMode.addEventListener('change', function () {
-	if(this.checked) {
-		document.body.classList.add('dark');
-	} else {
-		document.body.classList.remove('dark');
-	}
+switchMode.addEventListener('change', function() {
+    if (this.checked) {
+        document.body.classList.add('dark');
+    } else {
+        document.body.classList.remove('dark');
+    }
 })
 // Function to fetch data from the API
 function fetchData() {
@@ -222,7 +218,7 @@ function updateUsersTable(users) {
     // Attach event listener to the delete user links
     const deleteLinks = document.querySelectorAll('.delete-user');
     deleteLinks.forEach(link => {
-        link.addEventListener('click', function () {
+        link.addEventListener('click', function() {
             const userId = this.getAttribute('data-user-id');
             const confirmed = confirm('Are you sure you want to delete this user?');
 
@@ -237,12 +233,14 @@ function updateUsersTable(users) {
 // Function to delete a user by ID
 function deleteUser(userId) {
     fetch('http://localhost/api-AMM/api/user/delete.php', {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ UserID: userId }),
-    })
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                UserID: userId
+            }),
+        })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -268,30 +266,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-
-document.getElementById('searchInput').addEventListener('keyup', function (event) {
+document.getElementById('searchInput').addEventListener('keyup', function(event) {
     // Get the value from the search input
     const searchQuery = event.target.value;
 
     // Make a Fetch API request to the endpoint with the search query
     fetch('http://localhost/api-AMM/api/searchUser/userSearch.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            searchInput: searchQuery, // Change to match the API input property
-        }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Handle the response data and update the UI
-        updateUsersTable(data.users); // Change to match the API response property
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                searchInput: searchQuery, // Change to match the API input property
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response data and update the UI
+            updateUsersTable(data.users); // Change to match the API response property
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 });

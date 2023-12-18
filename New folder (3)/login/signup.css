@@ -13,7 +13,7 @@ body {
     align-items: center;
     height: 87vh;
     margin-top:80px;
-    background-image: url(images/warehouse-aisle-building-materials-industiral-store.jpg);
+    background-image: url(../images/warehouse-aisle-building-materials-industiral-store.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
