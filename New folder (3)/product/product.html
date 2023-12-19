@@ -21,20 +21,24 @@
       <!-- partial:index.partial.html -->
       <nav class="flex-nav">
          <div class="container">
-            <div class="grid menu">
-               <div class="column-xs-8 column-md-6">
-                  <p id="highlight">ShopShop</p>
-               </div>
-               <div class="column-xs-4 column-md-6">
-                  <a href="#" class="toggle-nav"
-                     >Menu <i class="ion-navicon-round"></i
-                     ></a>
-                  <ul>
-                     <li class="nav-item"><a href="#">Products</a></li>
-                     <li class="nav-item"><a href="#">About</a></li>
-                     <li class="nav-item"><a href="#">My Account</a></li>
-                  </ul>
-               </div>
+            <div class="header">
+               <a href="#" class="logo">AAM STORE</a>
+               <nav class="navbar">
+                  <a href="../index/index.html">home</a>
+                  <a href="../shopa/shopa.html">shop</a>
+                  <a href="../aboutUs/AboutUs.html">About us</a>
+                  <a href="../login/signup.html" id="Login">login</a>
+                  <a href="cart.html" class="shopping-cart">
+                  <i class="fa fa-shopping-cart"></i>
+                  <span id="cart-count">0</span>
+                  </a>
+               </nav>
+            </div>
+            <!-- Cart Sidebar -->
+            <div id="cartSidebar" class="cart-sidebar">
+               <div class="cart-items"></div>
+               <div class="total-price" id="total-price">Total Price: $0</div>
+               <button class="checkout-btn" onclick="window.location.href='../checkout/checkout.html'">Checkout</button>
             </div>
          </div>
       </nav>
@@ -94,5 +98,6 @@
       </main>
       <footer></footer>
       <script src="product.js"></script>
+      <script src="../shopa/cart.js"></script>
    </body>
 </html>
