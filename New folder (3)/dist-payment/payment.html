@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="payment.css">
+</head>
+
+<body>
+    <div class='container'>
+        <div class='window'>
+            <div class='order-info'>
+                <div class='order-info-content'>
+                    <h2>Order Summary</h2>
+                    <div class='line'></div>
+                   
+
+
+
+<!-- 
+                    <div class='total'>
+                        <span style='float:left;'>
+                            <div class='thin dense'>order date</div>
+                            <div  class='thin dense'>TOTAL </div>
+                            
+                        </span>
+                        <span  style='float:right; text-align:right;' >
+                            <div id="vat" class='thin dense'></div>
+                            <div   id="total" class='thin dense'>0</div>
+                            
+                        </span>
+                    </div> -->
+                    <table id="tabletable">
+                        <thead>
+                            <tr>
+                                
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                
+                                <td  id="total" class='thin dense'> <span id="total1"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div> Thank you for choosing us! We hope you love your purchase! </div>
+
+                    
+                </div>
+            </div>
+            
+            
+            <div class='credit-info'>
+                <div class='credit-info-content'>
+                    <table class='half-input-table'>
+                        <tr>
+                            <td>your Enter card: </td>
+                            <td>
+                                <div class='dropdown' id='card-dropdown'>
+                                    <div class='dropdown-btn' id='current-card'>Visa</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80'
+                        class='credit-card-image' id='credit-card-image'></img>
+                    Card Number
+                    <input class='input-field' type="number" id="cardNumber" oninput="validateCardNumber()" maxlength="16"
+                        required></input>
+                    <span id="digitsLeft"></span>
+                    Card Holder
+                    <input class='input-field' type="text" id="cardHolder" oninput="validateCardHolder()" required></input>
+                    <table class='half-input-table'>
+                        <tr>
+                            <td> Expires
+                                <input class='input-field' type="number" id="date" oninput="validateDate()" required></input>
+                            </td>
+                            <td>CVC
+                                <input class='input-field' type="number" id="cvc" oninput="validateCVC()" required></input>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="validation"></div>
+                    <button class='pay-btn' onclick="validateAndConfirmCheckout()">Confirm Checkout</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+   
+    <script src="payment.js"></script>
+</body>
+
+</html>

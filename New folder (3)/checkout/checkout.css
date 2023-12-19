@@ -13,7 +13,6 @@
     font-family: 'Tajawal', sans-serif;
     font-family: 'Tilt Neon', sans-serif;
     text-transform: capitalize;
-   
 }
 /* Resetting some default styles for better consistency */
 body, h1, h2, h3, p, ul, li, figure {
@@ -22,10 +21,9 @@ body, h1, h2, h3, p, ul, li, figure {
 }
 body {
     font-family: 'Roboto', sans-serif;
-    padding-top: 10vh; 
+    padding-top: 10vh;
 }
 /* Header styles */
-
 .header{
     position: fixed;
     top:0;
@@ -39,7 +37,7 @@ body {
     align-items: center;
     z-index: 100;
     height: 10vh;
-  }
+}
 #header {
     display: flex;
     align-items: center;
@@ -49,37 +47,28 @@ body {
     background: transparent;
     width: 100%;
 }
-
 /* nav bar */
 .topnav {
     padding-left: 2rem;
     padding-right: 2rem;
-  }
-  .logo{
+}
+.logo{
     font-size: 1rem;
     text-decoration: none;
     font-weight: 700;
     color:#fbf9f9;
-  }
-  
-  nav.menu,
-    .user-engagement {
+}
+nav.menu, .user-engagement {
     display: none;
-  }
-  
-  
-  .navbar a{
+}
+.navbar a{
     text-decoration: none;
     font-size: 1rem;
-    color: #f9f7f7; 
+    color: #f9f7f7;
     font-weight: 500;
     margin-left: 1.5rem;
-  }
-   
- 
-    
+}
 /* Cart section styles */
-
 #cart {
     padding: 50px;
 }
@@ -90,8 +79,10 @@ body {
     white-space: nowrap;
 }
 #cart table img {
-    width: 200px; /* Adjust the width as needed */
-    height: 200px; /* Maintain aspect ratio */
+    width: 200px;
+   /* Adjust the width as needed */
+    height: 200px;
+   /* Maintain aspect ratio */
 }
 #cart table td:nth-child(1) {
     width: 100px;
@@ -157,7 +148,6 @@ body {
 #subtotal h3 {
     padding-bottom: 15px;
 }
-
 #check {
     padding: 10px;
     margin-top: 10px;
@@ -165,7 +155,8 @@ body {
     border: 0;
     border-radius: 10px;
     font-size: 15px;
-    background-color: #4caf50;;
+    background-color: #4caf50;
+   ;
 }
 /* Footer styles */
 footer {
@@ -226,144 +217,169 @@ tr {
 }
 .delete-btn {
     padding: 6px 12px;
-    background-color: #ff5252; /* Eye-catching delete button */
+    background-color: #ff5252;
+   /* Eye-catching delete button */
     color: white;
     border: none;
     cursor: pointer;
     margin-top: 10px;
-    border-radius: 4px; /* Consistent rounded corners */
-    font-size: 14px; /* Readable font size */
-  }
-
-
-  /* #cart + #subtotal */
+    border-radius: 4px;
+   /* Consistent rounded corners */
+    font-size: 14px;
+   /* Readable font size */
+}
+/* #cart + #subtotal */
 #cart {
     padding: 50px;
-    box-shadow: 0 8px 6px -6px #ccc; /* subtle shadow for depth */
-    margin-bottom: 30px; /* added bottom margin */
+    box-shadow: 0 8px 6px -6px #ccc;
+   /* subtle shadow for depth */
+    margin-bottom: 30px;
+   /* added bottom margin */
 }
-
 #subtotal {
-    box-shadow: 0 8px 6px -6px #ccc; /* subtle shadow for depth */
-    /* ... other existing styles ... */
+    box-shadow: 0 8px 6px -6px #ccc;
+   /* subtle shadow for depth */
+   /* ... other existing styles ... */
 }
-
 /* Professional Table Styling */
 #cart table, #subtotal table {
     border-spacing: 0;
-    border: 1px solid #ddd; /* subtle border */
+    border: 1px solid #ddd;
+   /* subtle border */
 }
-
 #cart table th, #cart table td, #subtotal table th, #subtotal table td {
     border-bottom: 1px solid #ddd;
-    padding: 10px 15px; /* adjusted padding */
+    padding: 10px 15px;
+   /* adjusted padding */
 }
-
 #cart table th, #subtotal table th {
-    background-color: #f8f8f8; /* light background for headers */
-    color: #333; /* darker color for contrast */
+    background-color: #f8f8f8;
+   /* light background for headers */
+    color: #333;
+   /* darker color for contrast */
     font-weight: bold;
 }
-
 #cart table td, #subtotal table td {
-    color: #666; /* softer text color */
+    color: #666;
+   /* softer text color */
 }
-
-
 #cart table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    margin-bottom: 20px; /* Space below the table */
+    margin-bottom: 20px;
+   /* Space below the table */
 }
-
 #cart table th, #cart table td {
     text-align: left;
-    padding: 12px 15px; /* Spacious padding for readability */
-    background-color: #f9f9f9; /* Light background for all cells */
-    border-bottom: 1px solid #eaeaea; /* Subtle border for separation */
+    padding: 12px 15px;
+   /* Spacious padding for readability */
+    background-color: #f9f9f9;
+   /* Light background for all cells */
+    border-bottom: 1px solid #eaeaea;
+   /* Subtle border for separation */
 }
-
 #cart table th {
-    background-color: #f2f2f2; /* Slightly different background for header */
-    color: #333; /* Darker text for contrast */
+    background-color: #f2f2f2;
+   /* Slightly different background for header */
+    color: #333;
+   /* Darker text for contrast */
     font-weight: bold;
 }
-
 #cart table tr {
-    border-radius: 8px; /* Rounded corners for the whole row */
+    border-radius: 8px;
+   /* Rounded corners for the whole row */
 }
-
 /* Striped Rows */
 #cart table tr:nth-child(odd) {
-    background-color: #ffffff; /* Alternate color for odd rows */
+    background-color: #ffffff;
+   /* Alternate color for odd rows */
 }
-
 /* Drop Shadow for Rows */
 #cart table tr {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+   /* Subtle shadow for depth */
 }
-
 /* Highlighted Row - use a class to apply this style */
 #cart table tr.highlighted {
-    background-color: #f0f0f0; /* A neutral color for highlighting */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow for emphasis */
+    background-color: #f0f0f0;
+   /* A neutral color for highlighting */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+   /* Stronger shadow for emphasis */
 }
 #cart {
-    overflow: hidden; /* Ensures the inner elements' corners don't stick out */
-    border-radius: 8px; /* Rounded corners for the container */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Container shadow for depth */
+    overflow: hidden;
+   /* Ensures the inner elements' corners don't stick out */
+    border-radius: 8px;
+   /* Rounded corners for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   /* Container shadow for depth */
 }
-
 #subtotal {
-    background-color: #f9f9f9; /* Neutral background */
-    border: 1px solid #eaeaea; /* Light border for definition */
-    padding: 20px; /* Spacious padding for layout */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
-    margin-bottom: 30px; /* Margin for spacing from the next content */
-    width: calc(100% - 500px); /* Adjust width based on padding */
+    background-color: #f9f9f9;
+   /* Neutral background */
+    border: 1px solid #eaeaea;
+   /* Light border for definition */
+    padding: 20px;
+   /* Spacious padding for layout */
+    border-radius: 8px;
+   /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+   /* Subtle shadow for depth */
+    margin-bottom: 30px;
+   /* Margin for spacing from the next content */
+    width: calc(100% - 500px);
+   /* Adjust width based on padding */
 }
-
 #subtotal table {
-    width: 100%; /* Full width of the #subtotal section */
-    border-collapse: collapse; /* Collapse borders for a clean look */
+    width: 100%;
+   /* Full width of the #subtotal section */
+    border-collapse: collapse;
+   /* Collapse borders for a clean look */
 }
-
 #subtotal table td {
-    padding: 10px 0; /* Vertical padding for each item */
-    border-bottom: 1px solid #eaeaea; /* Light borders inside the table */
+    padding: 10px 0;
+   /* Vertical padding for each item */
+    border-bottom: 1px solid #eaeaea;
+   /* Light borders inside the table */
 }
-
 #subtotal h3 {
-    font-size: 1.25em; /* Slightly larger font size for headings */
-    font-weight: bold; /* Bold font weight for emphasis */
-    color: #333; /* Darker text for contrast */
-    margin-bottom: 15px; /* Spacing below the heading */
+    font-size: 1.25em;
+   /* Slightly larger font size for headings */
+    font-weight: bold;
+   /* Bold font weight for emphasis */
+    color: #333;
+   /* Darker text for contrast */
+    margin-bottom: 15px;
+   /* Spacing below the heading */
 }
-
 #subtotal a {
-    display: inline-block; /* Allows padding and margin to be applied correctly */
-    margin-top: 15px; /* Space above the link/button */
-    padding: 10px 20px; /* Padding inside the link/button */    
-    color: #333; /* Text color for the button */
-    border-radius: 4px; /* Rounded corners for the button */
-    font-weight: bold; /* Bold text for the button */
-    text-align: center; /* Center text within the button */
+    display: inline-block;
+   /* Allows padding and margin to be applied correctly */
+    margin-top: 15px;
+   /* Space above the link/button */
+    padding: 10px 20px;
+   /* Padding inside the link/button */
+    color: #333;
+   /* Text color for the button */
+    border-radius: 4px;
+   /* Rounded corners for the button */
+    font-weight: bold;
+   /* Bold text for the button */
+    text-align: center;
+   /* Center text within the button */
     width: 40%;
-    transition: background-color 0.3s ease; /* Transition for hover effect */
-    text-decoration: none;  
+    transition: background-color 0.3s ease;
+   /* Transition for hover effect */
+    text-decoration: none;
 }
-
 @media (max-width: 1000px) {
     #subtotal {
-        width: 70%; 
+        width: 70%;
         margin-bottom: 20px;
-    }
+   }
 }
-
-
-/*  Cart */
+/* Cart */
 .shopping-cart {
     color: #333;
    /* Subtle and readable text color */
@@ -374,8 +390,8 @@ tr {
     position: relative;
     text-decoration: none;
     margin-left: 20px;
-  }
-  #cart-count {
+}
+#cart-count {
     position: absolute;
     top: -10px;
     right: -10px;
@@ -386,8 +402,8 @@ tr {
     padding: 2px 5px;
     font-size: 12px;
    /* Smaller font for the count */
-  }
-  .cart-sidebar {
+}
+.cart-sidebar {
     position: fixed;
     right: 0;
     top: 0;
@@ -404,18 +420,18 @@ tr {
     transform: translateX(100%);
     transition: transform 0.3s ease-out;
    /* Smoother transition */
-  }
-  .cart-sidebar.active {
+}
+.cart-sidebar.active {
     transform: translateX(0);
-  }
-  .cart-items {
+}
+.cart-items {
     overflow-y: auto;
     max-height: 80%;
     padding-right: 10px;
    /* Added padding for scrollbar */
-  }
-  /* Individual Cart Item Styles */
-  .cart-item {
+}
+/* Individual Cart Item Styles */
+.cart-item {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
@@ -424,30 +440,30 @@ tr {
    /* Separator for each item */
     padding-bottom: 15px;
    /* Padding below each item */
-  }
-  .cart-item-img {
+}
+.cart-item-img {
     width: 60px;
    /* Slightly bigger for visibility */
     height: 60px;
     margin-right: 15px;
     border-radius: 5px;
    /* Rounded corners for images */
-  }
-  .cart-item-info h4 {
+}
+.cart-item-info h4 {
     margin: 0;
     font-size: 18px;
    /* Slightly larger for importance */
     color: #333;
    /* Darker color for contrast */
-  }
-  .cart-item-info p {
+}
+.cart-item-info p {
     margin: 5px 0 0;
    /* Adjusted margin */
     color: #666;
    /* Subtle color */
-  }
-  /* Quantity Button Styles */
-  .qty-btn {
+}
+/* Quantity Button Styles */
+.qty-btn {
     padding: 5px 8px;
     margin: 0 10px;
     background-color: #e0e0e0;
@@ -460,9 +476,9 @@ tr {
    /* Bold for visibility */
     color: #333;
    /* Matching text color */
-  }
-  /* Delete Button Styles */
-  .delete-btn {
+}
+/* Delete Button Styles */
+.delete-btn {
     padding: 6px 12px;
     background-color: #ff5252;
    /* Eye-catching delete button */
@@ -474,9 +490,9 @@ tr {
    /* Consistent rounded corners */
     font-size: 14px;
    /* Readable font size */
-  }
-  /* Checkout Button Styles */
-  .checkout-btn {
+}
+/* Checkout Button Styles */
+.checkout-btn {
     display: block;
     width: 100%;
     padding: 12px;
@@ -490,52 +506,52 @@ tr {
    /* Clear and readable */
     border-radius: 5px;
    /* Rounded for consistency */
-  }
-  /* Product Card Styles */
-  .shop-item {
+}
+/* Product Card Styles */
+.shop-item {
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     margin-bottom: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .shop-item:hover {
+}
+.shop-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  .shop-item img {
+}
+.shop-item img {
     width: 100%;
     height: 160px;
    /* Fixed height for consistency */
     object-fit: cover;
    /* Ensures the image covers the area without distortion */
     display: block;
-  }
-  .shop-item .meta, .shop-item .title, .shop-item .price {
+}
+.shop-item .meta, .shop-item .title, .shop-item .price {
     padding: 10px 15px;
-  }
-  .shop-item .meta {
+}
+.shop-item .meta {
     background-color: #f7f7f7;
     color: #333;
     font-size: 0.9rem;
-  }
-  .shop-item .title h3 {
+}
+.shop-item .title h3 {
     margin: 10px 0;
     font-size: 1.2rem;
     color: #333;
-  }
-  .shop-item .price {
+}
+.shop-item .price {
     font-weight: bold;
     color: #27ae60;
     font-size: 1.1rem;
-  }
-  .shop-item .product-actions {
+}
+.shop-item .product-actions {
     padding: 15px;
     text-align: center;
     border-top: 1px solid #eee;
-  }
-  .shop-item .product-actions a, .shop-item .product-actions button {
+}
+.shop-item .product-actions a, .shop-item .product-actions button {
     background-color: #3498db;
     color: white;
     padding: 8px 15px;
@@ -545,8 +561,14 @@ tr {
     transition: background-color 0.3s;
     text-decoration: none;
    /* In case of anchor elements */
-  }
-  .shop-item .product-actions a:hover, .shop-item .product-actions button:hover {
+}
+.shop-item .product-actions a:hover, .shop-item .product-actions button:hover {
     background-color: #2980b9;
-  }
-  
+}
+
+.empty-cart {
+    font-size: 16px;
+    color: #777; /* You can adjust the color to your preference */
+    text-align: center;
+    margin: 20px 0;
+}

@@ -1,16 +1,18 @@
 // Function to fetch and display cart items
 function fetchCartItemsAndDisplay(userID) {
     fetch(`http://localhost/api-AMM/api/cart/cart-api.php?UserID=${userID}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    })
-    .then(response => response.json())
-    .then(data => {
-        const productsCards = document.getElementById('products-cards');
-        productsCards.innerHTML = ''; // Clear existing items
-        data.data.forEach(item => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            const productsCards = document.getElementById('products-cards');
+            productsCards.innerHTML = ''; // Clear existing items
+            data.data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
                 <td>
                     <button class="delete-btn" data-product-id="${item.ProductID}">
                         <i class="fas fa-trash-alt"></i> <!-- Trash icon -->
@@ -21,17 +23,17 @@ function fetchCartItemsAndDisplay(userID) {
                 <td> ${item.Price} </td>
                 <td> ${item.Quantity} </td>
             `;
-            productsCards.appendChild(row);
+                productsCards.appendChild(row);
 
-            // Add click event listener to delete button
-            row.querySelector('.delete-btn').addEventListener('click', () => {
-                deleteCartItem(item.ProductID);
+                // Add click event listener to delete button
+                row.querySelector('.delete-btn').addEventListener('click', () => {
+                    deleteCartItem(item.ProductID);
+                });
             });
+        })
+        .catch(error => {
+            console.error('Error fetching cart data:', error);
         });
-    })
-    .catch(error => {
-        console.error('Error fetching cart data:', error);
-    });
 }
 
 // Function to delete a cart item
@@ -39,25 +41,27 @@ function deleteCartItem(productId) {
     const userId = sessionStorage.getItem('UserID');
 
     fetch(`http://localhost/api-AMM/api/cart/cart-api.php?UserID=${userId}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            ProductID: productId,
-            action: 'delete'
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ProductID: productId,
+                action: 'delete'
+            })
         })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            console.log('Item deleted successfully');
-            updateCartDisplay();
-        } else {
-            throw new Error(data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error deleting cart item:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Item deleted successfully');
+                updateCartDisplay();
+            } else {
+                throw new Error(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting cart item:', error);
+        });
 }
 
 // Function to update the cart display
@@ -115,7 +119,13 @@ function updateCartDetails() {
                                 <td><strong>${totalCartPrice} JD</strong></td>
                             </tr>
                         </table>
-                        <a href="../dist-payment/index.html"><button id="check">Proceed to checkout </button> </a>
+                        <a href="../dist-payment/payment.html"><button id="check">Proceed to checkout</button></a>
+                    `;
+            } else {
+                // Handle the case when totalCartPrice is null
+                const cartDetailsDiv = document.getElementById('subtotal');
+                cartDetailsDiv.innerHTML = `
+                        <p>Your cart is empty</p>
                     `;
             }
         })
@@ -123,6 +133,7 @@ function updateCartDetails() {
             console.error('Error updating cart details:', error.message);
         });
 }
+
 
 // Call the function to update cart details
 updateCartDisplay();
@@ -146,4 +157,3 @@ document.addEventListener("DOMContentLoaded", function() {
         loginButton.href = 'signup.html';
     }
 });
-

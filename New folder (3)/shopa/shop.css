@@ -502,7 +502,7 @@ span{
       padding: 30px;
  }
 }
-/*navbar
+/*navbar 
 /* 
 /* Add these styles to your existing CSS */
 .filters {
@@ -725,7 +725,6 @@ span{
       margin-left: 0;
  }
 }
-
 /* Cart */
 .shopping-cart {
   color: #333;
@@ -911,4 +910,11 @@ span{
 }
 .shop-item .product-actions a:hover, .shop-item .product-actions button:hover {
   background-color: #2980b9;
+}
+
+.empty-cart {
+  font-size: 16px;
+  color: #777; /* You can adjust the color to your preference */
+  text-align: center;
+  margin: 20px 0;
 }
