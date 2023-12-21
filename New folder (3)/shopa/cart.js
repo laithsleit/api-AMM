@@ -162,7 +162,10 @@ function deleteCartItem(productId) {
                 console.log('Item deleted successfully');
                 updateCartCount();
                 populateCartItems();
-                // Optionally, remove the item from the UI or refresh the cart display
+                updateTotalPrice();
+                fetchCartItemsAndDisplay(userId);
+                updateCartDetails(userId);
+               
             } else {
                 throw new Error(data.message);
             }
@@ -203,7 +206,7 @@ document.querySelector('.checkout-btn').addEventListener('click', function() {
     }
 });
 
-// Similar logic for add-to-cart buttons if needed
+
 
 
 
@@ -241,7 +244,9 @@ function updateTotalPrice() {
                 // console.log(data);
                 const totalPriceDiv = document.getElementById('total-price');
                 if (totalPriceDiv) {
-                    totalPriceDiv.textContent = `Total Price: $${data.data}`;
+                    // Check if data.data is null. If it is, print 0; otherwise, print the actual data.
+                    const priceText = data.data === null ? '0' : data.data;
+                    totalPriceDiv.textContent = `Total Price: $${priceText}`;
                 }
             } else {
                 console.error('Failed to fetch total price:', data.message);

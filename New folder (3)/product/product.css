@@ -447,6 +447,7 @@ body {
     line-height: 1.5;
     margin: 0;
     padding: 0;
+    padding-top: 10vh;
     color: #888;
     background: #fff;
     text-rendering: optimizeLegibility;
@@ -718,7 +719,7 @@ footer {
     padding: 20px;
     border: none;
     background: #d5d8e7;
-    position: relative;
+    
     outline: none;
     border-radius: 5px;
     color: #292d48;
@@ -731,20 +732,7 @@ footer {
     top: -30px;
     right: -10px;
 }
-.page-wrapper button .cart-item:before {
-    content: "1";
-    display: block;
-    line-height: 24px;
-    height: 24px;
-    width: 24px;
-    font-size: 12px;
-    font-weight: 600;
-    background: #292d48;
-    color: white;
-    border-radius: 20px;
-    margin-top: 20px;
-    text-align: center;
-}
+
 .page-wrapper button.sendtocart .cart-item {
     display: block;
     animation: xAxis 1s forwards cubic-bezier(1, 0.44, 0.84, 0.165);
@@ -764,6 +752,7 @@ footer {
     border-radius: 5px;
     z-index: 999;
 }
+
 .cart i {
     font-size: 25px;
     color: #888;
@@ -1031,5 +1020,32 @@ footer {
   }
 
 
-
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 10%;
+    background-color: #050505;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    height: 10vh;
+  }
+  .logo {
+    font-size: 2.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    color: #fbf9f9;
+  }
+.navbar a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #f9f7f7;
+  font-weight: 500;
+  margin-left: 1.5rem;
+}
+    
   

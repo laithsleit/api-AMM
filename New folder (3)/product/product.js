@@ -1,35 +1,4 @@
-const activeImage = document.querySelector(".product-image .active");
-const productImages = document.querySelectorAll(".image-list img");
-const navItem = document.querySelector('a.toggle-nav');
 
-function changeImage(e) {
-    activeImage.src = e.target.src;
-}
-
-function toggleNavigation() {
-    this.nextElementSibling.classList.toggle('active');
-}
-
-productImages.forEach(image => image.addEventListener("click", changeImage));
-navItem.addEventListener('click', toggleNavigation);
-
-$(document).ready(function() {
-    $("#addtocart").on("click", function() {
-        var button = $(this);
-        var cart = $("#cart");
-        var cartTotal = cart.attr("data-totalitems");
-        var newCartTotal = parseInt(cartTotal) + 1;
-
-        button.addClass("sendtocart");
-        setTimeout(function() {
-            button.removeClass("sendtocart");
-            cart.addClass("shake").attr("data-totalitems", newCartTotal);
-            setTimeout(function() {
-                cart.removeClass("shake");
-            }, 500);
-        }, 1000);
-    });
-});
 
 document.addEventListener("DOMContentLoaded", function() {
         const queryString = window.location.search;
@@ -75,19 +44,17 @@ document.addEventListener("DOMContentLoaded", function() {
             <h2>$${data.Price}</h2>
             <div class="description">
               <p>${data.Description}</p>
-              <div id="cart" class="cart" data-totalitems="0">
-                <i class="fas fa-shopping-cart"></i>
-              </div>
+             
               <div class="page-wrapper">
                 <i class="fa-solid fa-minus"></i>
-                <button id="addtocart">
+                <button id="addtocart" class="add-to-cart-btn" data-product-id="${data.ProductID}">
                   Add to Cart
                   <span class="cart-item"></span>
                 </button>
                 <i class="fa-solid fa-plus"></i>
               </div>
               <div class="page-wrapper" style="margin-top: 20px">
-                <a href="../pay/pay.html">
+                <a href="../checkout/checkout.html">
                   <button
                     id="addtocart"
                     style="background: rgb(56, 186, 56); color: white"
@@ -221,4 +188,43 @@ document.addEventListener("DOMContentLoaded", function() {
         loginButton.textContent = 'Login';
         loginButton.href = '../login/signup.html';
     }
+});
+
+function addToCart(productId, userId, quantity = 1) {
+    fetch(`http://localhost/api-AMM/api/cart/cart-api.php?UserID=${userId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            ProductID: productId,
+            Quantity: quantity,
+            action: 'add'
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update UI accordingly
+            console.log('Item added to cart:', data.message);
+            // Optionally, fetch and refresh the cart items
+            fetchCartItemsAndDisplay(userId);
+        } else {
+            console.error('Error adding item to cart:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error adding item to cart:', error);
+    });
+}
+
+// Add event listeners to the add to cart buttons
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.getAttribute('data-product-id');
+            const userId = sessionStorage.getItem('UserID'); // Make sure the user ID is managed correctly
+            addToCart(productId, userId);
+        });
+    });
 });

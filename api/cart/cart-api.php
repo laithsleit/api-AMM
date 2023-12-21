@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $productID = $inputData['ProductID'] ?? null;
             $quantity = $inputData['Quantity'] ?? null;
-            $subOrSum = $inputData['SubOrSum'] ?? null;
+            $subOrSum = $inputData['SubOrSum'] ?? 1;
 
             if ($subOrSum == 1) {
                 $result = $cart->addToCart($userID, $productID, $quantity);

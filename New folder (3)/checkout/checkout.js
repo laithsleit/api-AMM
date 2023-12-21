@@ -9,6 +9,8 @@ function fetchCartItemsAndDisplay(userID) {
             if (data && Array.isArray(data.data)) {
                 data.data.forEach(item => {
                     const row = document.createElement('tr');
+                    // Add a data attribute or unique class to the row
+                    row.setAttribute('data-product-id', item.ProductID);
                     row.innerHTML = `
                         <td>
                             <button class="delete-btn" data-product-id="${item.ProductID}">
@@ -37,48 +39,33 @@ function fetchCartItemsAndDisplay(userID) {
 }
 
 // Function to delete a cart item and update the display
-function deleteCartItem(productId, userID) {
-    fetch(`http://localhost/api-AMM/api/cart/cart-api.php?UserID=${userID}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            ProductID: productId,
-            action: 'delete'
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // After deleting the cart item, update the product and price tables
-            updateProductTable(productId);
-            updatePriceTable(userID);
+// function deleteCartItem(productId, userID) {
+//     fetch(`http://localhost/api-AMM/api/cart/cart-api.php?UserID=${userID}`, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//             ProductID: productId,
+//             action: 'delete'
+//         })
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         if (data.success) {
+//             // After deleting the cart item, update the product and price tables
+            
+            
+            
+//         } else {
+//             throw new Error(data.message);
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error deleting cart item:', error);
+//     });
+// }
 
-            fetchCartItemsAndDisplay(userID);
-            updateCartDetails(userID);
-        } else {
-            throw new Error(data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error deleting cart item:', error);
-    });
-}
-
-function updateProductTable(productId) {
-    // API call to update the product table
-    // Placeholder for actual implementation
-    console.log(`Updating product table for ProductID: ${productId}`);
-    // Implement the API call here
-}
-
-function updatePriceTable(userID) {
-    // API call to update the price table
-    // Placeholder for actual implementation
-    console.log(`Updating price table for UserID: ${userID}`);
-    // Implement the API call here
-}
 
 // Function to update the HTML with the cart details
 function updateCartDetails(userID) {
@@ -86,7 +73,7 @@ function updateCartDetails(userID) {
         .then(response => response.json())
         .then(data => {
             const cartDetailsDiv = document.getElementById('subtotal');
-            if (data.success && data.data) {
+            if (data.success && data.data) {    
                 cartDetailsDiv.innerHTML = `
                     <table>
                         <tr>
