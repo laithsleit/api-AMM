@@ -62,13 +62,26 @@ window.addEventListener('resize', function() {
     }
 });
 
+// switchMode event listener
+
+
 const switchMode = document.getElementById('switch-mode');
+const storageKey = 'userMode';
+
+// Check if there's a mode stored in localStorage and set it if available
+const storedMode = localStorage.getItem(storageKey);
+if (storedMode === 'dark') {
+    document.body.classList.add('dark');
+    switchMode.checked = true;
+}
 
 switchMode.addEventListener('change', function() {
     if (this.checked) {
         document.body.classList.add('dark');
+        localStorage.setItem(storageKey, 'dark');
     } else {
         document.body.classList.remove('dark');
+        localStorage.setItem(storageKey, 'light');
     }
 });
 

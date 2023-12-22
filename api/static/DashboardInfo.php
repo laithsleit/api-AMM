@@ -22,9 +22,9 @@ class DashboardInfo
         $newOrderCount = $this->getNewOrderCount();
         $data[] = ["icon" => "bx bxs-calendar-check", "count" => $newOrderCount, "label" => "New Order"];
 
-        // Get visitors count
-        $visitorsCount = $this->getVisitorsCount();
-        $data[] = ["icon" => "bx bxs-group", "count" => $visitorsCount, "label" => "Visitors"];
+        // Get Users count
+        $UsersCount = $this->getUsersCount();
+        $data[] = ["icon" => "bx bxs-group", "count" => $UsersCount, "label" => "Users"];
 
         // Get total sales
         $totalSales = $this->getTotalSales();
@@ -48,10 +48,10 @@ class DashboardInfo
         }
     }
 
-    private function getVisitorsCount()
+    private function getUsersCount()
     {
-        // Implement logic to get visitors count from the database
-        $query = "SELECT COUNT(*) as count FROM users";
+        // Implement logic to get Users count from the database
+        $query = "SELECT COUNT(*) as count FROM users WHERE RoleID = 2";
         $result = $this->mysqli->query($query);
 
         if ($result) {

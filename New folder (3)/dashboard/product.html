@@ -58,6 +58,52 @@
          </ul>
       </section>
       <!-- SIDEBAR -->
+      <div class="popup-form" id="productPopupForm" >
+         <i class='bx bx-x-circle close-icon' id="closeUserForm"></i>
+         <form id="createProductForm" style="padding:0 10px" enctype="multipart/form-data" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required rows="3" cols="50"></textarea>
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" step="0.01" required>
+            <label for="stockQuantity">Stock Quantity:</label>
+            <input type="number" id="stockQuantity" name="stockQuantity" required>
+            <label for="categoryID">Category ID:</label>
+            <select id="categoryID" name="categoryID" required>
+               <!-- Options will be populated dynamically using JavaScript -->
+            </select>
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image">
+            <button type="submit">Create Product</button>
+         </form>
+      </div>
+      <!-- Add this inside the <body> tag where your other forms are located -->
+      <!-- Edit Product Form -->
+      <div id="editProductForm" class="popup-form">
+         <div class="close-icon" id="closeEditForm">×</div>
+         <h2>Edit Product</h2>
+         <form id="editForm">
+             <input type="hidden" id="editProductID" name="editProductID">
+             <label for="editName">Name:</label>
+             <input type="text" id="editName" name="editName" required>
+             <label for="editDescription">Description:</label>
+             <textarea id="editDescription" name="editDescription" required></textarea>
+             <label for="editPrice">Price:</label>
+             <input type="number" id="editPrice" name="editPrice" required>
+             <label for="editStockQuantity">Stock Quantity:</label>
+             <input type="number" id="editStockQuantity" name="editStockQuantity" required>
+             <label for="editCategoryID">Category ID:</label>
+             <select id="editCategoryID" name="editCategoryID" required>
+                 <!-- Options will be dynamically populated using JavaScript -->
+             </select>
+             <label for="editImage">Image:</label>
+             <input type="file" id="editImage" name="editImage">
+             <button type="submit">Save Changes</button>
+         </form>
+     </div>
+     
+      <div id="overlay" onclick="closeEditForm()"></div>
       <!-- CONTENT -->
       <section id="content">
          <!-- NAVBAR -->
@@ -101,51 +147,7 @@
                         <i class='bx bx-filter' ></i> -->
                      <i class='bx bxs-plus-circle'  id="addUserButton"></i>
                   </div>
-                  <div class="popup-form" id="userPopupForm" >
-                     <i class='bx bx-x-circle close-icon' id="closeUserForm"></i>
-                     <form id="createProductForm" style="padding:0 10px" enctype="multipart/form-data" method="POST">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-                        <label for="description">Description:</label>
-                        <textarea id="description" name="description" required rows="3" cols="50"></textarea>
-                        <label for="price">Price:</label>
-                        <input type="number" id="price" name="price" step="0.01" required>
-                        <label for="stockQuantity">Stock Quantity:</label>
-                        <input type="number" id="stockQuantity" name="stockQuantity" required>
-                        <label for="categoryID">Category ID:</label>
-                        <select id="categoryID" name="categoryID" required>
-                           <!-- Options will be populated dynamically using JavaScript -->
-                        </select>
-                        <label for="image">Image:</label>
-                        <input type="file" id="image" name="image">
-                        <button type="submit">Create Product</button>
-                     </form>
-                  </div>
-                  <!-- Add this inside the <body> tag where your other forms are located -->
-                  <!-- Edit Product Form -->
-                  <div id="editProductForm" class="popup-form">
-                     <h2>Edit Product</h2>
-                     <form id="editForm">
-                        <input type="hidden" id="editProductID" name="editProductID">
-                        <label for="editName">Name:</label>
-                        <input type="text" id="editName" name="editName" required>
-                        <label for="editDescription">Description:</label>
-                        <textarea id="editDescription" name="editDescription" required></textarea>
-                        <label for="editPrice">Price:</label>
-                        <input type="number" id="editPrice" name="editPrice" required>
-                        <label for="editStockQuantity">Stock Quantity:</label>
-                        <input type="number" id="editStockQuantity" name="editStockQuantity" required>
-                        <label for="editCategoryID">Category ID:</label>
-                        <!-- Assuming you have a select dropdown for categories -->
-                        <select id="editCategoryID" name="editCategoryID" required>
-                           <!-- Options will be dynamically populated using JavaScript -->
-                        </select>
-                        <input type="file" id="editImage" name="editImage">
-                        <button type="submit">Save Changes</button>
-                     </form>
-                     <span id="closeEditForm" class="close-form">&times;</span>
-                  </div>
-                  <div id="overlay"></div>
+                 
                   <table style="width:65vw;margin:auto">
                      <thead>
                         <tr>

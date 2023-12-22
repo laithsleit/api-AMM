@@ -2,52 +2,80 @@ const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
 
 if (!isLoggedIn) {
     window.location.href = "../login/signup.html";
-} 
+}
+
 const logoutLink = document.querySelector('.logout');
 logoutLink.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default link behavior
-    sessionStorage.removeItem("isLoggedin"); // Remove the isLoggedIn item from sessionStorage
-    window.location.href = "../login/signup.html"; // Redirect to the signup (or login) page
+    event.preventDefault();
+    sessionStorage.removeItem("isLoggedin");
+    window.location.href = "../login/signup.html";
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Get the plus icon, close icon, and the popup form
+    // Form elements and buttons
     const addUserButton = document.getElementById("addUserButton");
-    const closeUserForm = document.getElementById("closeUserForm");
-    const userPopupForm = document.getElementById("userPopupForm");
+    const closeCreateForm = document.getElementById("closeUserForm");
+    const createProductForm = document.getElementById("productPopupForm");
+    const closeEditForm = document.getElementById("closeEditForm");
+    const editProductForm = document.getElementById("editProductForm");
     const overlay = document.getElementById("overlay");
 
-    // Show the popup form when the plus icon is clicked
-    addUserButton.addEventListener("click", function() {
-        userPopupForm.classList.add("active");
+    // Function to show the create form
+    function showCreateForm() {
+        createProductForm.classList.add("active");
         overlay.classList.add("active");
-    });
+        document.getElementById('content').classList.add('blurred');    
 
-    // Hide the popup form when the close icon is clicked
-    closeUserForm.addEventListener("click", function() {
-        userPopupForm.classList.remove("active");
+    }
+
+    // Function to close any form
+    function closeForm() {
+        createProductForm.classList.remove("active");
+        editProductForm.classList.remove("active");
         overlay.classList.remove("active");
-    });
+        document.getElementById('content').classList.remove('blurred');    
 
-    // Hide the popup form when the overlay is clicked
-    overlay.addEventListener("click", function() {
-        userPopupForm.classList.remove("active");
-        overlay.classList.remove("active");
-    });
+    }
 
-    // Prevent clicks inside the form from closing the form
-    userPopupForm.addEventListener("click", function(event) {
+    // Show the create form when the plus icon is clicked
+    addUserButton.addEventListener("click", showCreateForm);
+
+    // Close the create form when its close icon or the overlay is clicked
+    closeCreateForm.addEventListener("click", closeForm);
+    overlay.addEventListener("click", closeForm);
+
+    // Close the edit form when its close icon or the overlay is clicked
+    closeEditForm.addEventListener("click", closeForm);
+
+    // Prevent clicks inside the forms from closing them
+    createProductForm.addEventListener("click", function(event) {
         event.stopPropagation();
     });
 
+    editProductForm.addEventListener("click", function(event) {
+        event.stopPropagation();
+    });
 
+    // Show the edit form with the overlay
+    function showEditForm() {
+        editProductForm.classList.add("active");
+        overlay.classList.add("active");
+        document.getElementById('content').classList.add('blurred');    
+    }
 
+    // Attach event listeners to edit buttons
+    document.querySelectorAll('.edit-product').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.dataset.productId;
+            // Populate edit form if needed, e.g., populateEditForm(productId);
+            showEditForm();
+        });
+    });
 
     // Handle form submission for product creation
-    // Handle form submission for product creation
-    const createProductForm = document.getElementById("createProductForm");
+    const createProductFormElement = document.getElementById("createProductForm");
 
-    createProductForm.addEventListener("submit", function(event) {
+    createProductFormElement.addEventListener("submit", function(event) {
         // Prevent the default form submission
         event.preventDefault();
 
@@ -58,9 +86,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const stockQuantity = document.getElementById("stockQuantity").value;
         const categoryID = document.getElementById("categoryID").value;
         const image = document.getElementById("image").files[0]; // Get the selected file
-
-        // Create an object with the data
-        // 
 
         // Create a FormData object to send in the POST request
         const formData = new FormData();
@@ -73,36 +98,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Send a POST request using the Fetch API
         fetch('http://localhost/api-AMM/api/prodect/insert.php', {
-                method: 'POST',
-                // headers: { 'Content-Type': 'application/json' }, // Comment out this line
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Display the response message in an alert
-                location.reload();
-                alert(data.message);
-
-
-
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Display an error message in case of a network issue or other error
-                alert('An error occurred. Please try again.');
-            });
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the response message in an alert
+            location.reload();
+            alert(data.message);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Display an error message in case of a network issue or other error
+            alert('An error occurred. Please try again.');
+        });
     });
 
-
-
     fetchAndPopulateCategories();
-
     fetchData();
 });
 
-
-
-
+// Sidebar and other UI interactions
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
 
 allSideMenu.forEach(item => {
@@ -116,19 +132,13 @@ allSideMenu.forEach(item => {
     })
 });
 
-
-
-
 // TOGGLE SIDEBAR
 const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
 
 menuBar.addEventListener('click', function() {
     sidebar.classList.toggle('hide');
-})
-
-
-
+});
 
 const searchButton = document.querySelector('#content nav form .form-input button');
 const searchButtonIcon = document.querySelector('#content nav form .form-input button .bx');
@@ -144,10 +154,7 @@ searchButton.addEventListener('click', function(e) {
             searchButtonIcon.classList.replace('bx-x', 'bx-search');
         }
     }
-})
-
-
-
+});
 
 if (window.innerWidth < 768) {
     sidebar.classList.add('hide');
@@ -156,25 +163,37 @@ if (window.innerWidth < 768) {
     searchForm.classList.remove('show');
 }
 
-
 window.addEventListener('resize', function() {
     if (this.innerWidth > 576) {
         searchButtonIcon.classList.replace('bx-x', 'bx-search');
         searchForm.classList.remove('show');
     }
-})
+});
 
+//  switchMode event listener
 
 
 const switchMode = document.getElementById('switch-mode');
+const storageKey = 'userMode';
+
+// Check if there's a mode stored in localStorage and set it if available
+const storedMode = localStorage.getItem(storageKey);
+if (storedMode === 'dark') {
+    document.body.classList.add('dark');
+    switchMode.checked = true;
+}
 
 switchMode.addEventListener('change', function() {
     if (this.checked) {
         document.body.classList.add('dark');
+        localStorage.setItem(storageKey, 'dark');
     } else {
         document.body.classList.remove('dark');
+        localStorage.setItem(storageKey, 'light');
     }
-})
+});
+
+
 // Function to fetch data from the API
 function fetchData() {
     fetch('http://localhost/api-AMM/api/prodect/select.php')
@@ -364,15 +383,20 @@ function CategoryDropdown(categories) {
 function showEditForm(productID) {
     const editProductForm = document.getElementById("editProductForm");
     editProductForm.style.display = "block";
-
     // Assign the productID to a data attribute for later use
     editProductForm.setAttribute("data-product-id", productID);
-
+    editProductForm.classList.add("active");
+    overlay.classList.add("active");
+    document.getElementById('content').classList.add('blurred'); 
 }
 
 function closeEditForm() {
     const editProductForm = document.getElementById("editProductForm");
     editProductForm.style.display = "none";
+    overlay.classList.remove("active");
+    document.getElementById('content').classList.remove('blurred'); 
+
+
 }
 
 // Add an event listener for the "keyup" event on the search input field

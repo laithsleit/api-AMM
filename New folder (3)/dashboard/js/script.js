@@ -2,141 +2,61 @@ const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
 
 if (!isLoggedIn) {
     window.location.href = "../login/signup.html";
-} 
-const logoutLink = document.querySelector('.logout');
-logoutLink.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default link behavior
-    sessionStorage.removeItem("isLoggedin"); // Remove the isLoggedIn item from sessionStorage
-    window.location.href = "../login/signup.html"; // Redirect to the signup (or login) page
-});
-//////////////////////////////////////////
-
-
-const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
-
-allSideMenu.forEach(item => {
-    const li = item.parentElement;
-
-    item.addEventListener('click', function() {
-        allSideMenu.forEach(i => {
-            i.parentElement.classList.remove('active');
-        })
-        li.classList.add('active');
-    })
-});
-
-
-
-
-// TOGGLE SIDEBAR
-const menuBar = document.querySelector('#content nav .bx.bx-menu');
-const sidebar = document.getElementById('sidebar');
-
-menuBar.addEventListener('click', function() {
-    sidebar.classList.toggle('hide');
-})
-
-
-
-
-const searchButton = document.querySelector('#content nav form .form-input button');
-const searchButtonIcon = document.querySelector('#content nav form .form-input button .bx');
-const searchForm = document.querySelector('#content nav form');
-
-searchButton.addEventListener('click', function(e) {
-    if (window.innerWidth < 576) {
-        e.preventDefault();
-        searchForm.classList.toggle('show');
-        if (searchForm.classList.contains('show')) {
-            searchButtonIcon.classList.replace('bx-search', 'bx-x');
-        } else {
-            searchButtonIcon.classList.replace('bx-x', 'bx-search');
-        }
-    }
-})
-
-
-
-
-if (window.innerWidth < 768) {
-    sidebar.classList.add('hide');
-} else if (window.innerWidth > 576) {
-    searchButtonIcon.classList.replace('bx-x', 'bx-search');
-    searchForm.classList.remove('show');
 }
 
+const logoutLink = document.querySelector('.logout');
+logoutLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    sessionStorage.removeItem("isLoggedin");
+    window.location.href = "../login/signup.html";
+});
 
-window.addEventListener('resize', function() {
-    if (this.innerWidth > 576) {
-        searchButtonIcon.classList.replace('bx-x', 'bx-search');
-        searchForm.classList.remove('show');
-    }
-})
-
+// switchMode event listener
 
 
 const switchMode = document.getElementById('switch-mode');
+const storageKey = 'userMode';
+
+// Check if there's a mode stored in localStorage and set it if available
+const storedMode = localStorage.getItem(storageKey);
+if (storedMode === 'dark') {
+    document.body.classList.add('dark');
+    switchMode.checked = true;
+}
 
 switchMode.addEventListener('change', function() {
     if (this.checked) {
         document.body.classList.add('dark');
+        localStorage.setItem(storageKey, 'dark');
     } else {
         document.body.classList.remove('dark');
+        localStorage.setItem(storageKey, 'light');
     }
-})
-
-/////////////////////////////////////////
-
-document.addEventListener("DOMContentLoaded", function() {
-    const tableBody = document.querySelector('.table-data tbody');
-
-    // Fetch data from the API using the GET method to get recent orders
-    fetch('http://localhost/api-AMM/api/order/order-api.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.success && Array.isArray(data.orders)) {
-                // Clear existing table rows
-                tableBody.innerHTML = '';
-
-                // Loop through orders and add rows to the table
-                data.orders.forEach(order => {
-                    const newRow = document.createElement('tr');
-                    const orderDate = new Date(order.OrderDate);
-                    const formattedDate = `${orderDate.getDate()}-${orderDate.getMonth() + 1}-${orderDate.getFullYear()}`;
-
-                    newRow.innerHTML = `
-                        <td>
-                            <p>${order.Username}</p>
-                        </td>
-                        <td>${formattedDate}</td>
-						<td class="" >$${order.TotalOrderAmount}</td>
-                        <td><span class="status completed">Completed</span></td>
-                    `;
-
-                    // Append the new row to the table body
-                    tableBody.appendChild(newRow);
-                });
-            } else {
-                console.error('Error fetching orders:', data.message || 'Unknown error');
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching orders:', error);
-        });
 });
 
 
+// Sidebar and other UI interactions
+document.addEventListener('DOMContentLoaded', function() {  
+    // Sidebar toggle
+    const menuBar = document.querySelector('#content nav .bx.bx-menu');
+    const sidebar = document.getElementById('sidebar');
+    menuBar.addEventListener('click', function() {
+        sidebar.classList.toggle('hide');
+    });
 
-// Function to fetch data from the API
+    // Fetch and display dashboard data
+    fetchData();
+
+    // Fetch and display orders
+    fetchOrders();
+
+    
+});
+
+// Fetch dashboard data
 function fetchData() {
     fetch('http://localhost/api-AMM/api/static/static.php')
-
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             if (data.success) {
                 updateDashboard(data.data);
@@ -147,14 +67,10 @@ function fetchData() {
         .catch(error => console.error('Error fetching data:', error));
 }
 
-
-// Function to update the dashboard HTML
+// Update dashboard UI
 function updateDashboard(data) {
     const boxInfo = document.querySelector('.box-info');
-
-    // Clear existing content
     boxInfo.innerHTML = '';
-
     data.forEach(item => {
         const li = document.createElement('li');
         li.innerHTML = `
@@ -168,7 +84,101 @@ function updateDashboard(data) {
     });
 }
 
-// Fetch data when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    fetchData();
-});
+// Fetch orders and display them
+function fetchOrders() {
+    const tableBody = document.querySelector('.table-data tbody');
+    fetch('http://localhost/api-AMM/api/order/order-api.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && Array.isArray(data.orders)) {
+                tableBody.innerHTML = '';
+                data.orders.forEach(order => {
+                    const orderDate = new Date(order.OrderDate);
+                    const formattedDate = `${orderDate.getDate()}-${orderDate.getMonth() + 1}-${orderDate.getFullYear()}`;
+                    const newRow = `
+                        <tr>
+                            <td><p>${order.Username}</p></td>
+                            <td>${formattedDate}</td>
+                            <td>$${order.TotalOrderAmount}</td>
+                            <td><span class="status completed">Completed</span></td>
+                            <td><button class="view-order" data-order-id="${order.OrderID}"><i class='bx bx-show'></i>view</button></td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += newRow;
+                });
+                attachViewEventListeners();
+            } else {
+                console.error('Error fetching orders:', data.message || 'Unknown error');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching orders:', error);
+        });
+}
+
+// Attach event listeners to view buttons
+function attachViewEventListeners() {
+    document.querySelectorAll('.view-order').forEach(button => {
+        button.addEventListener('click', function() {
+            const orderId = this.dataset.orderId;
+            fetchOrderItems(orderId);
+        });
+    });
+}
+
+// Fetch order items
+function fetchOrderItems(orderId) {
+    console.log("Fetching order items for ID:", orderId);  // Debugging line
+    fetch('http://localhost/api-AMM/api/order-item/order-item-api.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ OrderID: orderId })  // Ensure this matches server expectations
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response Data:', data);  // Debugging line
+        if (data.success) {
+            populateOrderPopup(data.orderItemDetails);
+            openOrderPopup();
+        } else {
+            console.error('Failed to retrieve order items:', data.message);
+        }
+    })
+    .catch(error => console.error('Error fetching order items:', error));
+}
+
+
+// Populate order popup
+function populateOrderPopup(items) {
+    const tableBody = document.getElementById('orderDetailsTable').querySelector('tbody');
+    tableBody.innerHTML = '';
+    items.forEach(item => {
+        const row = `
+            <tr>
+                <td>${item.ProductName}</td>
+                <td>${item.Quantity}</td>
+                <td>$${item.Price}</td>
+                <td>$${(item.Quantity * item.Price).toFixed(2)}</td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+    });
+}
+
+// Open/close order popup
+function openOrderPopup() {
+    document.getElementById('orderPopup').classList.add('active');
+    document.getElementById('overlay').classList.add('active');
+    document.getElementById('content').classList.add('blurred');    
+}
+
+function closeOrderPopup() {
+    document.getElementById('orderPopup').classList.remove('active');
+    document.getElementById('overlay').classList.remove('active');
+    document.querySelector('#content').classList.remove('blurred'); // Make sure this selector targets your main content area.
+}

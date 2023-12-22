@@ -21,18 +21,21 @@ document.addEventListener("DOMContentLoaded", function() {
     addUserButton.addEventListener("click", function() {
         userPopupForm.classList.add("active");
         overlay.classList.add("active");
+        document.getElementById('content').classList.add('blurred');    
     });
 
     // Hide the popup form when the close icon is clicked
     closeUserForm.addEventListener("click", function() {
         userPopupForm.classList.remove("active");
         overlay.classList.remove("active");
+        document.getElementById('content').classList.remove('blurred');    
     });
 
     // Hide the popup form when the overlay is clicked
     overlay.addEventListener("click", function() {
         userPopupForm.classList.remove("active");
         overlay.classList.remove("active");
+        document.getElementById('content').classList.remove('blurred');  
     });
 
     // Prevent clicks inside the form from closing the form
@@ -149,17 +152,29 @@ window.addEventListener('resize', function() {
     }
 })
 
+// switchMode event listener
 
 
 const switchMode = document.getElementById('switch-mode');
+const storageKey = 'userMode';
+
+// Check if there's a mode stored in localStorage and set it if available
+const storedMode = localStorage.getItem(storageKey);
+if (storedMode === 'dark') {
+    document.body.classList.add('dark');
+    switchMode.checked = true;
+}
 
 switchMode.addEventListener('change', function() {
     if (this.checked) {
         document.body.classList.add('dark');
+        localStorage.setItem(storageKey, 'dark');
     } else {
         document.body.classList.remove('dark');
+        localStorage.setItem(storageKey, 'light');
     }
-})
+});
+
 // Function to fetch data from the API
 function fetchData() {
     fetch('http://localhost/api-AMM/api/user/select.php')

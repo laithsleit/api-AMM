@@ -12,15 +12,24 @@ function fetchCartItemsAndDisplay(userID) {
                     // Add a data attribute or unique class to the row
                     row.setAttribute('data-product-id', item.ProductID);
                     row.innerHTML = `
-                        <td>
-                            <button class="delete-btn" data-product-id="${item.ProductID}">
-                                <i class="fas fa-trash-alt"></i> <!-- Trash icon -->
-                            </button>
-                        </td>
-                        <td> <img src="${item.Image}" alt="Product Image"> </td>
-                        <td> ${item.ProductName} </td>
-                        <td> $${item.Price} </td>
-                        <td> ${item.Quantity} </td>
+                    <td style="width:10vw;"> <img src="${item.Image}" alt="Product Image"></td>
+                    <td> ${item.ProductName} </td>
+                    <td> $${item.Price} </td>
+                    <td>
+                        <button class="qty-btn" onclick="updateCartItemQuantity(${item.ProductID}, -1)" aria-label="Decrease quantity">
+                            <i class="fas fa-minus"></i> <!-- Minus icon -->
+                        </button>
+                        ${item.Quantity}
+                        <button class="qty-btn" onclick="updateCartItemQuantity(${item.ProductID}, 1)" aria-label="Increase quantity">
+                            <i class="fas fa-plus"></i> <!-- Plus icon -->
+                        </button>
+                    </td>
+                    <td>$${(item.Quantity * item.Price).toFixed(2)}</td>
+                    <td>
+                        <button class="delete-btn" data-product-id="${item.ProductID}" aria-label="Remove item">
+                            <i class="fas fa-trash-alt"></i> <!-- Trash icon -->
+                        </button>
+                    </td>
                     `;
                     productsCards.appendChild(row);
                 });

@@ -85,7 +85,6 @@ nav.menu, .user-engagement {
    /* Maintain aspect ratio */
 }
 #cart table td:nth-child(1) {
-    width: 100px;
     text-align: center;
 }
 #cart table td:nth-child(2) {
