@@ -38,33 +38,6 @@ function fetchCartItemsAndDisplay(userID) {
         });
 }
 
-// Function to delete a cart item and update the display
-// function deleteCartItem(productId, userID) {
-//     fetch(`http://localhost/api-AMM/api/cart/cart-api.php?UserID=${userID}`, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             ProductID: productId,
-//             action: 'delete'
-//         })
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         if (data.success) {
-//             // After deleting the cart item, update the product and price tables
-            
-            
-            
-//         } else {
-//             throw new Error(data.message);
-//         }
-//     })
-//     .catch(error => {
-//         console.error('Error deleting cart item:', error);
-//     });
-// }
 
 
 // Function to update the HTML with the cart details

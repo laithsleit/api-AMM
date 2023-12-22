@@ -53,7 +53,12 @@ function fetchCartItems(userId) {
 }
 
 
-function populateCartItems() {
+function populateCartItems() {            
+    
+    updateCartCount();
+    updateTotalPrice();
+    
+
     const userId = sessionStorage.getItem('UserID');
     if (!userId) {
         console.error('User ID not found in session storage');
@@ -65,6 +70,7 @@ function populateCartItems() {
         cartItemsDiv.innerHTML = ''; // Clear current items
 
         if (cartData && Array.isArray(cartData.data)) {
+
             if (cartData.data.length === 0) {
                 // Handle the case when there are no products in the cart
                 const emptyCartMessage = document.createElement('p');
@@ -95,8 +101,7 @@ function populateCartItems() {
                         </div>
                     `;
                     cartItemsDiv.appendChild(itemDiv);
-                    updateCartCount();
-                    updateTotalPrice();
+                    
                 });
             }
         } else {
@@ -131,9 +136,7 @@ function updateCartItemQuantity(productId, change) {
                 // Update quantity display
                 const qtyElement = document.getElementById('qty-' + productId);
                 qtyElement.textContent = parseInt(qtyElement.textContent) + change;
-                populateCartItems();
-                updateCartCount();
-
+                updateUI();
             } else {
                 throw new Error(data.message);
             }
@@ -160,12 +163,7 @@ function deleteCartItem(productId) {
         .then(data => {
             if (data.success) {
                 console.log('Item deleted successfully');
-                updateCartCount();
-                populateCartItems();
-                updateTotalPrice();
-                fetchCartItemsAndDisplay(userId);
-                updateCartDetails(userId);
-               
+                updateUI();
             } else {
                 throw new Error(data.message);
             }
@@ -256,3 +254,33 @@ function updateTotalPrice() {
             console.error('Error fetching total price:', error);
         });
 }
+
+
+// update UI
+
+function updateUI() {
+    const userId = sessionStorage.getItem('UserID');
+    if (!userId) {
+        console.error('User ID not found in session storage');
+        return;
+    }
+
+    // Update the cart items
+    populateCartItems();
+
+    // Update the cart count
+    updateCartCount();
+
+    // Update the total price
+    updateTotalPrice();
+
+    // Conditionally call additional functions if they exist
+    if (typeof fetchCartItemsAndDisplay === 'function') {
+        fetchCartItemsAndDisplay(userId); // Call the function only if it exists
+    }
+    if (typeof updateCartDetails === 'function') {
+        updateCartDetails(userId); // Call the function only if it exists
+    }
+}
+
+
