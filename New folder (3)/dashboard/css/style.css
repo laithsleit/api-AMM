@@ -446,6 +446,7 @@
     }
     #content main .table-data .order table tr td .status.completed {
         background: var(--blue);
+        line-height: 3.5;
     }
     #content main .table-data .order table tr td .status.process {
         background: var(--yellow);

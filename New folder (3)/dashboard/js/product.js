@@ -243,13 +243,13 @@ function updateproductTable(products) {
         <td>
             <a class="edit-product" data-product-id="${product.ProductID}">
                 <span class="completed status">
-                <i class='bx bxs-edit-alt f' ></i>Edit
+                <i class='bx bxs-edit-alt f' >Edit</i>
                 </span>
             </a>
-
+        
             <a class="delete-product" data-product-id="${product.ProductID}">
                     <span class="pending status">
-                        <i class='bx bxs-trash'></i>Delete
+                        <i class='bx bxs-trash'>Delete</i>
                     </span>
             </a>
 

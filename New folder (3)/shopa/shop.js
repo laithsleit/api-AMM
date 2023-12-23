@@ -86,13 +86,12 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
     // Add event listeners to trigger filtering when the user changes the filters
-    document.getElementById('priceFilter').addEventListener('change', filterProducts);
     document.getElementById('categoryFilter').addEventListener('change', filterProducts);
 
     // Event listener for keyup on the search input
     document.getElementById('Search').addEventListener('keyup', function(event) {
         const searchValue = event.target.value.trim();
-        // Adjust the property name based on your API
+        
 
         fetchDataUsingPost(searchValue);
 
@@ -102,20 +101,16 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to filter products based on price and category
     function filterProducts() {
 
-        const priceFilter = document.getElementById('priceFilter').value;
+        
         const categoryFilter = document.getElementById('categoryFilter').value;
-
         const filteredProducts = originalData.filter(product => {
-            const priceInRange = priceFilter === 'all' || (
-                parseFloat(product.price_after_discount) >= parseFloat(priceFilter.split('-')[0]) &&
-                parseFloat(product.price_after_discount) <= parseFloat(priceFilter.split('-')[1])
-            );
+            
 
             const categoryMatches = categoryFilter === 'all' ||
                 (product.CategoryID == categoryFilter || product.Category == categoryFilter);
 
 
-            return priceInRange && categoryMatches;
+            return  categoryMatches;
         });
 
         updateShopItems(filteredProducts);
@@ -184,7 +179,7 @@ function addToCart(productId, quantity) {
     const isLoggedIn = sessionStorage.getItem('isLoggedin') === 'true';
     if (!isLoggedIn) {
         alert('Please log in to add items to the cart.');
-        window.location.href = 'login/signup.html'; // Redirect to login/signup page
+        window.location.href = '../login/signup.html'; // Redirect to login/signup page
         return;
     }
     if (!userId) {
