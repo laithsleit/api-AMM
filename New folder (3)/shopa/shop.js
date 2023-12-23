@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const shopItem = document.createElement('div');
         shopItem.className = "shop-item";
         shopItem.innerHTML = `
-            <a href="producte.html?id=${product.ProductID}" class="shop-item--container" style="background: #f1f1f1;">
+            <a href="../product/product.html?id=${product.ProductID}" class="shop-item--container" style="background: #f1f1f1;">
                 
                 <img src="${product.Image}" width="160" height="160" />
             </a>
