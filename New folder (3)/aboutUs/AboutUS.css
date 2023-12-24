@@ -209,7 +209,7 @@ margin-top: 20px;
     height: 100vh;
     border: 1px solid silver;
     background-color: #000c0f;
-    background-image: url(https://st3.depositphotos.com/4738543/35765/i/1600/depositphotos_357651872-stock-photo-home-set-carpentry-tools-repair.jpg);
+    background-image: url(../images/back-shop12.png);
 
   
     background-repeat: no-repeat; 
@@ -1065,17 +1065,8 @@ body{
   transition-delay: 0.4s;
   color: aliceblue;
 }
-
-
-
-
-
-
-
-
-
 .hero-bg {
-  background-image: url(../img/hero-bg.jpg);
+  background-image: url(../images/back-shop12.png);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
