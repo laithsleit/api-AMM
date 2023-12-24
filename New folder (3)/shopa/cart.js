@@ -116,7 +116,7 @@ function populateCartItems() {
 
 function updateCartItemQuantity(productId, change) {
     const userId = sessionStorage.getItem('UserID');
-    const newQuantity = change === 1 ? 1 : -1;
+    const Quantity = change === 1 ? 1 : -1;
     const subOrSum = change === 1 ? 1 : 0; // 1 for add, 0 for subtract
 
     fetch('http://localhost/api-AMM/api/cart/cart-api.php?UserID=' + userId, {
@@ -126,7 +126,7 @@ function updateCartItemQuantity(productId, change) {
             },
             body: JSON.stringify({
                 ProductID: productId,
-                Quantity: newQuantity,
+                Quantity: Quantity,
                 SubOrSum: subOrSum
             })
         })

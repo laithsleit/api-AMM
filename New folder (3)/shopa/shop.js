@@ -177,15 +177,16 @@ document.addEventListener("DOMContentLoaded", function() {
 function addToCart(productId, quantity) {
     const userId = sessionStorage.getItem('UserID');
     const isLoggedIn = sessionStorage.getItem('isLoggedin') === 'true';
-    if (!isLoggedIn) {
+    if (!isLoggedIn && !userId) {
         alert('Please log in to add items to the cart.');
-        window.location.href = '../login/signup.html'; // Redirect to login/signup page
+        window.location.href = 'login/signup.html'; // Redirect to login/signup page
         return;
     }
     if (!userId) {
         alert('You must be logged in to add items to the cart.');
         return;
     }
+    
 
     fetch(`http://localhost/api-AMM/api/cart/cart-api.php?UserID=${userId}`, {
             method: 'POST',
