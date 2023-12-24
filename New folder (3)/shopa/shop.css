@@ -142,8 +142,9 @@ h6 {
   padding: 5rem;
   height: 50vh;
   margin-top: 8rem;
-  background-image: url(https://media.istockphoto.com/id/1301569556/photo/building-contractor-is-installing-metal-roofing-sheets.jpg?s=612x612&w=0&k=20&c=QiOLztWvaiIXY2CS06qCWkC3xOTSZRJ-yulFMv5Dbcs=);
+  background-image: url(../images/back-shop12.png );
   background-repeat: no-repeat;
+  background-position-y: 45%;
   background-size: cover;
 }
 .banner::before {
@@ -159,16 +160,7 @@ h6 {
  /* Initial opacity set to 0 for animation */
   transition: opacity 0.5s ease;
 }
-.banner:hover {
-  background: url(https://media.istockphoto.com/id/1301569556/photo/building-contractor-is-installing-metal-roofing-sheets.jpg?s=612x612&w=0&k=20&c=QiOLztWvaiIXY2CS06qCWkC3xOTSZRJ-yulFMv5Dbcs=);
-  background-repeat: no-repeat;
-  background-size: cover;
- /* Adjust the background color and opacity on hover */
-}
-.banner:hover::before {
-  opacity: 1;
- /* Show the linear gradient overlay on hover */
-}
+
 button .banner h1, .banner p {
   opacity: 0;
   transform: translateY(20px);
@@ -867,11 +859,9 @@ span{
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 .shop-item img {
-  width: 100%;
-  height: 160px;
- /* Fixed height for consistency */
+  width: 277px;
+  height: 254px;
   object-fit: cover;
- /* Ensures the image covers the area without distortion */
   display: block;
 }
 .shop-item .meta, .shop-item .title, .shop-item .price {
