@@ -15,19 +15,43 @@
    </head>
    <body>
       <!-- Header Section  -->
-      <div class="header">
-         <a href="#" class="logo">AAM STORE</a>
-         <nav class="navbar">
-            <a href="../index/index.html">home</a>
-            <a href="../shopa/shopa.html">shop</a>
-            <a href="../aboutUs/AboutUs.html">About us</a>
-            <a href="../login/signup.html" id="Login">login</a>
-            <a href="cart.html" class="shopping-cart">
-            <i class="fa fa-shopping-cart"></i>
-            <span id="cart-count">0</span>
-            </a>
+      
+      <header class="header">
+         <div>
+         <nav >
+             <ul class='nav-bar'   >
+                 <li class='logo'><a href='#'><a href="../index/index.html" class="logo">AAM Store</a></a></li>
+                 <input type='checkbox' id='check'    style="display: none;" />
+                 <span class="menu">
+
+
+                     <li><a href="../index/index.html">Home</a></li>
+                     <li><a href="../shopa/shopa.html">Shop</a></li>
+                     <li><a href="../aboutUs/AboutUs.html">Aboutus</a></li>
+                     <li><a href="../login/signup.html" id="Signup">Login</a></li>
+                    
+                    <li><a href="cart.html" class="shopping-cart">
+                     <i class="fa fa-shopping-cart"></i>
+                     <span id="cart-count">0</span>
+                     </a></li>
+
+                        
+                     <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+                 </span>
+                 <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+
+
+
+                 <div id="cartSidebar" class="cart-sidebar">
+                  <div class="cart-items"></div>
+                  <div class="total-price" id="total-price">Total Price: $0</div>
+                  <button class="checkout-btn" onclick="window.location.href='../checkout/checkout.html'">Checkout</button>
+               </div>
+
+             </ul>
          </nav>
-      </div>
+         
+         </header>
       <!-- Cart Sidebar -->
       <div id="cartSidebar" class="cart-sidebar">
          <div class="cart-items"></div>
