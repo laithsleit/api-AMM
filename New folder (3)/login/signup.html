@@ -1,100 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width-device-width,initial-scale=1.0" />
-      <meta http-equiv="X-UA-Compatible" content="sie-edge" />
-      <link
-         href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css"
-         rel="stylesheet"
-         />
-      <link rel="stylesheet" type="text/css" href="signup.css" />
-      <title>Slider Form</title>
-      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-      <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-   </head>
-   <body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width-device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="sie-edge" />
+    <link
+      href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="signup.css" />
+    <title>Slider Form</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+   
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+   
+   
+
+
+    
+  </head>
+  <body>
+
+
+
+    <header class="header">
       <div>
-         <div class="header">
-            <a href="./athath/index.html" class="logo">AAM Store</a>
-            <div class="header">
-               <a href="HOMa.html" class="logo">AAM Store</a>
-               <nav class="navbar">
-                  <a href="../index/index.html">home</a>
-                  <a href="../shopa/shopa.html">shop</a>
-                  <a href="../aboutUs/AboutUs.html">About us</a>
-               </nav>
-            </div>
-         </div>
-         <button  style="background-color: rgb(15, 16, 16); margin-bottom: 600px; margin-right: 900px;">
-         Return
-         </button>
+      <nav >
+          <ul class='nav-bar'   >
+              <li class='logo'><a href='#'><a href="../index/index.html" class="logo">AAM Store</a></a></li>
+              <input type='checkbox' id='check' />
+              <span class="menu">
+
+
+                <li><a href="../index/index.html">Home</a></li>
+                     <li><a href="../shopa/shopa.html">Shop</a></li>
+                     <li><a href="../aboutUs/AboutUs.html">Aboutus</a></li>
+                     <li><a href="../login/signup.html" id="Signup">Login</a></li>
+                    
+
+              </span>
+              <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+          </ul>
+      </nav>
+      
+      </header>
+
+
+<div style="margin-left: 25%; margin-right: 25%;margin-top: 10%; ">
+
+    <div class="container" id="container">
+      <div class="form-container sign-up-container">
+        <form action="#">
+          <h1>Create Account</h1>
+          <div class="social-container">
+   
+          </div>
+          <span>or use your email for registration</span>
+          <input type="text" placeholder="Username" id="username" />
+          <small id="usernameError" style="color: red;"></small>
+          <input type="email" placeholder="Email" id="email"/>
+          <small id="emailError" style="color: red;"></small>
+          <input type="password" placeholder="Password" id="password"/>
+          <small id="passwordError" style="color: red;margin-bottom:10px;"></small>
+          <button id="signup">Sign Up</button>
+        </form>
       </div>
-      <div class="container" id="container">
-         <div class="form-container sign-up-container">
-            <form action="#">
-               <h1>Create Account</h1>
-               <div class="social-container">
-                  <a href="#" class="social">
-                     <ion-icon name="logo-facebook"></ion-icon>
-                  </a>
-                  <a href="#" class="social">
-                     <ion-icon name="logo-googleplus"></ion-icon>
-                  </a>
-                  <a href="#" class="social">
-                     <ion-icon name="logo-linkedin"></ion-icon>
-                  </a>
-               </div>
-               <span>or use your email for registration</span>
-               <input type="text" placeholder="Username" id="username" />
-               <small id="usernameError" style="color: red;"></small>
-               <input type="email" placeholder="Email" id="email"/>
-               <small id="emailError" style="color: red;"></small>
-               <input type="password" placeholder="Password" id="password"/>
-               <small id="passwordError" style="color: red;margin-bottom:10px;"></small>
-               <button id="signup">Sign Up</button>
-            </form>
-         </div>
-         <div class="form-container sign-in-container">
-            <form action="#">
-               <h1>Login</h1>
-               <div class="social-container">
-                  <a href="#" class="social">
-                     <ion-icon name="logo-facebook"></ion-icon>
-                  </a>
-                  <a href="#" class="social">
-                     <ion-icon name="logo-googleplus"></ion-icon>
-                  </a>
-                  <a href="#" class="social">
-                     <ion-icon name="logo-linkedin"></ion-icon>
-                  </a>
-               </div>
-               <span>or use your account</span>
-               <input type="text" placeholder="Username" id="Username1" />
-               <small id="loginUsernameError" style="color: red;"></small>
-               <input type="password" placeholder="Password" id="password1" />
-               <small id="loginPasswordError" style="color: red;margin-bottom:10px"></small>
-               <button id="signin">Sign In</button>
-            </form>
-         </div>
-         <div class="overlay-container">
-            <div class="overlay">
-               <div class="overlay-panel overlay-left">
-                  <h1>Welcome Back</h1>
-                  <p>
-                     To keep connected with us please login with your personal info
-                  </p>
-                  <button class="ghost" id="signIn">Sign In</button>
-               </div>
-               <div class="overlay-panel overlay-right">
-                  <h1>Hello,Friend</h1>
-                  <p>Enter your personal details and start journey with us</p>
-                  <button class="ghost" id="signUp">Login</button>
-               </div>
-            </div>
-         </div>
+      <div class="form-container sign-in-container">
+        <form action="#">
+          <h1>Login</h1>
+          <div class="social-container">
+         
+          </div>
+          <span>or use your account</span>
+          <input type="text" placeholder="Username" id="Username1" />
+          <small id="loginUsernameError" style="color: red;"></small>
+          <input type="password" placeholder="Password" id="password1" />
+          <small id="loginPasswordError" style="color: red;margin-bottom:10px"></small>
+          <button id="signin">Sign In</button>
+        </form>
       </div>
-      <script src="signup.js"></script>
-      <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
-   </body>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Welcome Back</h1>
+            <p>
+              To keep connected with us please login with your personal info
+            </p>
+            <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Hello,Friend</h1>
+            <p>Enter your personal details and start journey with us</p>
+            <button class="ghost" id="signUp">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</div>
+
+
+ 
+
+
+    <script src="index.js"></script>
+
+
+
+    <script src="signup.js"></script>
+    <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
+  </body>
 </html>
