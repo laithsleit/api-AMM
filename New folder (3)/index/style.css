@@ -37,6 +37,12 @@ body {
   --color1: #FFF ;
   --color2: #181818 ;
 }
+header{
+  position: fixed;
+  width: 100%;
+  z-index: 99999;
+
+}
 .nav-bar {
   width: 100%;
   display: flex;
