@@ -8,7 +8,7 @@
  * 
  * Usage:
  * Use POST method to log in a user. Send login details in JSON format in the request body.
- * Example request: POST http://example.com/login
+ * Example request: POST 
  * Request body: {"Username":"existinguser","Password":"password123"}
  * Example response: {"success":true,"message":"Login successful."}
  */
@@ -33,9 +33,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Assuming you have the following data from the API request
-    $username = $inputData['Username'];
+    // Sanitize and validate inputs
+    $username = trim($inputData['Username']);
     $password = $inputData['Password'];
+
+    // Username Validation: at least 6 characters and include at least one uppercase letter.
+    if (!preg_match('/^(?=.*[A-Za-z]).{6,}$/', $username)) {
+        echo json_encode(array("success" => false, "message" => "Username must be at least 6 characters long and include at least one letter."));
+        exit();
+    }
+
+    // Password Validation: at least 6 characters, at least one uppercase letter, and numbers.
+    if (!preg_match('/^(?=.*[A-Za-z]).{6,}$/', $password)) {
+        echo json_encode(array("success" => false, "message" => "Password must be at least 6 characters long and include at least one letter."));
+        exit();
+    }
 
     // Create a new User instance
     $user = new User($mysqli);
@@ -47,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode($result);
 } else {
     // Unsupported request method
-    echo json_encode(array("success" => false, "message" => $_SERVER['REQUEST_METHOD']." Is Unsupported request method."));
+    echo json_encode(array("success" => false, "message" => $_SERVER['REQUEST_METHOD']." is an unsupported request method."));
 }
 
 // Close the database connection
