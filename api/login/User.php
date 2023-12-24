@@ -24,14 +24,7 @@ class User
      * @param string $email
      * @return array
      */
-    /**
- * Signup function to register a new user.
- *
- * @param string $username
- * @param string $password
- * @param string $email
- * @return array
- */
+
 public function signup($username, $password, $email)
 {
     // Check if the username or email is already registered
