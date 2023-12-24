@@ -179,7 +179,7 @@ function addToCart(productId, quantity) {
     const isLoggedIn = sessionStorage.getItem('isLoggedin') === 'true';
     if (!isLoggedIn && !userId) {
         alert('Please log in to add items to the cart.');
-        window.location.href = 'login/signup.html'; // Redirect to login/signup page
+        window.location.href = '../login/signup.html'; // Redirect to login/signup page
         return;
     }
     if (!userId) {

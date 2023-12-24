@@ -68,11 +68,11 @@
           </div>
           <span>or use your email for registration</span>
           <input type="text" placeholder="Username" id="username" />
-          <small id="usernameRegex"></small>
+          <small id="usernameError" style="color: red;"></small>
           <input type="email" placeholder="Email" id="email"/>
-          <small id="emailRegex"></small>
+          <small id="emailError" style="color: red;"></small>
           <input type="password" placeholder="Password" id="password"/>
-          <small id="passwordRegex"></small>
+          <small id="passwordError" style="color: red;margin-bottom:10px;"></small>
           <button id="signup">Sign Up</button>
         </form>
       </div>
@@ -92,9 +92,9 @@
           </div>
           <span>or use your account</span>
           <input type="text" placeholder="Username" id="Username1" />
-          <small id="Username1Regex"></small>
+          <small id="loginUsernameError" style="color: red;"></small>
           <input type="password" placeholder="Password" id="password1" />
-          <small id="password1Regex"></small>
+          <small id="loginPasswordError" style="color: red;margin-bottom:10px"></small>
           <button id="signin">Sign In</button>
         </form>
       </div>

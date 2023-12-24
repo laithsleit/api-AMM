@@ -21,36 +21,42 @@ header("Access-Control-Allow-Methods: POST, GET");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
-// Check the request method
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get the JSON data from the request body
     $inputData = json_decode(file_get_contents("php://input"), true);
 
-    // Check if data is present in the request
     if (!$inputData || !isset($inputData['Username']) || !isset($inputData['Password']) || !isset($inputData['Email'])) {
         echo json_encode(array("success" => false, "message" => "Invalid request data."));
         exit();
     }
 
-    // Assuming you have the following data from the API request
-    $username = $inputData['Username'];
+    $username = trim($inputData['Username']);
     $password = $inputData['Password'];
-    $email = $inputData['Email'];
+    $email = trim($inputData['Email']);
 
-    // Create a new User instance
+    // Validate Username
+    if (!preg_match('/^(?=.*[A-Za-z]).{6,}$/', $username)) {
+        echo json_encode(array("success" => false, "message" => "Username must be at least 6 characters long and include at least one letter."));
+        exit();
+    }
+
+    // Validate Password
+    if (!preg_match('/^(?=.*[A-Za-z]).{6,}$/', $password)) {
+        echo json_encode(array("success" => false, "message" => "Password must be at least 6 characters long and include at least one letter."));
+        exit();
+    }
+
+    // Validate Email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo json_encode(array("success" => false, "message" => "Invalid email format."));
+        exit();
+    }
+
     $user = new User($mysqli);
-
-    // Signup the user
     $result = $user->signup($username, $password, $email);
-
-    // Echo the result in JSON format
     echo json_encode($result);
 } else {
-    // Unsupported request method
-    echo json_encode(array("success" => false, "message" => $_SERVER['REQUEST_METHOD']. " Is Unsupported request method."));
+    echo json_encode(array("success" => false, "message" => $_SERVER['REQUEST_METHOD'] . " is an unsupported request method."));
 }
 
-// Close the database connection
 $mysqli->close();
-
 ?>
