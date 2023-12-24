@@ -22,6 +22,78 @@ header("Content-Type: application/json");
  * Example response: {"message":"Order created successfully."}
  */
 
+// Get the JSON data from the request body
+$inputData = json_decode(file_get_contents("php://input"), true);
+
+// Check if UserID is set in the request
+if (isset($inputData['UserID'])) {
+    $userID = $inputData['UserID'];
+
+    // Check if the user ID exists
+    if (isUserIDExists($userID)) {
+        // Calculate total order amount
+        $totalOrderAmount = calculateTotalOrderAmount($userID);
+
+        // Check if total order amount is valid
+        if ($totalOrderAmount !== null && $totalOrderAmount > 0) {
+            // Create a new order
+            $orderID = createOrder($userID, $totalOrderAmount);
+
+            // Retrieve cart items for the user
+            $cartQuery = "SELECT ProductID, Quantity FROM cart WHERE UserID = ?";
+            $cartStatement = $mysqli->prepare($cartQuery);
+
+            if (!$cartStatement) {
+                die("Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error);
+            }
+
+            $cartStatement->bind_param('i', $userID);
+            $cartStatement->execute();
+            $cartResult = $cartStatement->get_result();
+
+            // Add each cart item as an order item
+            while ($cartRow = $cartResult->fetch_assoc()) {
+                if ($cartRow !== null && isset($cartRow['ProductID']) && isset($cartRow['Quantity'])) {
+                    addOrderItem($orderID, $cartRow['ProductID'], $cartRow['Quantity']);
+                } else {
+                    echo 'Error retrieving cart items';
+                    exit;    
+                }
+            }
+
+            // Clear the user's cart after creating the order
+            $clearCartQuery = "DELETE FROM cart WHERE UserID = ?";
+            $clearCartStatement = $mysqli->prepare($clearCartQuery);
+
+            if (!$clearCartStatement) {
+                die("Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error);
+            }
+
+            $clearCartStatement->bind_param('i', $userID);
+            $clearCartStatement->execute();
+
+            // Close the database connection
+            $mysqli->close();
+
+            // Echo success message in JSON format
+            echo json_encode(array("message" => "Order created successfully.", "orderID" => $orderID));
+        } else {
+            // Echo error message in JSON format
+            echo json_encode(array("message" => "Your cart is empty."));
+        }
+    } else {
+        // Echo error message in JSON format if the user ID does not exist
+        echo json_encode(array("message" => "Invalid UserID. User not found."));
+    }
+} else {
+    // Echo error message in JSON format if UserID is not set
+    echo json_encode(array("message" => "Please provide a valid UserID in the request."));
+}
+
+
+
+
+
 // Function to calculate total order amount
 function calculateTotalOrderAmount($userID)
 {
@@ -170,73 +242,6 @@ function addOrderItem($orderID, $productID, $quantity)
     $insertStatement->close();
 }
 
-// Get the JSON data from the request body
-$inputData = json_decode(file_get_contents("php://input"), true);
-
-// Check if UserID is set in the request
-if (isset($inputData['UserID'])) {
-    $userID = $inputData['UserID'];
-
-    // Check if the user ID exists
-    if (isUserIDExists($userID)) {
-        // Calculate total order amount
-        $totalOrderAmount = calculateTotalOrderAmount($userID);
-
-        // Check if total order amount is valid
-        if ($totalOrderAmount !== null && $totalOrderAmount > 0) {
-            // Create a new order
-            $orderID = createOrder($userID, $totalOrderAmount);
-
-            // Retrieve cart items for the user
-            $cartQuery = "SELECT ProductID, Quantity FROM cart WHERE UserID = ?";
-            $cartStatement = $mysqli->prepare($cartQuery);
-
-            if (!$cartStatement) {
-                die("Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error);
-            }
-
-            $cartStatement->bind_param('i', $userID);
-            $cartStatement->execute();
-            $cartResult = $cartStatement->get_result();
-
-            // Add each cart item as an order item
-            while ($cartRow = $cartResult->fetch_assoc()) {
-                if ($cartRow !== null && isset($cartRow['ProductID']) && isset($cartRow['Quantity'])) {
-                    addOrderItem($orderID, $cartRow['ProductID'], $cartRow['Quantity']);
-                } else {
-                    echo 'Error retrieving cart items';
-                    exit;    
-                }
-            }
-
-            // Clear the user's cart after creating the order
-            $clearCartQuery = "DELETE FROM cart WHERE UserID = ?";
-            $clearCartStatement = $mysqli->prepare($clearCartQuery);
-
-            if (!$clearCartStatement) {
-                die("Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error);
-            }
-
-            $clearCartStatement->bind_param('i', $userID);
-            $clearCartStatement->execute();
-
-            // Close the database connection
-            $mysqli->close();
-
-            // Echo success message in JSON format
-            echo json_encode(array("message" => "Order created successfully.", "orderID" => $orderID));
-        } else {
-            // Echo error message in JSON format
-            echo json_encode(array("message" => "Your cart is empty."));
-        }
-    } else {
-        // Echo error message in JSON format if the user ID does not exist
-        echo json_encode(array("message" => "Invalid UserID. User not found."));
-    }
-} else {
-    // Echo error message in JSON format if UserID is not set
-    echo json_encode(array("message" => "Please provide a valid UserID in the request."));
-}
 
 
 
