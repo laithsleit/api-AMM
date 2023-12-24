@@ -96,12 +96,13 @@ document.addEventListener("DOMContentLoaded", function() {
         loginButton.textContent = 'Logout';
         loginButton.href = '#';
         loginButton.addEventListener('click', function() {
-            sessionStorage.removeItem("isLoggedin");
-            window.location.href = 'signup.html';
+
+            sessionStorage.clear();
+            window.location.href = '../login/signup.html';
         });
     } else {
         loginButton.textContent = 'Login';
-        loginButton.href = 'signup.html';
+        loginButton.href = '../login/signup.html';
     }
 
     // Checkout button event listener

@@ -24,17 +24,15 @@ document.addEventListener("DOMContentLoaded", function() {
   if (isLoggedIn) {
       // If the user is logged in, change button text to "Logout" and set the click event
       loginButton.textContent = 'Logout';
-      loginButton.href = '#';
-
       loginButton.addEventListener('click', function() {
 
-          sessionStorage.removeItem("isLoggedin");
-
-          window.location.href = '../login/signup.html';
+        sessionStorage.clear();
+        window.location.href = '../login/signup.html';
+        
       });
   } else {
       loginButton.textContent = 'Login';
-      loginButton.href = '../login/signup.html';
+      loginButton.href = "../login/signup.html";
   }
 });
 

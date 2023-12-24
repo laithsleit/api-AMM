@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         loginButton.addEventListener('click', function() {
 
-            sessionStorage.removeItem("isLoggedin");
+            sessionStorage.clear();
 
             window.location.href = '../login/signup.html';
         });
