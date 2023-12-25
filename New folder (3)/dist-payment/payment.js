@@ -64,11 +64,7 @@ function validateAndConfirmCheckout() {
     }
 }
 
-function confirmCheckout() {
-    // Add your logic here to confirm the checkout
-    alert("Checkout confirmed!");
-    
-}
+
 
 
 
