@@ -895,24 +895,50 @@ html, body {
   background-color: rgb(241, 207, 114);
   border-radius: 10%;
   margin-bottom: 100px;
- /* margin-top: 100px;
-  */
 }
+
 .h1{
- /* height: 20px;
-  */
   margin-bottom: 20px;
   color: #07212e;
   margin-bottom: 3px;
 }
+
 p{
   margin-bottom: 1.5em;
 }
+
 .imgfotr{
   height: 500px;
-  background-image: url(https://www.prolinerangehoods.com/blog/wp-content/uploads/2022/10/hand-tools.jpg);
+  background-image: linear-gradient(rgba(4, 9, 30, 0.724), rgba(4, 9, 30, 0.91)),url(https://www.prolinerangehoods.com/blog/wp-content/uploads/2022/10/hand-tools.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 100px;
+  color: #FFF;
+ 
+}
+.review-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.review-container .review-card{
+  border: 2px solid #FFF;
+  width: 22%;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: larger;
+  padding: 30px;
+}
+.rating label {
+  font-size: 35px;
+  color: rgb(241, 207, 114);
+}
+.rating input {
+  display: none;
 }
