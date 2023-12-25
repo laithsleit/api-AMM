@@ -38,7 +38,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $productID = $inputData['productID'];
 
         // Get reviews with user details for a specific product
-        $result = $reviewObj->getReviewsWithUserDetails($productID);
+        $result = $reviewObj->getReviewsWithUserDetailsByID($productID);
         break;
 
     default:
