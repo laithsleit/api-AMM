@@ -22,7 +22,6 @@ body {
 
 
 
-
 /* Header  */
 header{
   position: fixed;
@@ -64,7 +63,10 @@ header{
   bottom: 50%;
 
 }
-
+.menu li a:hover,
+.menu a.active{
+color: #F28123;
+}
 .menu {
  display: flex;
 }
@@ -92,6 +94,10 @@ header{
 }
 .menu li a:hover:after {
  width: 100%;
+}
+.menu li a:hover,
+.menu a.active{
+color: #F28123;
 }
 .open-menu , .close-menu {
   position: absolute;
@@ -139,6 +145,7 @@ header{
      right: 0;
  }
 }
+
 
 
 
@@ -341,11 +348,11 @@ span{
 .shop-item .price span {
   margin-top: 1rem;
   text-align: center;
-  color: green;
+  color: #F28123;
   font-size: 1.3rem;
 }
 .shop-item .price span a{
-  color: green;
+  color: #F28123;
 }
 .shop-item--container img {
   align-self: center;
@@ -444,7 +451,7 @@ footer>.footer-left>.photo{
   line-height: 2;
 }
 .footer-distributed .footer-center p a {
-  color: #e0ac1c;
+  color: #F28123;
   text-decoration: none;
   ;
 }
@@ -975,7 +982,7 @@ footer>.footer-left>.photo{
   line-height: 2;
 }
 .footer-distributed .footer-center p a {
-  color: #e0ac1c;
+  color: #F28123;
   text-decoration: none;
   ;
 }

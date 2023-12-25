@@ -37,4 +37,45 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+async function reviewUsers() {
+  const response = await fetch('http://localhost/api-AMM/api/Review/ReviewSelect.php', {
+    method: 'GET',
+  });
+  const data = await response.json();
+  console.log(data)
+
+  const reviewsList = document.querySelector('.review-container');
+  reviewsList.innerHTML = "";
+
+  for (let i = 0; i < data.reviews.length; i++) {
+    const reviewData = data.reviews[i];
+
+    let reviewCard = document.createElement('div');
+    reviewCard.className = "review-card";
+
+    let ratingHTML = "";
+    for (let j = 1; j <= reviewData.Rating; j++) {
+      ratingHTML += `<input class="rating" type="radio" value="${j}" checked><label>&#9733;</label>`;
+    }
+    reviewCard.innerHTML = 
+    `<div class="client_info">
+        <div class="client_name">
+          <h5>${reviewData.Username}</h5>
+        </div>
+      </div>
+      <div class="rating">
+        ${ratingHTML}
+      </div>
+      <p>About : "${reviewData.ProductName} "</p>
+      <p>" ${reviewData.ReviewText} "</p>
+    </div>`;
+
+    reviewsList.appendChild(reviewCard);
+  }
+
+  return data;
+}
+
+reviewUsers();
+
 ///////////////////////////////////////////////////////////

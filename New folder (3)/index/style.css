@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
 *{
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
@@ -10,12 +12,6 @@ body {
   --color2: #181818 ;
 }
 
-
-
-
-
-
-
 /* Header  */
 header{
   position: fixed;
@@ -25,8 +21,6 @@ header{
   top: 0;
   left: 0;
   padding:5px 150px;
-
-
 }
 .nav-bar {
   width: 100%;
@@ -36,6 +30,7 @@ header{
   list-style: none;
   position: relative;
 }
+
 .nav-bar a{
   text-decoration: none;
   font-size: 1.15rem;
@@ -44,7 +39,6 @@ header{
   margin-left: 1.5rem;
 }
 .nav-bar>a>img{
-  
     width: 30%;
     height: 100%;
 }
@@ -55,7 +49,6 @@ header{
   position: absolute;
   right: 8%;
   bottom: 50%;
-
 }
 
 .menu {
@@ -104,6 +97,10 @@ header{
 }
 #check {
  display: none;
+}
+.menu li a:hover,
+.menu a.active{
+color: #F28123;
 }
 @media(max-width: 760px){
   .menu {
@@ -353,7 +350,7 @@ footer>.footer-left>.photo{
   margin: 0;
 }
 .footer-distributed h3 span {
-  color: #e0ac1c;
+  color: #F28123;
 }
 /* Footer links */
 .footer-distributed .footer-links {
@@ -405,7 +402,7 @@ footer>.footer-left>.photo{
   line-height: 2;
 }
 .footer-distributed .footer-center p a {
-  color: #e0ac1c;
+  color: #F28123;
   text-decoration: none;
   ;
 }
@@ -898,24 +895,54 @@ html, body {
   background-color: rgb(241, 207, 114);
   border-radius: 10%;
   margin-bottom: 100px;
- /* margin-top: 100px;
-  */
 }
+
 .h1{
- /* height: 20px;
-  */
   margin-bottom: 20px;
   color: #07212e;
   margin-bottom: 3px;
 }
+
 p{
   margin-bottom: 1.5em;
 }
+
 .imgfotr{
   height: 500px;
-  background-image: url(https://www.prolinerangehoods.com/blog/wp-content/uploads/2022/10/hand-tools.jpg);
+  background-image: linear-gradient(rgba(4, 9, 30, 0.724), rgba(4, 9, 30, 0.91)),url(https://www.prolinerangehoods.com/blog/wp-content/uploads/2022/10/hand-tools.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 100px;
+  color: #FFF;
+ text-align: center;
+}
+.imgfotr h1{
+  color: #fff;
+  margin-bottom: 50px;
+}
+.review-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.review-container .review-card{
+  border: 2px solid #FFF;
+  width: 22%;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: larger;
+  padding: 30px;
+}
+.rating label {
+  font-size: 35px;
+  color: rgb(241, 207, 114);
+}
+.rating input {
+  display: none;
 }
