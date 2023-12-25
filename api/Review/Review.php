@@ -49,7 +49,7 @@ class Review
      * @param int $productID Product ID
      * @return array Result of the operation (success, reviews or message)
      */
-    public function getReviewsWithUserDetails()
+    public function getAllReviews()
     {
         try {
             // Perform the database query to retrieve reviews with user details
@@ -106,6 +106,53 @@ class Review
             return ["success" => false, "message" => "Error: " . $e->getMessage()];
         }
     }
+
+    /**
+ * Retrieves detailed reviews for a specific product based on the product ID. If no product ID is provided, it returns an error.
+ * This method fetches the reviews from the 'reviewsandratings' table and joins with the 'users' and 'product' tables 
+ * to include additional details like the username and product name.
+ *
+ * @param int|null $productID The ID of the product for which reviews are being retrieved. Defaults to null.
+ * @return array An associative array containing the operation's success status, and either the reviews data or an error message.
+ */
+
+
+ public function getReviewsByProductID($productID = null)
+{
+    try {
+        // Validate the presence of Product ID
+        if ($productID === null) {
+            return ["success" => false, "message" => "Product ID is required"];
+        }
+
+        // Modify the query to filter by ProductID
+        $query = "SELECT r.*, u.Username, p.Name AS ProductName
+                  FROM reviewsandratings r
+                  JOIN users u ON r.UserID = u.UserID
+                  JOIN product p ON r.ProductID = p.ProductID
+                  WHERE r.ProductID = ?";
+        $stmt = $this->mysqli->prepare($query);
+        $stmt->bind_param("i", $productID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result) {
+            // Fetch the reviews with user details
+            $reviews = $result->fetch_all(MYSQLI_ASSOC);
+            return ["success" => true, "reviews" => $reviews];
+        } else {
+            // Handle case where no reviews are found
+            return ["success" => false, "message" => "No reviews found for this product"];
+        }
+    } catch (Exception $e) {
+        // Return an error message if an exception occurs
+        return ["success" => false, "message" => "Error: " . $e->getMessage()];
+    }
 }
+
+}
+
+
+
 
 ?>

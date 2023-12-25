@@ -55,8 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $image_name = $image['name'];
             $image_tmp_name = $image['tmp_name'];
 
-            // Adjust the directory to store images
-           // Adjust the directory to store images
             $upload_path = '../../New folder (3)/images/' . $image_name;
             move_uploaded_file($image_tmp_name, $upload_path);
 

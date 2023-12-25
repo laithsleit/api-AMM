@@ -30,13 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Echo the result in JSON format
     echo json_encode($result);
-} elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+} else {
     // Handle GET request (if needed)
     echo json_encode(["success" => false, "message" => "Invalid request method for this endpoint."]);
-} else {
-    // Handle other request methods (if needed)
-    echo json_encode(["success" => false, "message" => "Invalid request method."]);
-}
+} 
+
 
 // Close the database connection
 $mysqli->close();

@@ -210,3 +210,99 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+
+
+
+
+
+
+// ////////////////
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch reviews when the page loads
+    fetchReviews();
+
+    // Add event listener to submit button
+    document.getElementById('submit-review').addEventListener('click', submitReview);
+});
+
+function fetchReviews() {
+    fetch('http://localhost/api-AMM/api/Review/ReviewSelect.php') // Replace with your GET reviews API URL
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.reviews) {
+                displayReviews(data.reviews);
+            } else {
+                console.error(data.message || 'Error fetching reviews');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function displayReviews(reviews) {
+    const reviewsContainer = document.getElementById('reviews-container');
+    reviewsContainer.innerHTML = ''; // Clear existing content
+
+    reviews.forEach(review => {
+        console.log(reviews)
+        const reviewDiv = document.createElement('div');
+        reviewDiv.className = 'd-flex flex-start';
+        reviewDiv.innerHTML = `
+        <div>
+        <div id="div_date_style">
+        <h6 class="fw-bold mb-1">${review.Username}</h6>
+        <p class="mb-0">${review.date}</p>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+            <p class="mb-0">Rate: ${generateStars(review.Rating)}</p>
+        </div>
+        <p class="mb-0">${review.ReviewText}</p>
+   
+    </div>
+    <hr/>
+        `;
+        reviewsContainer.appendChild(reviewDiv);
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += i <= rating ? '<span  class="fa fa-star checked"></span>' : '<span  class="fa fa-star"></span>';
+            }
+            return stars;}
+    });
+}
+
+function submitReview() {
+    const queryString = window.location.search;
+
+    const searchParams = new URLSearchParams(queryString);
+    let productId = searchParams.get('id');
+
+   let userid= sessionStorage.getItem("UserID");
+
+    const rating = document.querySelector('input[name="rating"]:checked').value;
+    const commentText = document.getElementById('comment-text').value;
+
+    const reviewData = {
+        productID: productId, // Replace with actual product ID
+        userID: userid, // Replace with actual user ID
+        reviewText: commentText,
+        rating: rating
+    };
+
+    fetch('http://localhost/api-AMM/api/Review/ReviewInser.php', { // Replace with your POST review API URL
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reviewData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Review submitted successfully');
+            fetchReviews(); // Refresh the reviews list
+        } else {
+            alert(data.message || 'Error submitting review');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}

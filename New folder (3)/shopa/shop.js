@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
     updateCartCount();
     const gallery = document.getElementById('shopItem');
     let originalData = []; // Assuming you have the original data somewhere
-
+    let currentPage = 1;
+    const itemsPerPage = 12;
+    const paginationContainer = document.getElementById('pagination');
     // Function to create the HTML structure for a shop item
     function createShopItem(product) {
         const shopItem = document.createElement('div');
@@ -35,6 +37,31 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    function paginateProducts() {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const paginatedItems = originalData.slice(startIndex, endIndex);
+        updateShopItems(paginatedItems);
+    }
+    function createPaginationButtons(totalItems) {
+        const numberOfPages = Math.ceil(totalItems / itemsPerPage);
+        paginationContainer.innerHTML = '';
+        for (let i = 1; i <= numberOfPages; i++) {
+            const pageButton = document.createElement('button');
+            pageButton.innerText = i;
+            pageButton.className = 'pagination-button';
+            if (i === currentPage) {
+                pageButton.classList.add('active');
+            }
+            pageButton.addEventListener('click', function() {
+                currentPage = i;
+                paginateProducts();
+                createPaginationButtons(totalItems); // Keep the total items consistent
+            });
+            paginationContainer.appendChild(pageButton);
+        }
+    }
+    
     // Function to fetch data from the API using the POST method
     function fetchDataUsingPost(searchData) {
         fetch('http://localhost/api-AMM/api/searchPruduct/ProductSearch.php', {
@@ -52,8 +79,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 // console.log(data);
                 if (data && data.success && Array.isArray(data.products)) {
                     originalData = data.products;
-                    console.log(originalData);
-                    updateShopItems(originalData);
+                    currentPage = 1; // Reset to the first page
+                    paginateProducts();
+                    createPaginationButtons(originalData.length);
 
                 } else {
                     console.error('API response is not in the expected format:', data);
@@ -80,8 +108,8 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             originalData = [...data];
-            console.log(originalData);
-            updateShopItems(originalData);
+            paginateProducts();
+            createPaginationButtons(originalData.length);
 
         });
 
@@ -91,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Event listener for keyup on the search input
     document.getElementById('Search').addEventListener('keyup', function(event) {
         const searchValue = event.target.value.trim();
-        
+        currentPage = 1; // Reset to the first page
 
         fetchDataUsingPost(searchValue);
 
@@ -100,20 +128,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to filter products based on price and category
     function filterProducts() {
-
-        
         const categoryFilter = document.getElementById('categoryFilter').value;
         const filteredProducts = originalData.filter(product => {
-            
-
             const categoryMatches = categoryFilter === 'all' ||
                 (product.CategoryID == categoryFilter || product.Category == categoryFilter);
-
-
-            return  categoryMatches;
+    
+            return categoryMatches;
         });
-
-        updateShopItems(filteredProducts);
+    
+        updateShopItems(filteredProducts.slice(0, itemsPerPage)); // Update with the first page of filtered products
+        currentPage = 1; // Reset to the first page
+        createPaginationButtons(filteredProducts.length); // Recreate pagination buttons based on filtered data
     }
 });
 
