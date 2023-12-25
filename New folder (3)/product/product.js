@@ -249,13 +249,14 @@ function displayReviews(reviews) {
         reviewDiv.innerHTML = `
         <div>
         <div id="div_date_style">
-        <h6 class="fw-bold mb-1">${review.Username}</h6>
+        <h3 class="fw-bold mb-1">${review.Username}</h3>
         <p class="mb-0">${review.date}</p>
         </div>
         <div class="d-flex align-items-center mb-3">
             <p class="mb-0">Rate: ${generateStars(review.Rating)}</p>
         </div>
-        <p class="mb-0">${review.ReviewText}</p>
+        <p class="mb-0" style="color:black;">${review.ReviewText}</p>
+        <hr>
    
     </div>
     <hr/>
@@ -272,11 +273,17 @@ function displayReviews(reviews) {
 
 function submitReview() {
     const queryString = window.location.search;
-
     const searchParams = new URLSearchParams(queryString);
     let productId = searchParams.get('id');
+    let userid= sessionStorage.getItem("UserID");
 
-   let userid= sessionStorage.getItem("UserID");
+    if (!userid || userid === null) {
+       
+        alert('Login to leave a review');
+        return;
+      } 
+
+   
 
     const rating = document.querySelector('input[name="rating"]:checked').value;
     const commentText = document.getElementById('comment-text').value;

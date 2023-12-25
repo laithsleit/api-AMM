@@ -224,8 +224,7 @@ h6 {
 .topnav--subsection nav:nth-last-child(2) a {
   margin-left: 1.5rem;
 }
-.banner {
-  position: relative;
+.banner { 
   background:#8d99ae;
   padding: 5rem;
   height: 50vh;
@@ -235,51 +234,15 @@ h6 {
   background-position-y: 45%;
   background-size: cover;
 }
-.banner::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
-  z-index: 1;
-  opacity: 0;
- /* Initial opacity set to 0 for animation */
-  transition: opacity 0.5s ease;
-}
 
-button .banner h1, .banner p {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.banner:hover h1, .banner:hover p {
-  opacity: 1;
-  transform: translateY(0);
-}
+
+
 .banner .slide {
   display: flex;
   justify-content: space-around;
 }
-.banner h1 {
-  margin-top: 80px;
-  text-align: center;
-  z-index: 1;
-  text-transform: uppercase;
-  color: white;
-  font-weight: 300;
-  letter-spacing: 1.5px;
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.banner p {
-  text-align: center;
-  z-index: 999;
-  color: white;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
+
+
 .slide img {
   width: 30%;
   height: 30%;
