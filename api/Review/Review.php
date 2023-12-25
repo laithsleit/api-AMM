@@ -49,7 +49,7 @@ class Review
      * @param int $productID Product ID
      * @return array Result of the operation (success, reviews or message)
      */
-    public function getReviewsWithUserDetails()
+    public function getAllReviews()
     {
         try {
             // Perform the database query to retrieve reviews with user details
@@ -117,7 +117,7 @@ class Review
  */
 
 
- public function getReviewsWithUserDetailsByID($productID = null)
+ public function getReviewsByProductID($productID = null)
 {
     try {
         // Validate the presence of Product ID
