@@ -36,7 +36,7 @@ class DashboardInfo
     private function getNewOrderCount()
     {
         // Implement logic to get new order count from the database
-        $query = "SELECT COUNT(*) as count FROM orders WHERE OrderDate > NOW() - INTERVAL 3 DAY;
+        $query = "SELECT COUNT(*) as count FROM orders WHERE OrderDate > NOW() - INTERVAL 7 DAY;
         ";
         $result = $this->mysqli->query($query);
 
