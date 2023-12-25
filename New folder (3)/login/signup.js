@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
             Username: username,
             Password: password
         };
-        console.log(user);
+        // console.log(user);
 
         fetch("http://localhost/api-AMM/api/login/login.php", {
                 method: "POST",
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
             Email: email,
             Password: password
         };
-        console.log(newUser);
+        // console.log(newUser);
 
         fetch("http://localhost/api-AMM/api/login/signup.php", {
                 method: "POST",

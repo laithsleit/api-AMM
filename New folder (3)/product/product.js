@@ -85,7 +85,7 @@ function addToCart(productId, quantity) {
         return;
     }
 
-    console.log(`Attempting to add product to cart with UserID: ${userId} and ProductID: ${productId}`);
+    // console.log(`Attempting to add product to cart with UserID: ${userId} and ProductID: ${productId}`);
 
     const cartApiUrl = `http://localhost/api-AMM/api/cart/cart-api.php?UserID=${userId}`; // Corrected for template literal
 
@@ -98,8 +98,7 @@ function addToCart(productId, quantity) {
         body: JSON.stringify({
             UserID: userId,
             ProductID: productId,
-            Quantity: quantity,
-            action: 'add'
+            Quantity: quantity
         }),
     })
     .then(response => response.json())
@@ -107,9 +106,7 @@ function addToCart(productId, quantity) {
         console.log('Add to cart response:', data);
         if (data.success) {
             alert(data.message); 
-            updateCartCount();
             populateCartItems();
-            updateTotalPrice();
         } else {
             console.error('Server responded with error:', data.message);
             alert(data.message); 
@@ -228,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function fetchReviews() {
     // Extract the productID from the URL
     const urlParams = new URLSearchParams(window.location.search);
-    const productID = urlParams.get('id'); // Assuming the URL is like ?id=34
+    const productID = urlParams.get('id');
 
     // Define the data to send in the POST request
     const data = {
@@ -236,11 +233,11 @@ function fetchReviews() {
     };
 
     fetch('http://localhost/api-AMM/api/Review/ReviewSelect.php', {
-        method: 'POST', // Set the method to POST
+        method: 'POST', 
         headers: {
             'Content-Type': 'application/json', // Set the content type header
         },
-        body: JSON.stringify(data) // Convert the data to a JSON string
+        body: JSON.stringify(data) 
     })
     .then(response => response.json())
     .then(data => {
@@ -259,7 +256,7 @@ function displayReviews(reviews) {
     reviewsContainer.innerHTML = ''; // Clear existing content
 
     reviews.forEach(review => {
-        console.log(reviews)
+        // console.log(reviews)
         const reviewDiv = document.createElement('div');
         reviewDiv.className = 'd-flex flex-start';
         reviewDiv.innerHTML = `
@@ -311,7 +308,7 @@ function submitReview() {
         rating: rating
     };
 
-    fetch('http://localhost/api-AMM/api/Review/ReviewInser.php', { // Replace with your POST review API URL
+    fetch('http://localhost/api-AMM/api/Review/ReviewInser.php', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -206,10 +206,7 @@ function addToCart(productId, quantity) {
         window.location.href = '../login/signup.html'; // Redirect to login/signup page
         return;
     }
-    if (!userId) {
-        alert('You must be logged in to add items to the cart.');
-        return;
-    }
+
     
 
     fetch(`http://localhost/api-AMM/api/cart/cart-api.php?UserID=${userId}`, {
@@ -218,7 +215,6 @@ function addToCart(productId, quantity) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                UserID: userId,
                 ProductID: productId,
                 Quantity: quantity,
                 SubOrSum: 1 // Assuming 1 means add to cart
