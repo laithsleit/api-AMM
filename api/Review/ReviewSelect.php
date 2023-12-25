@@ -25,7 +25,7 @@ $reviewObj = new Review($mysqli);
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         // Get reviews with user details
-        $result = $reviewObj->getReviewsWithUserDetails();
+        $result = $reviewObj->getAllReviews();
         break;
 
     case 'POST':
@@ -38,7 +38,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $productID = $inputData['productID'];
 
         // Get reviews with user details for a specific product
-        $result = $reviewObj->getReviewsWithUserDetails($productID);
+        $result = $reviewObj->getReviewsByProductID($productID);
         break;
 
     default:
