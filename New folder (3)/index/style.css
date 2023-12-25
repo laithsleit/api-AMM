@@ -1,51 +1,15 @@
 *{
+  font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
-  font-family: "Poppins", sans-serif;
   --color1: #FFF ;
   --color2: #181818 ;
 }
-/* Checkout Button Styles */
-.checkout-btn {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin-top: 20px;
-  background-color: #4caf50;
- /* Green for positive action */
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
- /* Clear and readable */
-  border-radius: 5px;
- /* Rounded for consistency */
-}
-.nav-bar a{
-  text-decoration: none;
-  font-size: 1.15rem;
-  color:rgb(246, 239, 239);
-  font-weight: 500;
-  margin-left: 1.5rem;
-}
-.nav-bar>a>img{
-  
-    width: 30%;
-    height: 100%;
-}
-.menu>li>a>i{
-  font-size: 31px;
-}
-.menu>li>a>span{
-  position: absolute;
-  right: 8%;
-  bottom: 50%;
 
-}
 
 
 
@@ -72,9 +36,28 @@ header{
   list-style: none;
   position: relative;
 }
-.logo img {
- width: 40px;
+.nav-bar a{
+  text-decoration: none;
+  font-size: 1.15rem;
+  color:rgb(246, 239, 239);
+  font-weight: 500;
+  margin-left: 1.5rem;
 }
+.nav-bar>a>img{
+  
+    width: 30%;
+    height: 100%;
+}
+.menu>li>a>i{
+  font-size: 31px;
+}
+.menu>li>a>span{
+  position: absolute;
+  right: 8%;
+  bottom: 50%;
+
+}
+
 .menu {
  display: flex;
 }
@@ -202,13 +185,10 @@ header{
 /* cart */
 .shopping-cart {
   color: #000;
- /* Adjust the color as needed */
   font-size: 1.5em;
- /* Adjust the size as needed */
   position: relative;
   text-decoration: none;
   margin-left: 20px;
- /* Adjust the margin as needed */
 }
 #cart-count {
   background-color: #F28123;
@@ -218,7 +198,7 @@ header{
   font-size: 0.8em;
 }
 .cart-sidebar {
-  margin-top: 4.6%;
+  margin-top: 4.7%;
   position: fixed;
   right: 0;
   top: 0;
@@ -255,6 +235,7 @@ header{
  /* Add additional styles for the quantity buttons */
 }
 .checkout-btn {
+  border: none;
   display: inline-block;
   background-color: #F28123;
   color: #fff;
@@ -271,7 +252,7 @@ header{
   background-color: #434443;
 }
 
-
+/* Tools section */
 .tools {
   width: 100%;
   min-height: 100vh;
@@ -290,10 +271,44 @@ header{
 /* contact section  */
 .contact{
   width: 100%;
-  min-height: 100vh;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 100px;
+  text-align: center;
+}
+.contact h1{
+  font-size: 30px;
+  color: #000;
+  margin-bottom: 20px;
+
 }
 
-
+.info{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.iframe {
+  width: 50%;
+  height:50vh;
+}
+iframe{
+  height: 100%;
+}
+.contact-info{
+  color:#000;
+  width: 50%;
+  line-height: 65px;
+  padding-left: 50px;
+  text-align: left;
+  font-size: 20px;
+}
+.contact-info i{
+  margin-right: 20px;
+  font-size: 25px;
+  color:#F28123
+}
 
 
 /* The footer is fixed to the bottom of the page */
