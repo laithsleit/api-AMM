@@ -57,9 +57,8 @@ class Review
             FROM reviewsandratings r
             JOIN users u ON r.UserID = u.UserID
             JOIN product p on r.ProductID = p.ProductID
-                      ";
+            WHERE r.rating >=4";
             $stmt = $this->mysqli->prepare($query);
-            // $stmt->bind_param("i", $productID);
             $stmt->execute();
             $result = $stmt->get_result();
 
