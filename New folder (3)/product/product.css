@@ -1049,3 +1049,145 @@ footer {
 }
     
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Container and Grid System */
+.container {
+    max-width: 1140px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  
+  .col-md-12, .col-lg-10 {
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  @media (min-width: 768px) {
+    .col-md-12 { flex: 0 0 100%; max-width: 100%; }
+  }
+  
+  @media (min-width: 992px) {
+    .col-lg-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  }
+  
+  /* Card Styling */
+  .card {
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+  }
+  
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  /* Typography */
+  h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+  }
+  
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  /* Rating System */
+  .rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+  
+  .rating input {
+    display: none;
+  }
+  
+  .rating label {
+    cursor: pointer;
+    color: #ccc;
+  }
+  
+  .rating input:checked ~ label,
+  .rating label:hover,
+  .rating label:hover ~ label {
+    color: gold;
+  }
+  
+  /* Comment Box */
+  .comment-box {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    resize: vertical;
+  }
+  
+  /* Submit Button */
+  .submit-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Utility Classes */
+  .my-5 {
+    margin-top: 3rem!important;
+    margin-bottom: 3rem!important;
+  }
+  
+  .py-5 {
+    padding-top: 3rem!important;
+    padding-bottom: 3rem!important;
+  }
+  
+  .mb-1 {
+    margin-bottom: .25rem!important;
+  }
+  .checked{
+    color: rgb(249, 249, 124);
+  }
+
+  #div_date_style{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }

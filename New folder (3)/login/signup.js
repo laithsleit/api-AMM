@@ -159,13 +159,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function validateUsername(input) {
         const regex = /^(?=.*[A-Za-z]).{6,}$/;;
-        const message = "Username must be at least 3 characters long and include at least one letter.";
+        const message = "Username must be at least 6 characters long and include at least one letter.";
         displayValidationMessage('usernameError', input, regex, message, 'isUsernameValid');
     }
 
     function validateEmail(input) {
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        const message = "Password must be at least 3 characters long and include at least one letter.";
+        const message = "Inter a valid email Adress.";
         displayValidationMessage('emailError', input, regex, message, 'isEmailValid');
     }
 
