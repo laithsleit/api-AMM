@@ -2,12 +2,16 @@
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
-      <title></title>
+      <title>AAM store</title>
+      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> -->
+
       <link
          rel="stylesheet"
          href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
          />
       <link rel="stylesheet" href="product.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
       <link
          rel="stylesheet"
          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -68,57 +72,39 @@
             </div>
             
             
-<section >
-   <div class="container my-5 py-5">
-     <div class="row d-flex justify-content-center">
-       <div class="col-md-12 col-lg-12">
-         <div class="card text-dark">
-           <div class="card-body p-4">
-             <h4 class="mb-0">Recent comments</h4>
-             <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
- 
-             <!-- Sample Comment -->
-                       <div class="d-flex flex-start">
-                       
-                        <div>
-                          <h6 class="fw-bold mb-1">Maggie Marsh</h6>
-                          <div class="d-flex align-items-center mb-3">
-                            <p class="mb-0">
-                              March 07, 2021
-                            </p>
-
-                          </div>
-                          <p class="mb-0">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text ever
-                            since the 1500s, when an unknown printer took a galley of type and
-                            scrambled it.
-                          </p>
-                        </div>
-                      </div>
- 
-             <!-- Add more comments in a similar fashion -->
- 
-           </div>
- 
-           <!-- Rating and Comment Submission -->
-           <div class="card-body p-4">
-             <h5 class="mb-1">Rate and Comment</h5>
-             <div class="rating">
-               <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-               <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
-               <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
-               <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-               <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-             </div>
-             <textarea class="comment-box" placeholder="Leave a comment..."></textarea>
-             <button class="submit-btn">Submit</button>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
- </section>
+            <section>
+               <div class="container my-5 py-5">
+                 <div class="row d-flex justify-content-center">
+                   <div class="col-md-12 col-lg-12">
+                     <div class="card text-dark">
+                       <div class="card-body p-4">
+                         <h4 class="mb-0">Recent comments</h4>
+                         <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
+            
+                         <!-- Reviews Container -->
+                         <div id="reviews-container">
+                           <!-- Reviews will be loaded here -->
+                         </div>
+                       </div>
+            
+                       <!-- Rating and Comment Submission -->
+                       <div class="card-body p-4">
+                         <h5 class="mb-1">Rate and Comment</h5>
+                         <div class="rating">
+                           <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                           <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                           <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                           <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                           <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                         </div>
+                         <textarea class="comment-box" id="comment-text" placeholder="Leave a comment..."></textarea>
+                         <button class="submit-btn" id="submit-review">Submit</button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </section>
  
 
 

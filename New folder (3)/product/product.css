@@ -1182,4 +1182,12 @@ footer {
   .mb-1 {
     margin-bottom: .25rem!important;
   }
-  
+  .checked{
+    color: rgb(249, 249, 124);
+  }
+
+  #div_date_style{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
