@@ -37,7 +37,10 @@ function fetchCartItemsAndDisplay(userID) {
                 document.querySelectorAll('.delete-btn').forEach(button => {
                     button.addEventListener('click', function() {
                         const productId = this.getAttribute('data-product-id');
+                        const confirmed = confirm('Are you sure you want to delete this Item?')
+                        if(confirmed){
                         deleteCartItem(productId, userID);
+                        }
                     });
                 });
             }

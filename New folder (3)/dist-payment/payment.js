@@ -17,8 +17,16 @@ function validateCardHolder() {
 
 function validateDate() {
     var date = document.getElementById("date").value;
-    var isValidDate = /^\d{4}$/.test(date);
-    displayValidationMessage("Expiry date must be 4 digits (MMYY).", isValidDate);
+    var month = parseInt(date.substring(0, 2));
+  var year = parseInt(date.substring(2, 4));
+
+  if (month < 1 || month > 12) {
+    displayValidationMessage("Oops! The month should be between 01 and 12. Please try again.", false);
+  } else if (year <= 22) {
+    displayValidationMessage("Uh oh! Your card expierd", false);
+  } else {
+    displayValidationMessage("Expiry date is valid!", true);
+  }
 }
 
 function validateCVC() {
@@ -59,7 +67,7 @@ function validateAndConfirmCheckout() {
 function confirmCheckout() {
     // Add your logic here to confirm the checkout
     alert("Checkout confirmed!");
-    window.location.href = "index.html";
+    
 }
 
 
