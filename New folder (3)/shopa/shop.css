@@ -17,10 +17,7 @@ body {
 }
 
 
-img {
-  width: auto;
-  max-width: 100%;
-}
+
 /* CSS Reset */
 
 
@@ -361,14 +358,7 @@ footer {
   position: fixed;
   bottom: 0;
 }
-footer>.footer-left>.photo{
-  width: 100%;
-  height: 100px;
-}
-.photo img{
-  width: 100px;
-  height: 100%;
-}
+
 @media (max-height:800px) {
   footer {
       position: static;
@@ -381,13 +371,12 @@ footer>.footer-left>.photo{
   text-align: left;
   font: bold 16px sans-serif;
   padding: 50px 50px 60px 50px;
- /* margin-top: 80px;
-  */
 }
 .footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
   display: inline-block;
   vertical-align: top;
 }
+
 /* Footer left */
 .footer-distributed .footer-left {
   width: 30%;
@@ -397,8 +386,13 @@ footer>.footer-left>.photo{
   font: normal 36px 'Cookie', cursive;
   margin: 0;
 }
-.footer-distributed h3 span {
-  color: #e0ac1c;
+footer>.footer-left>.photo{
+  width: 100%;
+  height: 100px;
+}
+.photo img{
+  width:100px;
+  height: 100%;
 }
 /* Footer links */
 .footer-distributed .footer-links {
@@ -717,7 +711,7 @@ footer>.footer-left>.photo{
   padding: 12px 20px;
   height: 60px;
  }
- .logo img {width: 40px;}
+
  .menu {display: flex;}
  .menu li {padding-left: 30px;}
  .menu li a {
