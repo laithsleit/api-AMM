@@ -98,6 +98,10 @@ header{
 #check {
  display: none;
 }
+.menu li a:hover,
+.menu a.active{
+color: #F28123;
+}
 @media(max-width: 760px){
   .menu {
       flex-direction: column;
@@ -346,7 +350,7 @@ footer>.footer-left>.photo{
   margin: 0;
 }
 .footer-distributed h3 span {
-  color: #e0ac1c;
+  color: #F28123;
 }
 /* Footer links */
 .footer-distributed .footer-links {
@@ -398,7 +402,7 @@ footer>.footer-left>.photo{
   line-height: 2;
 }
 .footer-distributed .footer-center p a {
-  color: #e0ac1c;
+  color: #F28123;
   text-decoration: none;
   ;
 }

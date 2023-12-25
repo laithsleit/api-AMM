@@ -8,7 +8,7 @@
   width: 100%;
   padding: 12px;
   margin-top: 20px;
-  background-color: #4caf50;
+  background-color: #F28123;
  /* Green for positive action */
   color: white;
   border: none;
@@ -18,6 +18,131 @@
   border-radius: 5px;
  /* Rounded for consistency */
 }
+
+
+
+
+/* Header  */
+header{
+  position: fixed;
+  width: 100%;
+  z-index: 99999;
+  background-color: var(--color2);
+  top: 0;
+  left: 0;
+  padding:5px 150px;
+
+
+}
+.nav-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  position: relative;
+}
+.nav-bar a{
+  text-decoration: none;
+  font-size: 1.15rem;
+  color:rgb(246, 239, 239);
+  font-weight: 500;
+  margin-left: 1.5rem;
+}
+.nav-bar>a>img{
+  
+    width: 30%;
+    height: 100%;
+}
+.menu>li>a>i{
+  font-size: 31px;
+}
+.menu>li>a>span{
+  position: absolute;
+  right: 8%;
+  bottom: 50%;
+
+}
+
+.menu {
+ display: flex;
+}
+.menu li {
+ padding-left: 30px;
+}
+.menu li a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color1);
+  text-align: center;
+  transition: 0.15s ease-in-out;
+  position: relative;
+  text-transform: uppercase;
+}
+.menu li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #F28123;
+  transition: 0.15s ease-in-out;
+}
+.menu li a:hover:after {
+ width: 100%;
+}
+.menu li a:hover,
+.menu a.active{
+color: #F28123;
+}
+.open-menu , .close-menu {
+  position: absolute;
+  color: var(--color1);
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: none;
+}
+.open-menu {
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+.close-menu {
+  top: 20px;
+  right: 20px;
+}
+#check {
+ display: none;
+}
+@media(max-width: 760px){
+  .menu {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 80%;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      z-index: 100;
+      background-color: var(--color2);
+      transition: all 0.2s ease-in-out;
+ }
+  .menu li {
+     margin-top: 40px;
+ }
+  .menu li a {
+     padding: 10px;
+ }
+  .open-menu , .close-menu {
+     display: block;
+ }
+  #check:checked ~ .menu {
+     right: 0;
+ }
+}
+
 
 
 
@@ -138,7 +263,7 @@ body {
 
 #cart-count {
   
-  background-color: red;
+  background-color:#F28123;
   color: white;
   border-radius: 50%;
   padding: 2px 5px;
@@ -194,6 +319,182 @@ margin-top: 20px;
 }
 
 
+
+footer {
+  position: fixed;
+  bottom: 0;
+}
+footer>.footer-left>.photo{
+  width: 100%;
+  height: 100px;
+}
+.photo img{
+  width: 100px;
+  height: 100%;
+}
+@media (max-height:800px) {
+  footer {
+      position: static;
+ }
+}
+.footer-distributed {
+  background-color: rgb(13, 13, 13);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: bold 16px sans-serif;
+  padding: 50px 50px 60px 50px;
+ /* margin-top: 80px;
+  */
+}
+.footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+  display: inline-block;
+  vertical-align: top;
+}
+/* Footer left */
+.footer-distributed .footer-left {
+  width: 30%;
+}
+.footer-distributed h3 {
+  color: #ffffff;
+  font: normal 36px 'Cookie', cursive;
+  margin: 0;
+}
+.footer-distributed h3 span {
+  color: #F28123;
+}
+/* Footer links */
+.footer-distributed .footer-links {
+  color: #ffffff;
+  margin: 20px 0 12px;
+}
+.footer-distributed .footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+}
+.footer-distributed .footer-company-name {
+  color: #8f9296;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+/* Footer Center */
+.footer-distributed .footer-center {
+  width: 35%;
+}
+.footer-distributed .footer-center i {
+  background-color: #33383b;
+  color: #ffffff;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+.footer-distributed .footer-center i.fa-envelope {
+  font-size: 17px;
+  line-height: 38px;
+}
+.footer-distributed .footer-center p {
+  display: inline-block;
+  color: #ffffff;
+  vertical-align: middle;
+  margin: 0;
+}
+.footer-distributed .footer-center p span {
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 2;
+}
+.footer-distributed .footer-center p a {
+  color: #F28123;
+  text-decoration: none;
+  ;
+}
+/* Footer Right */
+.footer-distributed .footer-right {
+  width: 30%;
+}
+.footer-distributed .footer-company-about {
+  line-height: 20px;
+  color: #92999f;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0;
+}
+.footer-distributed .footer-company-about span {
+  display: block;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.footer-distributed .footer-icons {
+  margin-top: 25px;
+}
+.footer-distributed .footer-icons a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: #33383b;
+  border-radius: 2px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+.footer-distributed .footer-icons a:hover {
+  background-color: #3F71EA;
+}
+.footer-links a:hover {
+  color: #3F71EA;
+}
+@media (max-width: 880px) {
+  .footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+      display: block;
+      width: 100%;
+      margin-bottom: 40px;
+      text-align: center;
+ }
+  .footer-distributed .footer-center i {
+      margin-left: 0;
+ }
+}
+@media screen and (max-width: 1300px) {
+  .main {
+      display: grid;
+     /* grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+      */
+     /* grid-template-columns:2, 1fr ;
+      grid-template-rows:2, 1fr ;
+      */
+     /* margin-left: 150px;
+      */
+      margin-right: 150px;
+ }
+  .forCards{
+      margin-bottom: 100px;
+ }
+  .thirdPage{
+      margin-top: 500px;
+      background-color: #e2e2e2;
+ }
+}
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
 
 
  
@@ -345,7 +646,7 @@ line-height: 2;
 }
 
 .footer-distributed .footer-center p a {
-color: #e0ac1c;
+color: #F28123;
 text-decoration: none;
 ;
 }
@@ -697,7 +998,6 @@ margin-left: 0;
 margin-top: 500px;
 background-color: #e2e2e2;
   }
-}
 
 
 
