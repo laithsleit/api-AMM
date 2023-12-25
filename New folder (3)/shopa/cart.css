@@ -1,0 +1,103 @@
+/* General cart styles */
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee; /* Adds a light border under each item */
+    padding-bottom: 15px;
+  }
+  
+  .cart-item-info {
+    flex-grow: 1;
+    padding-left: 10px;
+  }
+  
+  .cart-item-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: cover; /* Ensures the image covers the area properly */
+  }
+  
+  /* Styles for the cart item details */
+  .cart-item-info h4 {
+    margin: 0;
+    font-size: 1.2em; /* Adjust the size as needed */
+    color: #333; /* Dark text for readability */
+  }
+  
+  .cart-item-info p {
+    margin: 5px 0;
+    color: #666; /* Lighter text for less important details */
+  }
+  
+  /* Quantity and delete button styles */
+  .qty-btn,
+  .delete-btn {
+    border: none;
+    background-color: #F28123;
+    color: white;
+    padding: 3px 6px;
+    margin: 0 3px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners for the buttons */
+  }
+  
+  .qty-btn i,
+  .delete-btn i {
+    pointer-events: none; /* Ensures clicking the icon triggers the button */
+  }
+  
+  .qty-btn:hover,
+  .delete-btn:hover {
+    background-color: #434443;
+  }
+  
+  /* Span for quantity number */
+ 
+  
+  /* Checkout button styles */
+  .checkout-btn {
+    border: none;
+    display: block;
+    background-color: #F28123;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 50px;
+    margin: 20px auto 0 auto;
+    width: 100%; /* Full width of the container */
+    text-align: center; /* Centers the text */
+    font-size: 1em; /* Adjust the size as needed */
+  }
+  
+  .checkout-btn:hover {
+    background-color: #434443;
+  }
+  
+  /* Scrollable area for the cart items */
+  .cart-items {
+    overflow-y: auto;
+    max-height: 70vh; /* Adjust based on your needs */
+    margin-bottom: 20px; /* Space before the checkout button */
+  }
+  
+  /* Sidebar styles */
+  .cart-sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px; /* Adjust as needed */
+    height: 100vh;
+    background: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .cart-sidebar.active {
+    transform: translateX(0);
+  }
+  

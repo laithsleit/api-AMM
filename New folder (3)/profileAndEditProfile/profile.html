@@ -5,43 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="../shopa/cart.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
-    <div class="page-content page-container" id="page-content">
+    <header>
+      <ul class='nav-bar'>
+         <a href="../index/index.html" class="logo"><img src="/New folder (3)/images/LOGO.png" alt="AAM Logo"></a></li>
+         <input type='checkbox' id='check' />
+          <span class="menu">
+         <li><a href="../index/index.html">Home</a></li>
+         <li><a href="../shopa/shopa.html">Shop</a></li>
+         <li><a href="../aboutUs/AboutUs.html">Aboutus</a></li>
+         <li><a  id="Login">Login</a></li>
+         <li class="profile-link"> <a class="active" href="/New folder (3)/profileAndEditProfile/profile.html">Profile</a> </li>
+         <li><a href="cart.html" class="shopping-cart">
+              <i class="fa fa-shopping-cart"></i>
+              <span id="cart-count">0</span>
+            </a>
+         </li>
+                     <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+                 </span>
+                 <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+               <div id="cartSidebar" class="cart-sidebar">
+                  <div class="cart-items"></div>
+                  <div class="total-price" id="total-price">Total Price: $0</div>
+                  <button class="checkout-btn" onclick="window.location.href='../checkout/checkout.html'">Checkout</button>
+               </div>
+      </ul>
+   </header>
+   
+    <div class="page-content page-container" id="page-content" >
+      
       <div class="padding">
-        <div class="row container d-flex justify-content-center">
-          <div class="col-xl-6 col-md-12">
+        <div class="row container d-flex justify-content-cente">
+          <div class="col-xl-6 col-md-12 ">
             <div class="card user-card-full">
               <div class="row m-l-0 m-r-0">
-                <div class="col-sm-4 bg-c-lite-green user-profile">
-                  <div class="card-block text-center text-white">
-                    <div class="m-b-25">
-                      <img
-                        src="https://img.icons8.com/bubbles/100/000000/user.png"
-                        class="img-radius"
-                        alt="User-Profile-Image"
-                      />
-                    </div>
-                    <h6 class="f-w-600">Hembo Tingor</h6>
-                    <p>Web Designer</p>
-                    <i
-                      class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"
-                    ></i>
-                  </div>
-                </div>
+                
                 <div class="col-sm-8">
                   <div class="card-block">
-                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">
-                      Information
+                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600" id="welcome_user">
+                     
                     </h6>
                     <div class="row">
                       <div class="col-sm-6">
                         <p  class="m-b-10 f-w-600">Username</p>
-                        <h6  id="displayName" class="text-muted f-w-400">Username: </h6>
+                        <h6  id="displayName" class="text-muted f-w-400"> </h6>
                       </div>
                       <div class="col-sm-6">
                         <p class="m-b-10 f-w-600">Email</p>
-                        <h6  id="displayEmail" class="text-muted f-w-400">Email: </h6>
+                        <h6  id="displayEmail" class="text-muted f-w-400"> </h6>
                       </div>
                     </div>
                     <a href="EditProfile.html" class="button-24" role="button">
@@ -56,31 +73,53 @@
       </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Replace 'getUserIdFromSession' with your method of retrieving the user's ID from the session
-            var userId = sessionStorage.getItem("UserID");
-             userId = 10;
-            fetch('http://localhost/api-AMM/api/user/select.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Include any other headers your API requires
-                },
-                body: JSON.stringify({ UserID: userId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Assuming the response contains user data in the format { Username: '', Email: '' }
-                document.getElementById('displayName').textContent = 'Username: ' + data.Username;
-                document.getElementById('displayEmail').textContent = 'Email: ' + data.Email;
-            })
-            .catch(error => console.error('Error:', error));
-        });
-        
-        // Dummy function, replace it with your actual session ID retrieval logic
+      document.addEventListener('DOMContentLoaded', function() {
+          // Replace 'getUserIdFromSession' with your method of retrieving the user's ID from the session
+          var userId = sessionStorage.getItem("UserID");
+          // userId = 10;
+          fetch('http://localhost/api-AMM/api/user/select.php', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  // Include any other headers your API requires
+              },
+              body: JSON.stringify({ UserID: userId })
+          })
+          .then(response => response.json())
+          .then(data => {
+              // Assuming the response contains user data in the format { Username: '', Email: '' }
+              document.getElementById('displayName').textContent = 'Username: ' + data.Username;
+              document.getElementById('displayEmail').textContent = 'Email: ' + data.Email;
+          })
+          .catch(error => console.error('Error:', error));
+      });
+
+      document.addEventListener("DOMContentLoaded", function() {
+        const isLoggedIn = sessionStorage.getItem("isLoggedin") === "true";
+        const loginButton = document.getElementById('Login');
+        const profileLink = document.querySelector('.profile-link');
       
-        </script>
-        
+        if (isLoggedIn) {
+          // If the user is logged in, change button text to "Logout" and set the click event
+          loginButton.textContent = 'Logout';
+          loginButton.addEventListener('click', function() {
+            sessionStorage.clear();
+            window.location.href = '../login/signup.html';
+          });
+      
+          // Show the profile link
+          profileLink.style.display = 'block';
+        } else {
+          loginButton.textContent = 'Login';
+          loginButton.href = "../login/signup.html";
+      
+          // Hide the profile link
+          profileLink.style.display = 'none';
+        }
+      });
+  
+      </script>
+        <script src="../shopa/cart.js"></script>
         
   </body>
 </html>

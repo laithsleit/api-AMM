@@ -86,7 +86,7 @@ function populateCartItems() {
                         <div class="cart-item-info">
                             <h4>${item.ProductName}</h4>
                             <p>Price: $${item.Price}</p>
-                            <p>Quantity: 
+                            <p style="display:flex;">Quantity: 
                             <button class="qty-btn" onclick="updateCartItemQuantity(${item.ProductID}, -1)">
                                 <i class="fas fa-minus"></i> <!-- Minus icon -->
                             </button>
@@ -95,8 +95,8 @@ function populateCartItems() {
                                 <i class="fas fa-plus"></i> <!-- Plus icon -->
                             </button>
                             
-                            <button class="delete-btn" onclick="deleteCartItem(${item.ProductID})">
-                                <i class="fas fa-trash-alt"></i> <!-- Trash icon -->
+                            <button   class="delete-btn" onclick="deleteCartItem(${item.ProductID})">
+                                <i class="fas fa-trash-alt" ></i> <!-- Trash icon -->
                             </button>
                         </div>
                     `;

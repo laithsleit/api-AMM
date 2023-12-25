@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Login button event listener
     const loginButton = document.getElementById('Login');
+    const profileLink = document.querySelector('.profile-link');
     if (sessionStorage.getItem("isLoggedin") === "true") {
         loginButton.textContent = 'Logout';
         loginButton.href = '#';
@@ -102,10 +103,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
             sessionStorage.clear();
             window.location.href = '../login/signup.html';
+            profileLink.style.display = 'block';
+
         });
     } else {
         loginButton.textContent = 'Login';
         loginButton.href = '../login/signup.html';
+        profileLink.style.display = 'none';
+
     }
 
     // Checkout button event listener
