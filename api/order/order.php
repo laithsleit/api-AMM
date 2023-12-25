@@ -12,7 +12,9 @@ class Order
     public function getOrdersWithUsername($userID = null)
     {
         try {
-            $query = "SELECT o.*, u.Username FROM orders o JOIN users u ON u.UserID = o.UserID";
+            $query = "SELECT o.*, u.Username FROM
+             orders o JOIN users u ON u.UserID = o.UserID
+              ORDER BY o.OrderDate DESC";
 
             // If a specific userID is provided, filter the results for that user
             if ($userID !== null) {

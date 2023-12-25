@@ -127,10 +127,12 @@ class Review
 
         // Modify the query to filter by ProductID
         $query = "SELECT r.*, u.Username, p.Name AS ProductName
-                  FROM reviewsandratings r
-                  JOIN users u ON r.UserID = u.UserID
-                  JOIN product p ON r.ProductID = p.ProductID
-                  WHERE r.ProductID = ?";
+        FROM reviewsandratings r
+        JOIN users u ON r.UserID = u.UserID
+        JOIN product p ON r.ProductID = p.ProductID
+        WHERE r.ProductID = ?
+        ORDER BY r.Date DESC";
+        
         $stmt = $this->mysqli->prepare($query);
         $stmt->bind_param("i", $productID);
         $stmt->execute();
