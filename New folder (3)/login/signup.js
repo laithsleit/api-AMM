@@ -108,7 +108,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (data.success === true) {
                     console.log('Signup successful');
                     alert("Signup successful. You can now log in.");
-                    window.reload();
+                    window.location.reload();
+
                 } else {
                     alert("Signup failed: " + data.message);
                 }
