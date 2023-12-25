@@ -290,10 +290,44 @@ header{
 /* contact section  */
 .contact{
   width: 100%;
-  min-height: 100vh;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 100px;
+  text-align: center;
+}
+.contact h1{
+  font-size: 30px;
+  color: #000;
+  margin-bottom: 20px;
+
 }
 
-
+.info{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.iframe {
+  width: 50%;
+  height:50vh;
+}
+iframe{
+  height: 100%;
+}
+.contact-info{
+  color:#000;
+  width: 50%;
+  line-height: 65px;
+  padding-left: 50px;
+  text-align: left;
+  font-size: 20px;
+}
+.contact-info i{
+  margin-right: 20px;
+  font-size: 25px;
+  color:#F28123
+}
 
 
 /* The footer is fixed to the bottom of the page */
