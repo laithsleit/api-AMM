@@ -919,7 +919,11 @@ p{
   width: 100%;
   padding: 50px 100px;
   color: #FFF;
- 
+ text-align: center;
+}
+.imgfotr h1{
+  color: #fff;
+  margin-bottom: 50px;
 }
 .review-container{
   width: 100%;
