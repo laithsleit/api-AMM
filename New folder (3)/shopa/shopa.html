@@ -16,7 +16,31 @@
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
    </head>
    <body>
-      <header class="header">
+      <header>
+         <ul class='nav-bar'>
+            <a href="../index/index.html" class="logo"><img src="/New folder (3)/images/LOGO.png" alt="AAM Logo"></a></li>
+            <input type='checkbox' id='check' />
+             <span class="menu">
+            <li><a href="../index/index.html">Home</a></li>
+            <li><a href="../shopa/shopa.html">Shop</a></li>
+            <li><a href="../aboutUs/AboutUs.html">Aboutus</a></li>
+            <li><a  id="Login">Login</a></li>
+            <li><a href="cart.html" class="shopping-cart">
+                 <i class="fa fa-shopping-cart"></i>
+                 <span id="cart-count">0</span>
+               </a>
+            </li>
+                        <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+                    </span>
+                    <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+                  <div id="cartSidebar" class="cart-sidebar">
+                     <div class="cart-items"></div>
+                     <div class="total-price" id="total-price">Total Price: $0</div>
+                     <button class="checkout-btn" onclick="window.location.href='../checkout/checkout.html'">Checkout</button>
+                  </div>
+         </ul>
+      </header>
+      <!-- <header class="header">
          <div>
          <nav >
             <ul class='nav-bar'   >
@@ -42,7 +66,7 @@
                </div>
             </ul>
          </nav>
-      </header>
+      </header> -->
       <div class="shopContainer" style="margin-bottom: 190px;">
          <div class="container">
             <!-- / .topnav -->
