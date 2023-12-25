@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
 *{
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
@@ -10,12 +12,6 @@ body {
   --color2: #181818 ;
 }
 
-
-
-
-
-
-
 /* Header  */
 header{
   position: fixed;
@@ -25,8 +21,6 @@ header{
   top: 0;
   left: 0;
   padding:5px 150px;
-
-
 }
 .nav-bar {
   width: 100%;
@@ -44,7 +38,6 @@ header{
   margin-left: 1.5rem;
 }
 .nav-bar>a>img{
-  
     width: 30%;
     height: 100%;
 }
@@ -55,7 +48,6 @@ header{
   position: absolute;
   right: 8%;
   bottom: 50%;
-
 }
 
 .menu {

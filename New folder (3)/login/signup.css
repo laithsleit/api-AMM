@@ -1,17 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-* {
+*{
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-}
+  }
 
 body {
-    
     background-image: url(https://img.freepik.com/premium-photo/warehouse-ai…g-materials-industiral-store_102375-445.jpg?w=996);
     background-size: cover;
-margin: 0%;
+    font-family: "Poppins", sans-serif;
+    --color1: #FFF ;
+    --color2: #181818 ;
 
-/* background-repeat: no-repeat;
-    background-size: cover; */
+
 }
 
 h1 {
@@ -263,8 +267,24 @@ button.ghost {
 .container.right-panel-active .overlay-right {
     transform: translateX(20%);
 }
+header{
+    position: fixed;
+    width: 100%;
+    z-index: 99999;
+    background-color: var(--color2);
+    top: 0;
+    left: 0;
+    padding:5px 150px;
+  }
 
-
+.nav-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    position: relative;
+  }
 
 .nav-bar a{
     text-decoration: none;
@@ -274,35 +294,13 @@ button.ghost {
     margin-left: 1.5rem;
  } 
  
+ .logo>a>img{
+  
+    width: 30%;
+    height: 100%;
+}
  
- 
- 
- 
- 
- 
- 
- *{
-   box-sizing: border-box;
-   margin: 0;
-   padding: 0;
- }
- body {
-   font-family: "Poppins", sans-serif;
-   --color1: #FFF ;
-   --color2: #181818 ;
- }
- .nav-bar {
-   width: 100%;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   list-style: none;
-   position: relative;
-   background-color: var(--color2);
-   padding: 12px 20px;
-   height: 60px;
- }
- .logo img {width: 40px;}
+
  .menu {display: flex;}
  .menu li {padding-left: 30px;}
  .menu li a {
@@ -314,17 +312,28 @@ button.ghost {
    position: relative;
    text-transform: uppercase;
  }
- .menu li a::after {
-   content: "";
-   position: absolute;
-   bottom: 0;
-   left: 0;
-   width: 0;
-   height: 1px;
-   background-color: var(--color1);
-   transition: 0.15s ease-in-out;
- }
- .menu li a:hover:after {width: 100%;}
+ .menu li a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color1);
+    text-align: center;
+    transition: 0.15s ease-in-out;
+    position: relative;
+    text-transform: uppercase;
+  }
+  .menu li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #F28123;
+    transition: 0.15s ease-in-out;
+  }
+  .menu li a:hover:after {
+   width: 100%;
+  }
  .open-menu , .close-menu {
    position: absolute;
    color: var(--color1);
