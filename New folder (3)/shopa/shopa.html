@@ -4,7 +4,7 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="stylesheet" href="shop.css" />
-      <title>Shop</title>
+      <title> AAM Shop</title>
       <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
       <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
@@ -16,7 +16,32 @@
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
    </head>
    <body>
-      <header class="header">
+     
+    <header>
+      <ul class='nav-bar'>
+         <a href="../index/index.html" class="logo"><img src="/New folder (3)/images/LOGO.png" alt="AAM Logo"></a></li>
+         <input type='checkbox' id='check' />
+          <span class="menu">
+         <li><a href="../index/index.html">Home</a></li>
+         <li><a class="active"    href="../shopa/shopa.html">Shop</a></li>
+         <li><a  href="../aboutUs/AboutUs.html">Aboutus</a></li>
+         <li><a  id="Login">Login</a></li>
+         <li><a href="cart.html" class="shopping-cart">
+              <i class="fa fa-shopping-cart"></i>
+              <span id="cart-count">0</span>
+            </a>
+         </li>
+                     <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+                 </span>
+                 <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+               <div id="cartSidebar" class="cart-sidebar">
+                  <div class="cart-items"></div>
+                  <div class="total-price" id="total-price">Total Price: $0</div>
+                  <button class="checkout-btn" onclick="window.location.href='../checkout/checkout.html'">Checkout</button>
+               </div>
+      </ul>
+   </header>
+      <!-- <header class="header">
          <div>
          <nav >
             <ul class='nav-bar'   >
@@ -42,7 +67,7 @@
                </div>
             </ul>
          </nav>
-      </header>
+      </header> -->
       <div class="shopContainer" style="margin-bottom: 190px;">
          <div class="container">
             <!-- / .topnav -->
@@ -94,20 +119,28 @@
             </div>
          </div>
       </div>
+
+
       <footer class="footer-distributed">
          <div class="footer-left">
-            <h3>AAM<span>Store</span></h3>
+            <div class="photo">
+               <a href="../index/index.html" class="logo"><img src="/New folder (3)/images/LOGO.png" alt="AAM Logo"></a></li>
+
+            </div>
+
             <p class="footer-links">
-               <a href="../HOMa.html">Home</a>
+               <a href="HOMa.html">Home</a>
                |
                <a href="#Aboutus">About</a>
                |
-               <a href="shopa.html">Shop </a>
+               <a href="shopa/shopa.html">Shop </a>
                |
                <a href="#"></a>
             </p>
             <p class="footer-company-name">Copyright © 2023 <strong>AAM STOR</strong> All rights reserved</p>
          </div>
+
+
          <div class="footer-center">
             <div>
                <i class="fa fa-map-marker"></i>
@@ -123,10 +156,13 @@
                <p><a href="">msleet38@gmail.com</a></p>
             </div>
          </div>
+
+
+
          <div class="footer-right">
             <p class="footer-company-about">
                <span>About the company</span>
-               <strong>aam store/strong> We have everything you need of the best quality construction tools
+               <strong>aam store</strong> We have everything you need of the best quality construction tools
             </p>
             <div class="footer-icons">
                <a href="#"><i class="fa fa-facebook"></i></a>
@@ -136,6 +172,8 @@
             </div>
          </div>
       </footer>
+     
+      
       <script src="shop.js"></script>
       <script src="cart.js"></script>
    </body>

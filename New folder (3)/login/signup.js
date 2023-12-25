@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const signIn = document.getElementById("signin");
     signIn.addEventListener("click", (event) => {
         event.preventDefault();
-    console.log("isLoginUsernameValid:", isLoginUsernameValid, "isLoginPasswordValid:", isLoginPasswordValid);
     if (!isLoginUsernameValid || !isLoginPasswordValid) {
         alert("Your login details are incorrect or incomplete. Please ensure all fields are filled out correctly.");
         return;
@@ -109,6 +108,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (data.success === true) {
                     console.log('Signup successful');
                     alert("Signup successful. You can now log in.");
+                    window.location.reload();
+
                 } else {
                     alert("Signup failed: " + data.message);
                 }

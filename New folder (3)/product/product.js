@@ -226,17 +226,33 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function fetchReviews() {
-    fetch('http://localhost/api-AMM/api/Review/ReviewSelect.php') // Replace with your GET reviews API URL
-        .then(response => response.json())
-        .then(data => {
-            if (data.success && data.reviews) {
-                displayReviews(data.reviews);
-            } else {
-                console.error(data.message || 'Error fetching reviews');
-            }
-        })
-        .catch(error => console.error('Error:', error));
+    // Extract the productID from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productID = urlParams.get('id'); // Assuming the URL is like ?id=34
+
+    // Define the data to send in the POST request
+    const data = {
+        productID: productID
+    };
+
+    fetch('http://localhost/api-AMM/api/Review/ReviewSelect.php', {
+        method: 'POST', // Set the method to POST
+        headers: {
+            'Content-Type': 'application/json', // Set the content type header
+        },
+        body: JSON.stringify(data) // Convert the data to a JSON string
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success && data.reviews) {
+            displayReviews(data.reviews);
+        } else {
+            console.error(data.message || 'Error fetching reviews');
+        }
+    })
+    .catch(error => console.error('Error:', error));
 }
+
 
 function displayReviews(reviews) {
     const reviewsContainer = document.getElementById('reviews-container');

@@ -2,53 +2,46 @@
 
 /**
  * CRUD API for Updating User
- * 
- * Use the following HTTP methods:
- * - PUT/PATCH: To update a specific user by ID.
- * 
- * API Endpoint:
- * 
- * 1. PUT/PATCH /updateUser:
- *    - Description: Update a user by ID.
- *    - Example: PUT /updateUser (Update user with ID)
- *        - Send JSON data: {"Username":"updateduser","Password":"laith","Email":"updateduser@example.com","RoleID":2,"UserID":3}
- *    - Response JSON: {"message":"User updated successfully."}
  */
 
 // Include the database connection file
 include_once "../include.php";
+
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+header("Access-Control-Allow-Methods: PUT, GET,PATCH, POST, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
-// Check the request method
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Content-Type: application/json");
+    exit();
+}
+
 $method = $_SERVER['REQUEST_METHOD'];
 
-// Switch based on the request method
 switch ($method) {
     case 'PUT':
     case 'PATCH':
-        // PUT/PATCH /updateUser: Update a user by ID
         $inputData = json_decode(file_get_contents("php://input"), true);
         if (isset($inputData['UserID'])) {
             updateUser($inputData['UserID'], $inputData);
         } else {
-            http_response_code(400); // Bad Request
+            http_response_code(400);
             echo json_encode(array("message" => "Please provide a valid user ID for update."));
         }
         break;
     default:
-        http_response_code(405); // Method Not Allowed
+        http_response_code(405);
         echo json_encode(array("message" => "Invalid request method."));
 }
 
-// Function to update an existing user
 function updateUser($UserID, $userData)
 {
     global $mysqli;
 
-    // Check if the user exists
     $checkQuery = "SELECT * FROM users WHERE UserID = ?";
     $checkStatement = $mysqli->prepare($checkQuery);
     $checkStatement->bind_param('i', $UserID);
@@ -56,48 +49,47 @@ function updateUser($UserID, $userData)
     $checkResult = $checkStatement->get_result();
 
     if ($checkResult->num_rows > 0) {
-        // Fetch the existing user data
-        $existingUserData = $checkResult->fetch_assoc();
-
-        // Update only the fields that are provided
         $updateQuery = "UPDATE users SET ";
         $updateData = array();
+        $types = '';
 
-        if (isset($userData['username'])) {
+        if (isset($userData['Username'])) {
             $updateQuery .= "Username = ?, ";
-            $updateData[] = $userData['username'];
+            $updateData[] = $userData['Username'];
+            $types .= 's';
         }
 
-        if (isset($userData['password'])) {
+        if (isset($userData['Password'])) {
             $updateQuery .= "Password = ?, ";
-            $updateData[] = password_hash($userData['password'], PASSWORD_DEFAULT);
+            $updateData[] = password_hash($userData['Password'], PASSWORD_DEFAULT);
+            $types .= 's';
         }
 
-        if (isset($userData['email'])) {
+        if (isset($userData['Email'])) {
             $updateQuery .= "Email = ?, ";
-            $updateData[] = $userData['email'];
+            $updateData[] = $userData['Email'];
+            $types .= 's';
         }
 
-        if (isset($userData['roleId'])) {
+        if (isset($userData['RoleID'])) {
             $updateQuery .= "RoleID = ?, ";
-            $updateData[] = $userData['roleId'];
+            $updateData[] = $userData['RoleID'];
+            $types .= 'i';
         }
 
-        // Remove the trailing comma and space
         $updateQuery = rtrim($updateQuery, ", ");
-
         $updateQuery .= " WHERE UserID = ?";
         $updateData[] = $UserID;
+        $types .= 'i';
 
-        // Execute the update query
         $updateStatement = $mysqli->prepare($updateQuery);
-        call_user_func_array(array($updateStatement, 'bind_param'), $updateData);
+        $updateStatement->bind_param($types, ...$updateData);
         $updateStatement->execute();
 
-        http_response_code(200); // OK
+        http_response_code(200);
         echo json_encode(array("message" => "User updated successfully."));
     } else {
-        http_response_code(404); // Not Found
+        http_response_code(404);
         echo json_encode(array("message" => "User not found with ID: $UserID"));
     }
 }
